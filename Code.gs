@@ -1,5 +1,5 @@
 const SPREADSHEET_ID = 'IDE_JON_A_GOOGLE_SHEET_ID';
-const THANK_YOU_URL = 'https://csatangolo.online/forum/koszonjuk/';
+const THANK_YOU_URL = 'https://csatangolo.online/forum/koszonjuk.html';
 
 function doPost(e) {
   const lock = LockService.getScriptLock();
