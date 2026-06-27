@@ -1,33 +1,17 @@
-CSATANGOLÓ FÓRUM – SUPABASE VERZIÓ
+CSATANGOLÓ FÓRUM – JAVÍTOTT MŰKÖDŐ VERZIÓ
 
-Töltsd fel ezt a 4 fájlt GitHubra a régi fájlok helyére:
+GitHubra ezeket töltsd fel / írd felül:
 
 - index.html
 - regisztracio.html
 - koszonjuk.html
 - styles.css
+- script.js
 
-A supabase_schema.sql fájlt NEM kell GitHubra feltölteni, csak Supabase-ben kell lefuttatni.
+A supabase_fix_policies.sql fájlt nem muszáj GitHubra feltölteni.
+Ha továbbra is hibát ír a regisztráció, Supabase → SQL Editor → New query alatt futtasd le.
 
-SUPABASE BEÁLLÍTÁS:
-
-1. Supabase projekt → bal oldalt SQL Editor
-2. New query
-3. Másold be a supabase_schema.sql teljes tartalmát
-4. Run
-5. Utána Table Editor alatt látni fogod:
-   - registrations
-   - participants
-
-TESZT:
-
-1. Nyisd meg:
-   https://csatangolo.online/csatangolo-forum/regisztracio.html
-2. Tölts ki egy próbaregisztrációt
-3. Beküldés után a koszonjuk.html oldalra kell érkezned
-4. Supabase Table Editorben meg kell jelennie az adatoknak
-
-FONTOS:
-Ez a verzió már nem Google Apps Scriptet használ.
-Minden regisztráció Supabase adatbázisba kerül.
-A fő regisztráló és minden kísérő külön résztvevőként bekerül a participants táblába.
+Fontos:
+Ez a verzió már nem kér vissza adatot Supabase-ből az insert után, ezért nem akad el SELECT jogosultságon.
+A fő regisztráló és minden kísérő külön résztvevőként kerül a participants táblába.
+A köszönő oldalon azonnal megjelennek a névre szóló QR-kódok.
