@@ -1,24 +1,30 @@
-CSATANGOLÓ FÓRUM – V5 REJTETT SZERVEZŐI FELÜLET
+CSATANGOLÓ FÓRUM – V6 IRÁNYÍTÓPULT
 
 GitHubra töltsd fel / írd felül az összes fájlt ebből a ZIP-ből.
 
-Új, rejtettebb URL-ek:
-- Szervezői felület: /szervezo.html
-- Kapu / QR beléptetés: /kapu.html
+Szervezői felület:
+https://csatangolo.online/csatangolo-forum/szervezo.html
 
-Teljes URL-ek nálad:
-- https://csatangolo.online/csatangolo-forum/szervezo.html
-- https://csatangolo.online/csatangolo-forum/kapu.html
+Kapu / QR beléptetés:
+https://csatangolo.online/csatangolo-forum/kapu.html
 
-Admin/szervezői kód:
+Szervezői kód:
 csatangolo2026
 
-Fontos:
-A régi admin.html és beleptetes.html fájlokat nem muszáj törölni, de ha el akarod rejteni őket, GitHubon törölheted a két régi fájlt:
-- admin.html
-- beleptetes.html
+Supabase-ben futtasd le:
+supabase_v6_iranyitopult_update.sql
 
-Supabase:
-Ha a V4 SQL már le lett futtatva, nem muszáj újra futtatni.
-Ha valamelyik gomb nem ment az adminban vagy kapuban, futtasd le:
-supabase_admin_beleptetes_update.sql
+Újdonságok:
+- kibővített szervezői irányítópult
+- regisztrációk száma
+- résztvevők száma
+- kísérők száma
+- belépettek száma
+- rendezett hozzájárulás becsült összege
+- gyermekes regisztrációk száma
+- települések száma
+- beléptetési százalék
+- leggyakoribb települések
+- legnépszerűbb témák
+- előadóknak címzett kérdések
+- beérkezett kérdések listája

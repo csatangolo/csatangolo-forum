@@ -1,9 +1,10 @@
 const SUPABASE_URL = "https://ywkabsgazkzrjgjncbfc.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_DJvD1Hoou3Tn74T9BFx0ww_O6ObFlxY";
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-const ADMIN_CODE = "csatangolo2026"; // ezt csak Ti ismeritek
+const ADMIN_CODE = "csatangolo2026";
 
 let participants = [];
+let registrations = [];
 
 const loginBox = document.getElementById("loginBox");
 const adminContent = document.getElementById("adminContent");
@@ -19,7 +20,7 @@ function msg(text) {
 
 loginButton.addEventListener("click", async () => {
   if (document.getElementById("adminCode").value !== ADMIN_CODE) {
-    msg("Hibás admin kód.");
+    msg("Hibás szervezői kód.");
     return;
   }
   loginBox.classList.add("hidden");
@@ -27,24 +28,85 @@ loginButton.addEventListener("click", async () => {
   await loadData();
 });
 
+document.getElementById("refreshData").addEventListener("click", loadData);
+
 async function loadData() {
-  const { data, error } = await client.from("participants").select("*").order("created_at", { ascending: false });
-  if (error) {
-    alert("Nem sikerült betölteni a résztvevőket. Futtasd le az admin SQL frissítést.");
-    console.error(error);
+  const pRes = await client.from("participants").select("*").order("created_at", { ascending: false });
+  const rRes = await client.from("registrations").select("*").order("created_at", { ascending: false });
+
+  if (pRes.error) {
+    alert("Nem sikerült betölteni a résztvevőket. Futtasd le a V6 SQL frissítést.");
+    console.error(pRes.error);
     return;
   }
-  participants = data || [];
+
+  participants = pRes.data || [];
+  registrations = rRes.error ? [] : (rRes.data || []);
+
   updateStats();
   render(participants);
+  renderDashboard();
+  renderQuestions();
 }
 
 function updateStats() {
-  document.getElementById("statParticipants").textContent = participants.length;
-  document.getElementById("statCheckedIn").textContent = participants.filter(p => p.checked_in).length;
-  document.getElementById("statPaid").textContent = participants.filter(p => p.contribution_paid).length;
   const registrationIds = new Set(participants.map(p => p.registration_id).filter(Boolean));
-  document.getElementById("statRegistrations").textContent = registrationIds.size;
+  const checkedIn = participants.filter(p => p.checked_in).length;
+  const paid = participants.filter(p => p.contribution_paid).length;
+  const companions = participants.filter(p => String(p.type || "").toLowerCase().includes("kísér")).length;
+  const cities = new Set(participants.map(p => clean(p.city)).filter(Boolean));
+
+  document.getElementById("statParticipants").textContent = participants.length;
+  document.getElementById("statCheckedIn").textContent = checkedIn;
+  document.getElementById("statPaid").textContent = paid;
+  document.getElementById("statCompanions").textContent = companions;
+  document.getElementById("statSupport").textContent = (paid * 2000).toLocaleString("hu-HU") + " Ft";
+  document.getElementById("statRegistrations").textContent = registrations.length || registrationIds.size;
+  document.getElementById("statCities").textContent = cities.size;
+
+  const childRegs = registrations.filter(r => String(r.has_children || "").toLowerCase() === "igen").length;
+  document.getElementById("statChildren").textContent = childRegs;
+
+  const percent = participants.length ? Math.round((checkedIn / participants.length) * 100) : 0;
+  document.getElementById("checkinProgress").style.width = percent + "%";
+  document.getElementById("checkinText").textContent = percent + "% beléptetve";
+}
+
+function renderDashboard() {
+  renderCountList("cityList", countBy(participants.map(p => clean(p.city)).filter(Boolean)), "Még nincs településadat.");
+  renderCountList("topicList", countArrayValues(registrations.map(r => r.topics)), "Még nincs témaadat.");
+  renderCountList("questionForList", countBy(registrations.map(r => clean(r.question_for)).filter(Boolean)), "Még nincs névhez címzett kérdés.");
+}
+
+function renderCountList(id, entries, emptyText) {
+  const el = document.getElementById(id);
+  const top = entries.slice(0, 7);
+  if (!top.length) {
+    el.innerHTML = `<p class="hint">${emptyText}</p>`;
+    return;
+  }
+  el.innerHTML = top.map(([name, count]) => `
+    <div class="list-row">
+      <span>${escapeHtml(name)}</span>
+      <strong>${count}</strong>
+    </div>
+  `).join("");
+}
+
+function renderQuestions() {
+  const el = document.getElementById("questionsList");
+  const rows = registrations.filter(r => clean(r.speaker_question));
+  if (!rows.length) {
+    el.innerHTML = '<p class="hint">Még nincs beküldött kérdés.</p>';
+    return;
+  }
+  el.innerHTML = rows.map(r => `
+    <article class="question-card">
+      <h3>${escapeHtml(r.main_name || "Névtelen")}</h3>
+      ${r.question_for ? `<p><strong>Címzett:</strong> ${escapeHtml(r.question_for)}</p>` : ""}
+      <p>${escapeHtml(r.speaker_question)}</p>
+    </article>
+  `).join("");
 }
 
 function render(rows) {
@@ -76,7 +138,7 @@ body.addEventListener("click", async (e) => {
 
   const { error } = await client.from("participants").update(update).eq("id", id);
   if (error) {
-    alert("Nem sikerült menteni. Lehet, hogy hiányzik az UPDATE jogosultság.");
+    alert("Nem sikerült menteni. Futtasd le a V6 SQL frissítést.");
     console.error(error);
     return;
   }
@@ -105,6 +167,32 @@ document.getElementById("exportCsv").addEventListener("click", () => {
   a.click();
   URL.revokeObjectURL(url);
 });
+
+function clean(v) {
+  return String(v || "").trim();
+}
+
+function countBy(values) {
+  const map = new Map();
+  values.forEach(v => map.set(v, (map.get(v) || 0) + 1));
+  return [...map.entries()].sort((a,b) => b[1] - a[1]);
+}
+
+function countArrayValues(values) {
+  const all = [];
+  values.forEach(v => {
+    if (Array.isArray(v)) all.push(...v);
+    else if (typeof v === "string" && v.trim()) {
+      try {
+        const parsed = JSON.parse(v);
+        if (Array.isArray(parsed)) all.push(...parsed);
+      } catch {
+        all.push(v);
+      }
+    }
+  });
+  return countBy(all.map(clean).filter(Boolean));
+}
 
 function escapeHtml(str) {
   return String(str).replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));

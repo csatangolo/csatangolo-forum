@@ -484,3 +484,55 @@ input[type="checkbox"]{
   pointer-events:none;
 }
 .premium-ticket>*{position:relative}
+
+
+/* V6 irányítópult */
+.admin-stats.expanded{
+  grid-template-columns:repeat(4,1fr);
+}
+.dashboard-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+  margin:24px 0;
+}
+.progress-wrap{margin-top:18px}
+.progress-bar{
+  height:18px;
+  background:rgba(94,60,38,.12);
+  border-radius:999px;
+  overflow:hidden;
+  border:1px solid rgba(94,60,38,.1);
+}
+.progress-bar span{
+  display:block;
+  height:100%;
+  width:0%;
+  background:linear-gradient(135deg,var(--gold),var(--soft-gold));
+  border-radius:999px;
+  transition:width .35s ease;
+}
+.list-stat{display:grid;gap:9px;margin-top:14px}
+.list-row{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:11px 12px;
+  border-radius:14px;
+  background:rgba(201,154,81,.1);
+  border:1px solid rgba(201,154,81,.15);
+}
+.list-row strong{color:var(--brown)}
+.admin-actions{display:flex;gap:10px;flex-wrap:wrap}
+.questions-list{display:grid;gap:14px}
+.question-card{
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#fff;
+}
+.question-card h3{color:var(--brown);margin:0 0 8px}
+@media(max-width:900px){
+  .admin-stats.expanded{grid-template-columns:repeat(2,1fr)}
+  .dashboard-grid{grid-template-columns:1fr}
+}
