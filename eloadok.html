@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Előadók – Csatangoló Fórum</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 <nav class="topbar">
@@ -14,6 +15,7 @@
     <a href="program.html">Program</a>
     <a href="eloadok.html">Előadók</a>
     <a href="tudastar.html">Tudástár</a>
+    <a href="hirek.html">Hírek</a>
     <a class="nav-cta" href="regisztracio.html">Regisztráció</a>
   </div>
 </nav>
@@ -26,39 +28,18 @@
 
   <section class="card intro-card">
     <h2>Előadóink és meghívott szakembereink</h2>
-    <p>A névsor folyamatosan bővül. A részletes bemutatkozások és fotók a következő napokban kerülnek fel az oldalra.</p>
-    <p><strong>Meglepetés előadók is érkeznek, és szakmabeliként még jelentkezhetsz előadónak is.</strong></p>
+    <p>A névsor folyamatosan bővül. A tartalmakat már a szervezői felületről tudjuk kezelni.</p>
   </section>
 
-  <section class="profile-grid">
-    <article class="profile-card featured-profile">
-      <span class="profile-tag">Kiemelt előadó</span>
-      <h2>Panyi Gyuri</h2>
-      <p>Belovaglás • Lókiképzés • Fiatal lovak képzése</p>
-      <a href="regisztracio.html" class="mini-link">Kérdést teszek fel neki</a>
-    </article>
-    <article class="profile-card featured-profile">
-      <span class="profile-tag">Kiemelt előadó</span>
-      <h2>Pataky Kata</h2>
-      <p>Bemutató • Lókommunikáció • Gyakorlati szemlélet</p>
-      <a href="regisztracio.html" class="mini-link">Kérdést teszek fel neki</a>
-    </article>
-    <article class="profile-card"><h2>Karl Péter</h2><p>Meghívott szakember</p></article>
-    <article class="profile-card"><h2>Benner Jani</h2><p>Meghívott szakember</p></article>
-    <article class="profile-card"><h2>Tászler Melinda</h2><p>Meghívott szakember</p></article>
-    <article class="profile-card"><h2>Kevey Bella</h2><p>Meghívott szakember</p></article>
-    <article class="profile-card"><h2>Szabó Árpi</h2><p>Meghívott szakember</p></article>
-    <article class="profile-card"><h2>Tisza Zoltán</h2><p>Meghívott szakember</p></article>
-    <article class="profile-card"><h2>Kaska Zoltán</h2><p>Meghívott szakember</p></article>
-    <article class="profile-card"><h2>Szabó Zoltán</h2><p>Meghívott szakember</p></article>
-  </section>
+  <section id="speakerList" class="profile-grid"></section>
 
   <section class="mission">
     <h2>Előadóként csatlakoznál?</h2>
     <p>Ha belovaglással, lókiképzéssel, fiatal lovak képzésével vagy kapcsolódó lovas szakmai témával foglalkozol, és szívesen megosztanád tapasztalataidat, jelezd felénk.</p>
-    <p><strong>Ez a fórum a közös gondolkodásról szól.</strong></p>
   </section>
 </main>
 <footer class="footer"><strong>Egymástól tanulunk.</strong><strong>A lovakért.</strong><strong>Egy közösségként.</strong></footer>
+<script src="public-content.js"></script>
+<script>loadPublicSpeakers();</script>
 </body>
 </html>

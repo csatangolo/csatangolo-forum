@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Program – Csatangoló Fórum</title>
+  <title>Hírek – Csatangoló Fórum</title>
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -21,25 +21,14 @@
 </nav>
 <main class="page">
   <section class="hero small">
-    <div class="badge">Program</div>
-    <h1>A nap menete</h1>
-    <p class="motto">A pontos program folyamatosan frissül.</p>
+    <div class="badge">Fórum hírek</div>
+    <h1>Friss információk</h1>
+    <p class="motto">Programváltozás, tudnivalók, újdonságok.</p>
   </section>
-
-  <section class="support-panel compact">
-    <div>
-      <span class="eyebrow">Fontos</span>
-      <h2>A program folyamatosan bővül</h2>
-      <p>A pontos időpontokat és programpontokat a szervezői felületről tudjuk frissíteni.</p>
-    </div>
-  </section>
-
-  <section class="timeline-section">
-    <div id="programList" class="timeline premium-timeline"></div>
-  </section>
+  <section id="newsList" class="news-grid"></section>
 </main>
 <footer class="footer"><strong>Egymástól tanulunk.</strong><strong>A lovakért.</strong><strong>Egy közösségként.</strong></footer>
 <script src="public-content.js"></script>
-<script>loadPublicProgram();</script>
+<script>loadPublicNews();</script>
 </body>
 </html>

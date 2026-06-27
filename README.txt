@@ -1,18 +1,29 @@
-CSATANGOLÓ FÓRUM – V7.2 RÉSZTVEVŐI PROFIL
+CSATANGOLÓ FÓRUM – V8 TARTALOMKEZELŐ
 
 GitHubra töltsd fel / írd felül az összes fájlt ebből a ZIP-ből.
 
-Új oldal:
-- profil.html
-- profil.js
+Új oldalak:
+- tartalom.html  (szervezői tartalomkezelő)
+- hirek.html
+- public-content.js
+- cms.js
 
-Működés:
-- A köszönőoldalról megnyitható a "Saját belépőim" oldal.
-- Egy konkrét belépő így is megnyitható:
-  profil.html?code=FORUM-2026-...
-- A résztvevői profil mutatja a QR-kódot, a státuszt és a fontos tudnivalókat.
+Szervezői tartalomkezelő URL:
+https://csatangolo.online/csatangolo-forum/tartalom.html
 
-Supabase:
-Ha a V6 már működik, nem muszáj SQL-t futtatni.
-Ha a profil oldal nem tudja betölteni a konkrét belépőt, futtasd le:
-supabase_v7_2_profil_update.sql
+Szervezői kód:
+csatangolo2026
+
+Supabase-ben FUTTASD LE:
+supabase_v8_tartalomkezelo.sql
+
+Mit tudsz feltölteni / hozzáadni:
+- Előadók
+- Programok
+- YouTube videók
+- Hírek
+- Támogatók
+
+Kép feltöltés:
+Ebben a verzióban kép URL-t tudsz megadni.
+A következő verzióban jöhet a valódi képfeltöltés Supabase Storage-ba.

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tudástár – Csatangoló Fórum</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 <nav class="topbar">
@@ -14,6 +15,7 @@
     <a href="program.html">Program</a>
     <a href="eloadok.html">Előadók</a>
     <a href="tudastar.html">Tudástár</a>
+    <a href="hirek.html">Hírek</a>
     <a class="nav-cta" href="regisztracio.html">Regisztráció</a>
   </div>
 </nav>
@@ -25,23 +27,14 @@
   </section>
 
   <section class="card intro-card">
-    <h2>Hamarosan indul a Fórum Tudástár</h2>
-    <p>A fórum után ide kerülnek majd a YouTube-videók, összefoglalók, szakmai anyagok és a fontosabb kérdésekre adott válaszok.</p>
-    <p>A videókat YouTube-ról ágyazzuk be, így a tartalmak a Csatangoló csatorna nézettségét is erősítik.</p>
+    <h2>Fórum Tudástár</h2>
+    <p>Itt jelennek meg a szervezői felületen feltöltött YouTube videók és szakmai anyagok.</p>
   </section>
 
-  <section class="knowledge-grid">
-    <article class="knowledge-tile"><div class="play">▶</div><h2>Fórum meghívó</h2><p>Ide kerülhet az első YouTube meghívó videó.</p></article>
-    <article class="knowledge-tile"><div class="play">▶</div><h2>Belovaglás</h2><p>Videók és beszélgetések fiatal lovak képzéséről.</p></article>
-    <article class="knowledge-tile"><div class="play">▶</div><h2>Gyakorlati bemutatók</h2><p>A fórumon készült szakmai videók helye.</p></article>
-    <article class="knowledge-tile"><div class="play">▶</div><h2>Kérdezz-felelek</h2><p>Az előzetesen beküldött kérdésekből készült tartalmak.</p></article>
-  </section>
-
-  <section class="mission">
-    <h2>Később archívummá bővül</h2>
-    <p>Ahogy jönnek a következő fórumok, ez az oldal a korábbi események videóival, képeivel és szakmai anyagaival folyamatosan bővülhet.</p>
-  </section>
+  <section id="videoList" class="knowledge-grid"></section>
 </main>
 <footer class="footer"><strong>Egymástól tanulunk.</strong><strong>A lovakért.</strong><strong>Egy közösségként.</strong></footer>
+<script src="public-content.js"></script>
+<script>loadPublicVideos();</script>
 </body>
 </html>
