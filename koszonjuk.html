@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Köszönjük a regisztrációt</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+  <main class="page narrow">
+    <section class="hero">
+      <div class="badge">Sikeres regisztráció</div>
+      <h1>Köszönjük a regisztrációdat!</h1>
+      <p class="motto">Már nagyon várjuk, hogy személyesen is találkozzunk Veled.</p>
+      <p>Sikeresen rögzítettük a jelentkezésedet az <strong>I. Országos Belovagló és Lókiképző Szakmai Fórumra</strong>.</p>
+      <p>A rendezvény szervezési költségeihez való hozzájárulásként <strong>2 000 Ft/fő támogatást</strong> kérünk, amelyet a helyszínen lehet megfizetni.</p>
+      <p><strong>A névre szóló QR-kódokat itt azonnal látod. Később e-mailben is kiküldhetőek lesznek.</strong></p>
+      <a class="button" href="index.html">Vissza a Fórum oldalára</a>
+    </section>
+
+    <section class="card">
+      <h2>Névre szóló digitális belépők</h2>
+      <p class="hint">Érkezéskor minden résztvevő saját QR-kódját kell majd bemutatni.</p>
+      <div id="tickets" class="tickets"></div>
+    </section>
+  </main>
+
+  <script>
+    const tickets = JSON.parse(localStorage.getItem("forumTickets") || "[]");
+    const holder = document.getElementById("tickets");
+
+    if (!tickets.length) {
+      holder.innerHTML = '<p>Nincs megjeleníthető QR-kód ezen az eszközön. A regisztráció ettől még sikeres lehetett.</p>';
+    } else {
+      tickets.forEach((ticket, index) => {
+        const card = document.createElement("div");
+        card.className = "ticket-card premium-ticket";
+        card.innerHTML = `
+          <span class="ticket-label">Digitális belépő</span>
+          <h3>${ticket.name}</h3>
+          <p>${ticket.type}</p>
+          <div id="qr-${index}" class="qr-box"></div>
+          <p class="code">${ticket.participant_code}</p>
+          <small>I. Országos Belovagló és Lókiképző Szakmai Fórum</small>
+        `;
+        holder.appendChild(card);
+
+        new QRCode(document.getElementById(`qr-${index}`), {
+          text: ticket.participant_code,
+          width: 160,
+          height: 160
+        });
+      });
+    }
+  </script>
+</body>
+</html>
