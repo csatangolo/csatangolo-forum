@@ -103,16 +103,10 @@ form.addEventListener("submit", async (event) => {
       }))
     ];
 
-    const { error: regError } = await client
-      .from("registrations")
-      .insert(registration);
-
+    const { error: regError } = await client.from("registrations").insert(registration);
     if (regError) throw regError;
 
-    const { error: participantError } = await client
-      .from("participants")
-      .insert(participantRows);
-
+    const { error: participantError } = await client.from("participants").insert(participantRows);
     if (participantError) throw participantError;
 
     localStorage.setItem("forumTickets", JSON.stringify(participantRows));

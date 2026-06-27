@@ -20,7 +20,7 @@
     </section>
 
     <section class="card">
-      <h2>Névre szóló belépők</h2>
+      <h2>Névre szóló digitális belépők</h2>
       <p class="hint">Érkezéskor minden résztvevő saját QR-kódját kell majd bemutatni.</p>
       <div id="tickets" class="tickets"></div>
     </section>
@@ -35,12 +35,14 @@
     } else {
       tickets.forEach((ticket, index) => {
         const card = document.createElement("div");
-        card.className = "ticket-card";
+        card.className = "ticket-card premium-ticket";
         card.innerHTML = `
+          <span class="ticket-label">Digitális belépő</span>
           <h3>${ticket.name}</h3>
           <p>${ticket.type}</p>
           <div id="qr-${index}" class="qr-box"></div>
           <p class="code">${ticket.participant_code}</p>
+          <small>I. Országos Belovagló és Lókiképző Szakmai Fórum</small>
         `;
         holder.appendChild(card);
 

@@ -1,17 +1,22 @@
-CSATANGOLÓ FÓRUM – JAVÍTOTT MŰKÖDŐ VERZIÓ
+CSATANGOLÓ FÓRUM – PRÉMIUM V2
 
-GitHubra ezeket töltsd fel / írd felül:
+GitHubon ezeket a fájlokat töltsd fel / írd felül:
 
 - index.html
 - regisztracio.html
 - koszonjuk.html
 - styles.css
 - script.js
+- homepage.js
 
-A supabase_fix_policies.sql fájlt nem muszáj GitHubra feltölteni.
-Ha továbbra is hibát ír a regisztráció, Supabase → SQL Editor → New query alatt futtasd le.
+A supabase_premium_update.sql fájlt Supabase-ben futtasd le:
+SQL Editor → New query → beillesztés → Run
 
-Fontos:
-Ez a verzió már nem kér vissza adatot Supabase-ből az insert után, ezért nem akad el SELECT jogosultságon.
-A fő regisztráló és minden kísérő külön résztvevőként kerül a participants táblába.
-A köszönő oldalon azonnal megjelennek a névre szóló QR-kódok.
+Újdonságok:
+- elegánsabb főoldal
+- visszaszámláló
+- résztvevőszámláló 200 fő felett
+- kulturált részvételi hozzájárulás szöveg
+- prémium digitális belépők
+- Tudástár előkészítés
+- Fórum hitvallása

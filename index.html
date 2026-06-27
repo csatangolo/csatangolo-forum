@@ -6,14 +6,36 @@
   <title>I. Országos Belovagló és Lókiképző Szakmai Fórum</title>
   <meta name="description" content="I. Országos Belovagló és Lókiképző Szakmai Fórum – Csatangoló Lovarda, 2026. július 25.">
   <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-  <main class="page">
-    <section class="hero">
-      <div class="badge">A Csatangoló Lovarda országos szakmai fórumsorozata</div>
+  <nav class="topbar">
+    <a href="index.html" class="brand">Csatangoló Fórum</a>
+    <div class="navlinks">
+      <a href="#program">Program</a>
+      <a href="#eloadok">Előadók</a>
+      <a href="#kuldetes">Küldetés</a>
+      <a class="nav-cta" href="regisztracio.html">Regisztráció</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero premium-hero">
+      <div class="hero-glow"></div>
+      <div class="badge">Hagyományteremtő rendezvény</div>
       <h1>I. Országos Belovagló és Lókiképző Szakmai Fórum</h1>
       <p class="subtitle">Szakmai előadások • Gyakorlati bemutatók • Kötetlen szakmai beszélgetések • Családi programok</p>
       <p class="motto">Egymástól tanulunk. A lovakért. Egy közösségként.</p>
+
+      <div class="countdown" aria-label="Visszaszámláló a rendezvényig">
+        <div><span id="days">--</span><small>nap</small></div>
+        <div><span id="hours">--</span><small>óra</small></div>
+        <div><span id="minutes">--</span><small>perc</small></div>
+      </div>
+
+      <div id="participantCounter" class="participant-counter hidden">
+        Már <strong id="participantCount">200+</strong> résztvevő regisztrált!
+      </div>
 
       <div class="event-info">
         <div><strong>📅 2026. július 25. szombat</strong></div>
@@ -21,39 +43,87 @@
         <div><strong>📍 Csatangoló Lovarda</strong><br>Öregcsertő, Homokmégyi utca 39.</div>
       </div>
 
-      <a class="button" href="regisztracio.html">Regisztrálok</a>
+      <div class="hero-actions">
+        <a class="button" href="regisztracio.html">Regisztrálok</a>
+        <a class="button ghost" href="#kuldetes">Miről szól a fórum?</a>
+      </div>
     </section>
 
-    <section class="card">
-      <h2>Nyílt szakmai és családi nap</h2>
-      <p>Szeretettel várunk minden szakmabeli lovas embert, belovaglót, lókiképzőt, oktatót, tenyésztőt, versenyzőt, lovast, valamint minden érdeklődőt, aki szeretne többet megtudni a lovak képzéséről, elindításáról és a fiatal lovak munkájáról.</p>
-      <p>A családokat is örömmel várjuk, a gyerekek számára külön programokkal készülünk.</p>
-      <p class="support">A rendezvény szervezési költségeihez való hozzájárulásként <strong>2 000 Ft/fő támogatást</strong> kérünk, amelyet a helyszínen lehet megfizetni.</p>
-      <p>Időjárástól függetlenül megtartjuk a rendezvényt, fedeles lovardában is tudunk programot tartani.</p>
-    </section>
+    <section class="page">
+      <section class="card intro-card">
+        <h2>Üdvözlünk!</h2>
+        <p>Örülünk, hogy érdeklődsz az <strong>I. Országos Belovagló és Lókiképző Szakmai Fórum</strong> iránt.</p>
+        <p>Célunk, hogy egy olyan szakmai találkozót hozzunk létre, ahol a lovas szakemberek, tenyésztők, oktatók, kiképzők, lótartók és minden érdeklődő értékes tapasztalatokat szerezhet, inspirálódhat és új kapcsolatokat építhet.</p>
+        <p><strong>Szeretettel várunk minden szakmabelit, valamint mindenkit, aki érdeklődik a lovak világa iránt. A családokat is örömmel fogadjuk, a gyermekek számára pedig külön programokkal készülünk.</strong></p>
+      </section>
 
-    <section class="grid">
-      <div class="mini-card">🐎<h3>Szakmai előadások</h3></div>
-      <div class="mini-card">🐴<h3>Gyakorlati bemutatók</h3></div>
-      <div class="mini-card">💬<h3>Interaktív beszélgetések</h3></div>
-      <div class="mini-card">👨‍👩‍👧<h3>Családi programok</h3></div>
-      <div class="mini-card">🍔<h3>Lovas Büfé</h3></div>
-      <div class="mini-card">🍷<h3>Fröccsterasz</h3></div>
-    </section>
+      <section class="support-panel">
+        <div>
+          <span class="eyebrow">Részvételi hozzájárulás</span>
+          <h2>2 000 Ft / fő</h2>
+          <p>A fórum színvonalas megszervezésének támogatására.</p>
+        </div>
+        <ul>
+          <li>A hozzájárulás a helyszínen fizethető.</li>
+          <li>Minden résztvevő saját, névre szóló QR-kódos belépőt kap.</li>
+          <li>A rendezvény nonprofit jelleggel valósul meg; a hozzájárulás kizárólag a fórum megszervezésének és lebonyolításának költségeit támogatja.</li>
+        </ul>
+      </section>
 
-    <section class="card">
-      <h2>Előadóink</h2>
-      <p class="speakers">Panyi Gyuri • Pataky Kata • Karl Péter • Benner Jani • Tászler Melinda • Kevey Bella • Szabó Árpi • Tisza Zoltán • Kaska Zoltán • Szabó Zoltán</p>
-      <p><strong>Meglepetés előadók is érkeznek!</strong></p>
-      <p>Ha szakmabeliként szívesen megosztanád tapasztalataidat a fórumon, még jelentkezhetsz előadónak is.</p>
-    </section>
+      <section id="program" class="timeline-section">
+        <h2>A nap hangulata</h2>
+        <div class="timeline">
+          <div><time>09:00</time><strong>Érkezés és regisztráció</strong><span>Kávé, beszélgetés, fröccsterasz hangulat</span></div>
+          <div><time>Délelőtt</time><strong>Szakmai előadások</strong><span>Belovaglás, fiatal lovak képzése, lókiképzés</span></div>
+          <div><time>Délután</time><strong>Gyakorlati bemutatók</strong><span>A Csatangoló Lovarda lovaival</span></div>
+          <div><time>Egész nap</time><strong>Családi programok</strong><span>Gyermekprogramok, lovas kvíz, büfé</span></div>
+          <div><time>Estétől</time><strong>Kötetlen szakmai beszélgetések</strong><span>Akár másnap reggelig</span></div>
+        </div>
+      </section>
 
-    <section class="card center">
-      <h2>A regisztráció már elérhető</h2>
-      <p>A részletes programmal, előadói bemutatkozásokkal, parkolási információkkal, szálláslehetőségekkel és további hasznos tudnivalókkal hamarosan bővül az oldal.</p>
-      <p><strong>Nézz vissza 1–2 nap múlva!</strong></p>
-      <a class="button" href="regisztracio.html">Regisztrálok</a>
+      <section class="grid">
+        <div class="mini-card">🐎<h3>Szakmai előadások</h3></div>
+        <div class="mini-card">🐴<h3>Gyakorlati bemutatók</h3></div>
+        <div class="mini-card">💬<h3>Interaktív beszélgetések</h3></div>
+        <div class="mini-card">👨‍👩‍👧<h3>Családi programok</h3></div>
+        <div class="mini-card">🍔<h3>Lovas Büfé</h3></div>
+        <div class="mini-card">🍷<h3>Fröccsterasz</h3></div>
+      </section>
+
+      <section id="eloadok" class="card">
+        <h2>Előadóink</h2>
+        <p class="speakers">Panyi Gyuri • Pataky Kata • Karl Péter • Benner Jani • Tászler Melinda • Kevey Bella • Szabó Árpi • Tisza Zoltán • Kaska Zoltán • Szabó Zoltán</p>
+        <p><strong>Meglepetés előadók is érkeznek!</strong></p>
+        <p>Ha szakmabeliként szívesen megosztanád tapasztalataidat a fórumon, még jelentkezhetsz előadónak is.</p>
+      </section>
+
+      <section class="card knowledge-card">
+        <span class="eyebrow">Hamarosan</span>
+        <h2>Tudástár</h2>
+        <p>A fórum után a videók, beszámolók és szakmai tartalmak YouTube-beágyazással kerülnek majd fel az oldalra, így a tudás nem csak egy napig lesz elérhető.</p>
+      </section>
+
+      <section id="kuldetes" class="mission">
+        <h2>A fórum hitvallása</h2>
+        <p>A lovak nem tudnak beszélni. Ezért nekünk kell egymással beszélgetnünk róluk.</p>
+        <p>Hiszünk abban, hogy minden ember más tapasztalatot hoz magával, és minden jól feltett kérdés közelebb visz bennünket ahhoz, hogy jobb lovasok, jobb kiképzők és jobb lótartók legyünk.</p>
+        <p><strong>Ez a fórum nem arról szól, hogy kinek van igaza. Hanem arról, hogy együtt keressük a legjobb utat a lovak számára.</strong></p>
+      </section>
+
+      <section class="card center">
+        <h2>A regisztráció már elérhető</h2>
+        <p>A részletes programmal, előadói bemutatkozásokkal, parkolási információkkal, szálláslehetőségekkel és további hasznos tudnivalókkal hamarosan bővül az oldal.</p>
+        <a class="button" href="regisztracio.html">Regisztráció a Fórumra</a>
+      </section>
     </section>
   </main>
+
+  <footer class="footer">
+    <strong>Egymástól tanulunk.</strong>
+    <strong>A lovakért.</strong>
+    <strong>Egy közösségként.</strong>
+  </footer>
+
+  <script src="homepage.js"></script>
 </body>
 </html>
