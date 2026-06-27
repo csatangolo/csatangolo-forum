@@ -905,3 +905,57 @@ input[type="file"]{
   background:#fffaf5;
   padding:12px;
 }
+
+
+/* V10 egyszerű kapu */
+.simple-success,.simple-warning,.simple-denied{
+  width:86px;
+  height:86px;
+  border-radius:50%;
+  margin:0 auto 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:3rem;
+  font-weight:bold;
+}
+.simple-success{
+  background:#e8f7e8;
+  color:#246324;
+  border:2px solid #a8d5a8;
+}
+.simple-warning{
+  background:#fff0dc;
+  color:#7a4b14;
+  border:2px solid #e8c47a;
+}
+.simple-denied{
+  background:#ffe8e8;
+  color:#6d1c1c;
+  border:2px solid #cc7777;
+}
+.simple-status{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:10px;
+  margin:18px 0;
+}
+.simple-actions{
+  display:grid;
+  gap:12px;
+  margin-top:18px;
+}
+#simpleResultBox{
+  text-align:center;
+}
+#simpleResultBox h2{
+  font-size:2rem;
+}
+@media(min-width:640px){
+  .simple-actions{
+    grid-template-columns:1fr 1fr;
+  }
+  .simple-status{
+    grid-template-columns:1fr 1fr;
+  }
+}

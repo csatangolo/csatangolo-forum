@@ -1,20 +1,26 @@
-CSATANGOLÓ FÓRUM – V9 VALÓDI FELTÖLTÉS
+CSATANGOLÓ FÓRUM – V10 EGYSZERŰ KAPU
 
 GitHubra töltsd fel / írd felül az összes fájlt ebből a ZIP-ből.
 
-Supabase-ben FUTTASD LE:
-supabase_v9_valodi_feltoltes.sql
+Új egyszerű beléptető oldal segítőknek:
+https://csatangolo.online/csatangolo-forum/kapu-egyszeru.html
 
-Új funkciók a tartalomkezelőben:
-- Előadó portré feltöltése közvetlenül fájlból
-- Támogatói logó feltöltése
-- Galéria kép feltöltése
-- Dokumentum feltöltése
-- Galéria nyilvános oldal: galeria.html
-- Tudástárban letölthető dokumentumok
+Egyszerű kapu kód:
+kapu2026
 
-Tartalomkezelő:
-https://csatangolo.online/csatangolo-forum/tartalom.html
+Ez a felület csak ezt tudja:
+- QR-kód beolvasás
+- név megjelenítése
+- belépett-e már
+- hozzájárulás rendezve-e
+- Beléptetés gomb
+- Hozzájárulás rendezve gomb
 
-Szervezői kód:
+Nem lát statisztikát, nem lát teljes listát, nem lát admin adatokat.
+
+Teljes szervezői kód továbbra is:
 csatangolo2026
+
+Supabase:
+Ha az egyszerű kapu nem tud menteni, futtasd le:
+supabase_v10_egyszeru_kapu.sql
