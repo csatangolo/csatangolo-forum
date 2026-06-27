@@ -464,3 +464,23 @@ input[type="checkbox"]{
   .admin-stats{grid-template-columns:repeat(2,1fr)}
   .status-grid{grid-template-columns:1fr}
 }
+
+
+/* V5 rejtett szervezői felület apró finomítások */
+.ticket-card small{
+  display:block;
+  margin-top:10px;
+  color:var(--muted);
+}
+.premium-ticket{
+  position:relative;
+  overflow:hidden;
+}
+.premium-ticket:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,rgba(201,154,81,.16),transparent 40%,rgba(94,60,38,.08));
+  pointer-events:none;
+}
+.premium-ticket>*{position:relative}

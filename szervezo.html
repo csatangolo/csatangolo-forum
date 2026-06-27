@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Szervezői felület – Csatangoló Fórum</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <nav class="topbar">
+    <a href="index.html" class="brand">Csatangoló Fórum Szervezői felület</a>
+    <div class="navlinks">
+      <a href="index.html">Főoldal</a>
+      <a href="kapu.html">Beléptetés</a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <section class="hero small">
+      <div class="badge">Szervezői felület</div>
+      <h1>Üdv újra! Jó szervezést kívánunk! 🐴</h1>
+      <p class="motto">Regisztrációk • Résztvevők • Fizetés • Beléptetés</p>
+    </section>
+
+    <section class="admin-login card" id="loginBox">
+      <h2>Szervezői belépés</h2>
+      <p class="hint">Ez egy egyszerű szervezői védelem. A későbbi verzióban rendes jelszavas fiókos belépést készítünk.</p>
+      <label>Szervezői kód
+        <input id="adminCode" type="password" placeholder="Írd be az szervezői kódot">
+      </label>
+      <button class="button" id="loginButton">Belépés</button>
+      <div id="loginMessage" class="form-message"></div>
+    </section>
+
+    <section id="adminContent" class="hidden">
+      <section class="admin-stats">
+        <div class="stat-card"><span id="statRegistrations">0</span><small>regisztráció</small></div>
+        <div class="stat-card"><span id="statParticipants">0</span><small>résztvevő</small></div>
+        <div class="stat-card"><span id="statCheckedIn">0</span><small>belépett</small></div>
+        <div class="stat-card"><span id="statPaid">0</span><small>hozzájárulás rendezve</small></div>
+      </section>
+
+      <section class="card">
+        <div class="admin-header">
+          <h2>Résztvevők</h2>
+          <button class="button" id="exportCsv">CSV export</button>
+        </div>
+        <label>Keresés név, kód, település szerint
+          <input id="searchInput" type="search" placeholder="Kezdj el gépelni...">
+        </label>
+        <div class="table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Név</th>
+                <th>Típus</th>
+                <th>Kód</th>
+                <th>Település</th>
+                <th>Belépett</th>
+                <th>Hozzájárulás</th>
+              </tr>
+            </thead>
+            <tbody id="participantsBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </main>
+
+<script src="szervezo.js"></script>
+</body>
+</html>

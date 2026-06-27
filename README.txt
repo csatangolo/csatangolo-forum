@@ -1,24 +1,24 @@
-CSATANGOLÓ FÓRUM – V4 ADMIN + BELÉPTETÉS
+CSATANGOLÓ FÓRUM – V5 REJTETT SZERVEZŐI FELÜLET
 
-GitHubra töltsd fel / írd felül:
-- index.html
-- regisztracio.html
-- koszonjuk.html
-- styles.css
-- script.js
-- homepage.js
+GitHubra töltsd fel / írd felül az összes fájlt ebből a ZIP-ből.
 
-Új fájlok, ezeket is töltsd fel:
-- admin.html
-- admin.js
-- beleptetes.html
-- beleptetes.js
+Új, rejtettebb URL-ek:
+- Szervezői felület: /szervezo.html
+- Kapu / QR beléptetés: /kapu.html
 
-Supabase-ben futtasd le:
-- supabase_admin_beleptetes_update.sql
+Teljes URL-ek nálad:
+- https://csatangolo.online/csatangolo-forum/szervezo.html
+- https://csatangolo.online/csatangolo-forum/kapu.html
 
-Admin kód:
+Admin/szervezői kód:
 csatangolo2026
 
-Fontos: ez a mostani admin kódos verzió gyors, működő rendezvényes megoldás.
-Később érdemes rendes bejelentkezéssel levédeni.
+Fontos:
+A régi admin.html és beleptetes.html fájlokat nem muszáj törölni, de ha el akarod rejteni őket, GitHubon törölheted a két régi fájlt:
+- admin.html
+- beleptetes.html
+
+Supabase:
+Ha a V4 SQL már le lett futtatva, nem muszáj újra futtatni.
+Ha valamelyik gomb nem ment az adminban vagy kapuban, futtasd le:
+supabase_admin_beleptetes_update.sql
