@@ -701,3 +701,45 @@ input[type="checkbox"]{
   .cinema-content{padding:44px 14px}
   .highlight-strip{grid-template-columns:1fr 1fr}
 }
+
+
+/* V7.1 Előadók, Program, Tudástár */
+.profile-grid,.knowledge-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:16px;
+  margin:24px 0;
+}
+.profile-card,.knowledge-tile{
+  min-height:190px;
+  border-radius:28px;
+  padding:24px;
+  background:linear-gradient(135deg,#fff7ef,#ffe8cf);
+  border:1px solid rgba(201,154,81,.22);
+  box-shadow:0 14px 32px rgba(94,60,38,.08);
+}
+.featured-profile{
+  background:linear-gradient(135deg,rgba(94,60,38,.96),rgba(201,154,81,.56));
+  color:#fff7ef;
+}
+.featured-profile h2{color:#ffd89a}
+.profile-tag{
+  display:inline-block;
+  padding:7px 12px;
+  border-radius:999px;
+  background:rgba(255,247,239,.14);
+  border:1px solid rgba(255,247,239,.22);
+  font-size:.82rem;
+  margin-bottom:14px;
+}
+.mini-link{
+  display:inline-block;
+  margin-top:14px;
+  color:inherit;
+  font-weight:bold;
+}
+.knowledge-tile .play{
+  width:58px;
+  height:58px;
+  font-size:1.45rem;
+}
