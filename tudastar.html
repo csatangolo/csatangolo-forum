@@ -16,6 +16,7 @@
     <a href="eloadok.html">Előadók</a>
     <a href="tudastar.html">Tudástár</a>
     <a href="hirek.html">Hírek</a>
+    <a href="galeria.html">Galéria</a>
     <a class="nav-cta" href="regisztracio.html">Regisztráció</a>
   </div>
 </nav>
@@ -32,9 +33,11 @@
   </section>
 
   <section id="videoList" class="knowledge-grid"></section>
+
+  <section class="card"><h2>Letölthető dokumentumok</h2><div id="documentList" class="cms-list"></div></section>
 </main>
 <footer class="footer"><strong>Egymástól tanulunk.</strong><strong>A lovakért.</strong><strong>Egy közösségként.</strong></footer>
 <script src="public-content.js"></script>
-<script>loadPublicVideos();</script>
+<script>loadPublicVideos(); loadPublicDocuments();</script>
 </body>
 </html>

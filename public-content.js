@@ -74,3 +74,31 @@ async function loadPublicNews() {
   }
   el.innerHTML = data.map(n => `<article class="card news-card"><span class="eyebrow">${new Date(n.created_at).toLocaleDateString("hu-HU")}</span><h2>${esc(n.title)}</h2><p>${esc(n.body || "")}</p></article>`).join("");
 }
+
+
+async function loadPublicGallery() {
+  const el = document.getElementById("galleryList");
+  const { data, error } = await client.from("gallery").select("*").eq("is_published", true).order("created_at", { ascending: false });
+  if (error || !data || !data.length) {
+    el.innerHTML = `<section class="card"><h2>Hamarosan</h2><p>Ide kerülnek majd a feltöltött képek.</p></section>`;
+    return;
+  }
+  el.innerHTML = data.map(g => `<article class="gallery-card">
+    <img src="${esc(g.image_url)}" alt="${esc(g.title || 'Galéria kép')}">
+    <h2>${esc(g.title || '')}</h2>
+    <p>${esc(g.description || '')}</p>
+  </article>`).join("");
+}
+
+async function loadPublicDocuments() {
+  const el = document.getElementById("documentList");
+  const { data, error } = await client.from("documents").select("*").eq("is_published", true).order("created_at", { ascending: false });
+  if (error || !data || !data.length) {
+    el.innerHTML = `<p class="hint">Még nincs letölthető dokumentum.</p>`;
+    return;
+  }
+  el.innerHTML = data.map(d => `<article class="cms-row">
+    <div><strong>${esc(d.title)}</strong><span>${esc(d.description || '')}</span></div>
+    <a class="button" href="${esc(d.file_url)}" target="_blank">Letöltés</a>
+  </article>`).join("");
+}

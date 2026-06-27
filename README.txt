@@ -1,29 +1,20 @@
-CSATANGOLÓ FÓRUM – V8 TARTALOMKEZELŐ
+CSATANGOLÓ FÓRUM – V9 VALÓDI FELTÖLTÉS
 
 GitHubra töltsd fel / írd felül az összes fájlt ebből a ZIP-ből.
 
-Új oldalak:
-- tartalom.html  (szervezői tartalomkezelő)
-- hirek.html
-- public-content.js
-- cms.js
+Supabase-ben FUTTASD LE:
+supabase_v9_valodi_feltoltes.sql
 
-Szervezői tartalomkezelő URL:
+Új funkciók a tartalomkezelőben:
+- Előadó portré feltöltése közvetlenül fájlból
+- Támogatói logó feltöltése
+- Galéria kép feltöltése
+- Dokumentum feltöltése
+- Galéria nyilvános oldal: galeria.html
+- Tudástárban letölthető dokumentumok
+
+Tartalomkezelő:
 https://csatangolo.online/csatangolo-forum/tartalom.html
 
 Szervezői kód:
 csatangolo2026
-
-Supabase-ben FUTTASD LE:
-supabase_v8_tartalomkezelo.sql
-
-Mit tudsz feltölteni / hozzáadni:
-- Előadók
-- Programok
-- YouTube videók
-- Hírek
-- Támogatók
-
-Kép feltöltés:
-Ebben a verzióban kép URL-t tudsz megadni.
-A következő verzióban jöhet a valódi képfeltöltés Supabase Storage-ba.
