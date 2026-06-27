@@ -1,26 +1,18 @@
-CSATANGOLÓ FÓRUM – V10 EGYSZERŰ KAPU
+CSATANGOLÓ FÓRUM – V11 RENDSZERELLENŐRZÉS
 
-GitHubra töltsd fel / írd felül az összes fájlt ebből a ZIP-ből.
+Új oldal:
+https://csatangolo.online/csatangolo-forum/ellenorzes.html
 
-Új egyszerű beléptető oldal segítőknek:
-https://csatangolo.online/csatangolo-forum/kapu-egyszeru.html
-
-Egyszerű kapu kód:
-kapu2026
-
-Ez a felület csak ezt tudja:
-- QR-kód beolvasás
-- név megjelenítése
-- belépett-e már
-- hozzájárulás rendezve-e
-- Beléptetés gomb
-- Hozzájárulás rendezve gomb
-
-Nem lát statisztikát, nem lát teljes listát, nem lát admin adatokat.
-
-Teljes szervezői kód továbbra is:
+Szervezői kód:
 csatangolo2026
 
+GitHubra töltsd fel / írd felül az összes fájlt.
+
 Supabase:
-Ha az egyszerű kapu nem tud menteni, futtasd le:
-supabase_v10_egyszeru_kapu.sql
+Ehhez a verzióhoz nincs kötelező SQL.
+Ha az ellenőrző oldal hiányt jelez, futtasd le újra:
+- supabase_v8_tartalomkezelo.sql
+- supabase_v9_valodi_feltoltes.sql
+- supabase_v10_egyszeru_kapu.sql
+
+Részletes útmutató: UPDATE.md
