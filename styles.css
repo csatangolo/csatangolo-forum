@@ -743,3 +743,47 @@ input[type="checkbox"]{
   height:58px;
   font-size:1.45rem;
 }
+
+
+/* V7.2 résztvevői profil */
+.profile-info-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+.profile-info-grid div{
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:16px;
+  background:#fff;
+}
+.profile-info-grid strong{
+  display:block;
+  color:var(--brown);
+  margin-bottom:6px;
+}
+.profile-info-grid span{
+  color:var(--muted);
+}
+.large-ticket{
+  padding:28px;
+}
+.large-ticket h3{
+  font-size:1.7rem;
+}
+.ticket-status{
+  display:grid;
+  gap:8px;
+  margin-top:12px;
+}
+.ticket-status span{
+  display:block;
+  border-radius:999px;
+  padding:9px 12px;
+  background:rgba(201,154,81,.12);
+  color:var(--brown);
+  font-weight:bold;
+}
+@media(max-width:760px){
+  .profile-info-grid{grid-template-columns:1fr}
+}
