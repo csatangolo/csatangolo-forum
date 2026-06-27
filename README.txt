@@ -1,7 +1,6 @@
-CSATANGOLÓ FÓRUM – PRÉMIUM V2
+CSATANGOLÓ FÓRUM – V4 ADMIN + BELÉPTETÉS
 
-GitHubon ezeket a fájlokat töltsd fel / írd felül:
-
+GitHubra töltsd fel / írd felül:
 - index.html
 - regisztracio.html
 - koszonjuk.html
@@ -9,14 +8,17 @@ GitHubon ezeket a fájlokat töltsd fel / írd felül:
 - script.js
 - homepage.js
 
-A supabase_premium_update.sql fájlt Supabase-ben futtasd le:
-SQL Editor → New query → beillesztés → Run
+Új fájlok, ezeket is töltsd fel:
+- admin.html
+- admin.js
+- beleptetes.html
+- beleptetes.js
 
-Újdonságok:
-- elegánsabb főoldal
-- visszaszámláló
-- résztvevőszámláló 200 fő felett
-- kulturált részvételi hozzájárulás szöveg
-- prémium digitális belépők
-- Tudástár előkészítés
-- Fórum hitvallása
+Supabase-ben futtasd le:
+- supabase_admin_beleptetes_update.sql
+
+Admin kód:
+csatangolo2026
+
+Fontos: ez a mostani admin kódos verzió gyors, működő rendezvényes megoldás.
+Később érdemes rendes bejelentkezéssel levédeni.
