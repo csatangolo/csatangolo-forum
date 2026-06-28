@@ -1,14 +1,8 @@
-# Csatangoló Fórum – V11 Rendszerellenőrzés
+# CSATANGOLÓ FÓRUM CMS 1.0.1 – JAVÍTOTT KIADÁS
 
-## Frissítési útmutató
+## Most ezt töltsd fel
 
-| Feladat | Kell? |
-|---|---|
-| GitHub fájlok feltöltése | ✅ IGEN |
-| Supabase SQL futtatása | ❌ NEM kötelező |
-| Storage bucket létrehozása | ❌ NEM, ha V9 már futott |
-| Új oldal | ✅ IGEN |
-| Új jelszó | ❌ NINCS |
+Ezt a 1.0.1 csomagot töltsd fel GitHubra, ne az előzőt.
 
 ## GitHub
 
@@ -16,30 +10,14 @@ Töltsd fel / írd felül a ZIP összes fájlját.
 
 ## Supabase
 
-Ehhez a verzióhoz nincs kötelező új SQL.
+Supabase → SQL Editor → New query
 
-Ha az ellenőrző oldal hibát jelez, akkor futtasd le újra sorban:
+Futtasd le ezt:
 
-1. `supabase_v8_tartalomkezelo.sql`
-2. `supabase_v9_valodi_feltoltes.sql`
-3. `supabase_v10_egyszeru_kapu.sql`
+`supabase_csatangolo_cms_1_0_1_teljes.sql`
 
-Nem baj, ha ezek közül valamelyiket már korábban lefuttattad. Újra lefuttathatóak.
-
-## Új oldal
-
-Rendszerellenőrzés:
-
-`https://csatangolo.online/csatangolo-forum/ellenorzes.html`
-
-## Szervezői kód
-
-`csatangolo2026`
-
-## Mit ellenőriz?
-
-- registrations
-- participants
+Ez javítja:
+- hiányzó CMS táblák
 - speakers
 - program_items
 - videos
@@ -47,6 +25,18 @@ Rendszerellenőrzés:
 - sponsors
 - gallery
 - documents
-- forum-assets Storage
-- fájlfeltöltési jogosultság
-- fontos oldalak elérhetősége
+- Storage bucket
+- feltöltési jogosultságok
+- ellenőrző oldal Storage logikája
+
+Újra lefuttatható, nem törli a meglévő regisztrációkat.
+
+## Ellenőrzés
+
+Utána nyisd meg:
+
+`https://csatangolo.online/csatangolo-forum/ellenorzes.html`
+
+Szervezői kód:
+
+`csatangolo2026`

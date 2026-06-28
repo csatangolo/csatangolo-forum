@@ -42,21 +42,19 @@ document.getElementById("startCheck").addEventListener("click", async () => {
 async function runChecks() {
   const tableResults = [];
   for (const [table, label] of requiredTables) {
-    const result = await checkTable(table, label);
-    tableResults.push(result);
+    tableResults.push(await checkTable(table, label));
   }
 
-  const storageResults = [];
-  storageResults.push(await checkStorageList());
-  storageResults.push(await checkStorageUpload());
+  const storageBucket = await checkStorageBucket();
+  const storageUpload = await checkStorageUpload();
 
   const featureResults = await Promise.all(features.map(([label, path]) => checkPage(label, path)));
 
   renderChecks("tableChecks", tableResults);
-  renderChecks("storageChecks", storageResults);
+  renderChecks("storageChecks", [storageBucket, storageUpload]);
   renderChecks("featureChecks", featureResults);
 
-  const failed = [...tableResults, ...storageResults, ...featureResults].filter(x => !x.ok);
+  const failed = [...tableResults, storageBucket, storageUpload, ...featureResults].filter(x => !x.ok);
   renderTodos(failed);
   renderOverall(failed);
 }
@@ -74,14 +72,11 @@ async function checkTable(table, label) {
   }
 }
 
-async function checkStorageList() {
+async function checkStorageBucket() {
   try {
-    const { error } = await client.storage.from("forum-assets").list("", { limit: 1 });
-    return {
-      ok: !error,
-      label: "forum-assets Storage bucket",
-      detail: error ? error.message : "Elérhető"
-    };
+    const { data, error } = await client.storage.from("forum-assets").list("", { limit: 1 });
+    if (error) return { ok:false, label:"forum-assets Storage bucket", detail:error.message };
+    return { ok:true, label:"forum-assets Storage bucket", detail:"Elérhető" };
   } catch (e) {
     return { ok:false, label:"forum-assets Storage bucket", detail:e.message };
   }
@@ -89,10 +84,21 @@ async function checkStorageList() {
 
 async function checkStorageUpload() {
   try {
+    const fileName = `system-check-${Date.now()}.txt`;
     const testContent = new Blob(["Csatangolo Forum test"], { type: "text/plain" });
-    const path = `system-check/${Date.now()}-test.txt`;
-    const { error } = await client.storage.from("forum-assets").upload(path, testContent, { upsert: false });
-    if (error) return { ok:false, label:"Fájlfeltöltési jogosultság", detail:error.message };
+    const { error } = await client.storage.from("forum-assets").upload(fileName, testContent, { upsert: true });
+
+    if (error) {
+      return {
+        ok:false,
+        label:"Fájlfeltöltési jogosultság",
+        detail:error.message.includes("Bucket not found")
+          ? "A Storage bucket vagy a feltöltési jogosultság még nincs teljesen beállítva. Futtasd le a teljes 1.0.1 SQL fájlt."
+          : error.message
+      };
+    }
+
+    await client.storage.from("forum-assets").remove([fileName]);
     return { ok:true, label:"Fájlfeltöltési jogosultság", detail:"Működik" };
   } catch (e) {
     return { ok:false, label:"Fájlfeltöltési jogosultság", detail:e.message };
@@ -128,15 +134,13 @@ function renderTodos(failed) {
     return;
   }
 
-  const needsSql = failed.some(f => 
-    f.label.includes("Storage") ||
-    f.label.includes("Fájlfeltöltési") ||
-    requiredTables.some(t => t[1] === f.label)
-  );
+  const tableFails = failed.filter(f => requiredTables.some(t => t[1] === f.label));
+  const storageFails = failed.filter(f => f.label.includes("Storage") || f.label.includes("Fájlfeltöltési"));
 
   el.innerHTML = `
-    ${needsSql ? `<div class="check-row bad"><span>1</span><div><strong>Futtasd le a legutóbbi SQL fájlokat</strong><small>Elsősorban: supabase_v9_valodi_feltoltes.sql és supabase_v10_egyszeru_kapu.sql</small></div></div>` : ""}
-    <div class="check-row bad"><span>2</span><div><strong>GitHub fájlok ellenőrzése</strong><small>Ha oldal hiányzik, töltsd fel újra a legfrissebb ZIP összes fájlját.</small></div></div>
+    ${tableFails.length ? `<div class="check-row bad"><span>1</span><div><strong>Hiányzó adatbázis táblák</strong><small>Futtasd le: supabase_csatangolo_cms_1_0_1_teljes.sql</small></div></div>` : ""}
+    ${storageFails.length ? `<div class="check-row bad"><span>2</span><div><strong>Storage / feltöltés javítása</strong><small>Futtasd le ugyanazt: supabase_csatangolo_cms_1_0_1_teljes.sql</small></div></div>` : ""}
+    <div class="check-row bad"><span>3</span><div><strong>Ha oldal hiányzik</strong><small>Töltsd fel újra GitHubra a ZIP összes fájlját.</small></div></div>
   `;
 }
 
@@ -148,7 +152,7 @@ function renderOverall(failed) {
     text.textContent = "Minden fontos tábla, feltöltési jogosultság és oldal elérhető.";
   } else {
     title.textContent = `🟠 ${failed.length} ellenőrzési pont figyelmet kér`;
-    text.textContent = "Nézd meg a Teendők részt. A legtöbb hiba egy SQL fájl újrafuttatásával vagy GitHub feltöltéssel javítható.";
+    text.textContent = "Nézd meg a Teendők részt. A legtöbb hiba az 1.0.1 teljes SQL lefuttatásával javítható.";
   }
 }
 
