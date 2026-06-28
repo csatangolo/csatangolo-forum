@@ -1777,3 +1777,102 @@ main{
     width:100%;
   }
 }
+
+
+/* === Premium v2.0: Inspiráló környezet 3 képből, meglévő assets/1_1, 1_2, 1_3 képekkel === */
+
+.f33-lower-atmo-card{
+  min-height:430px !important;
+  display:grid !important;
+  grid-template-columns:minmax(0, .92fr) minmax(360px, .78fr) !important;
+  gap:24px !important;
+  align-items:stretch !important;
+  padding:30px !important;
+  background:
+    linear-gradient(135deg,rgba(38,18,8,.96),rgba(87,51,28,.86)) !important;
+}
+
+.f33-lower-atmo-card:before{
+  background-image:url('assets/1_1.png') !important;
+  background-size:cover !important;
+  background-position:center !important;
+  opacity:.72 !important;
+  transform:scale(1.04) !important;
+  filter:saturate(1.04) contrast(1.04) brightness(.86) !important;
+}
+
+.f33-lower-atmo-card:after{
+  background:
+    linear-gradient(90deg,rgba(36,17,7,.94) 0%,rgba(36,17,7,.82) 38%,rgba(36,17,7,.46) 62%,rgba(36,17,7,.18) 100%),
+    linear-gradient(0deg,rgba(36,17,7,.42),rgba(255,248,234,.02)) !important;
+}
+
+.f33-lower-atmo-text{
+  width:auto !important;
+  min-height:0 !important;
+  position:relative !important;
+  z-index:3 !important;
+  padding:36px !important;
+  border-radius:26px !important;
+  background:rgba(31,14,7,.50) !important;
+  border:1px solid rgba(242,203,121,.18) !important;
+  backdrop-filter:blur(8px) !important;
+}
+
+.f33-inspiring-gallery{
+  position:relative !important;
+  z-index:3 !important;
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:16px !important;
+  align-self:stretch !important;
+}
+
+.f33-inspiring-gallery img{
+  width:100% !important;
+  height:100% !important;
+  min-height:340px !important;
+  object-fit:cover !important;
+  display:block !important;
+  border-radius:24px !important;
+  border:1px solid rgba(242,203,121,.20) !important;
+  box-shadow:0 22px 58px rgba(0,0,0,.26) !important;
+}
+
+.f33-inspiring-gallery img:first-child{
+  transform:translateY(16px) !important;
+}
+
+.f33-inspiring-gallery img:last-child{
+  transform:translateY(-12px) !important;
+}
+
+@media(max-width:1050px){
+  .f33-lower-atmo-card{
+    grid-template-columns:1fr !important;
+  }
+
+  .f33-inspiring-gallery img{
+    min-height:260px !important;
+  }
+}
+
+@media(max-width:700px){
+  .f33-lower-atmo-card{
+    padding:18px !important;
+    min-height:auto !important;
+  }
+
+  .f33-lower-atmo-text{
+    padding:24px !important;
+  }
+
+  .f33-inspiring-gallery{
+    grid-template-columns:1fr !important;
+  }
+
+  .f33-inspiring-gallery img{
+    min-height:220px !important;
+    transform:none !important;
+  }
+}
