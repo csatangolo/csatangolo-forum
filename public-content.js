@@ -146,7 +146,7 @@ function renderSpeakerCard(s) {
   return `
     <article class="speaker-premium-card ${s.is_featured ? 'is-featured' : ''}">
       <div class="speaker-image-wrap">
-        ${s.image_url ? `<img class="speaker-photo" src="${esc(s.image_url)}" alt="${esc(s.name)}">` : `<div class="speaker-photo placeholder">${esc((s.name || '?').charAt(0))}</div>`}
+        ${s.image_url ? `<img class="speaker-photo" src="${esc(s.image_url)}" alt="${esc(s.name)}" loading="lazy" onerror="this.onerror=null;this.src=\'assets/kevey-bella.jpg\';">` : `<div class="speaker-photo placeholder">${esc((s.name || '?').charAt(0))}</div>`}
         ${s.is_featured ? '<span class="profile-tag floating-tag">⭐ Kiemelt előadó</span>' : ""}
       </div>
       <div class="speaker-body">

@@ -507,3 +507,250 @@ main{
     border-radius:14px !important;
   }
 }
+
+
+/* === Premium v1.3 stabil javítás: nincs szürke, tiszta képek, kisebb főcím === */
+html, body{
+  background:#f4ead8 !important;
+  overflow-x:hidden !important;
+}
+
+body,
+.f33-page,
+main{
+  background:
+    radial-gradient(circle at top, rgba(214,162,75,.10), transparent 30%),
+    linear-gradient(180deg,#120804 0,#241107 32%,#f7efdf 32%,#f3e6cf 100%) !important;
+}
+
+.f33-hero{
+  background-image:url('assets/fokep.png') !important;
+}
+
+.f33-hero h1{
+  font-size:clamp(2.15rem,4.7vw,4.65rem) !important;
+  line-height:.93 !important;
+  letter-spacing:.018em !important;
+  max-width:980px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+
+.f33-kicker{
+  font-size:.72rem !important;
+  letter-spacing:.22em !important;
+}
+
+.f33-clean-intro{
+  display:grid !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:18px !important;
+  margin-top:-40px !important;
+  position:relative !important;
+  z-index:5 !important;
+}
+
+.f33-clean-card{
+  display:grid !important;
+  grid-template-columns:1fr 42% !important;
+  gap:18px !important;
+  align-items:stretch !important;
+  border-radius:24px !important;
+  background:linear-gradient(135deg,#fff8ea,#ead6b5) !important;
+  border:1px solid rgba(160,106,50,.24) !important;
+  box-shadow:0 24px 70px rgba(70,42,22,.13) !important;
+  padding:22px !important;
+  overflow:hidden !important;
+  min-height:270px !important;
+}
+
+.f33-clean-card:before,
+.f33-clean-card:after,
+.f33-intro-card:before,
+.f33-intro-card:after{
+  display:none !important;
+  content:none !important;
+}
+
+.f33-clean-text{
+  position:relative !important;
+  z-index:2 !important;
+}
+
+.f33-clean-text h2{
+  font-size:clamp(1.45rem,2vw,1.95rem) !important;
+  line-height:1.08 !important;
+  margin:.25em 0 .55em !important;
+  color:#4a2a15 !important;
+}
+
+.f33-clean-text p{
+  color:#6e523b !important;
+  line-height:1.55 !important;
+  margin:0 !important;
+}
+
+.f33-clean-card img{
+  width:100% !important;
+  height:100% !important;
+  min-height:210px !important;
+  object-fit:cover !important;
+  border-radius:18px !important;
+  display:block !important;
+  opacity:1 !important;
+  filter:none !important;
+  box-shadow:0 18px 44px rgba(70,42,22,.18) !important;
+}
+
+.f33-speaker-title{
+  width:min(920px,calc(100% - 44px));
+  margin:0 auto 28px;
+  text-align:center;
+  padding:22px 26px;
+  border-radius:28px;
+  background:linear-gradient(135deg,rgba(255,248,234,.96),rgba(236,215,181,.9)) !important;
+  border:1px solid rgba(160,106,50,.22);
+  box-shadow:0 18px 50px rgba(70,42,22,.10);
+}
+
+.f33-speaker-title span{
+  display:inline-flex;
+  color:#a06a32;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  font:900 .76rem Arial,sans-serif;
+  margin-bottom:8px;
+}
+
+.f33-speaker-title h2{
+  margin:0;
+  color:#4a2a15;
+  font-size:clamp(1.45rem,2.6vw,2.25rem);
+  line-height:1.1;
+}
+
+.f33-speaker-title p{
+  margin:10px auto 0;
+  color:#73563d;
+  max-width:720px;
+}
+
+.f33-speaker-strip{
+  background:transparent !important;
+}
+
+.f33-speaker-photo{
+  background-color:#3b2010 !important;
+}
+
+.f33-speaker:nth-child(4) .f33-speaker-photo{
+  background-image:url('assets/kevey-bella.png') !important;
+}
+
+.f33-lifestyle-section{
+  width:min(1320px,calc(100% - 44px));
+  margin:52px auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+  align-items:stretch;
+  border-radius:30px;
+  background:linear-gradient(135deg,#2a1409,#4b2d18) !important;
+  border:1px solid rgba(242,203,121,.22);
+  box-shadow:0 28px 80px rgba(70,42,22,.18);
+  padding:28px;
+  color:#fff4df;
+}
+
+.f33-lifestyle-text{
+  padding:32px;
+  border-radius:24px;
+  background:rgba(31,16,8,.62) !important;
+  border:1px solid rgba(242,203,121,.18);
+}
+
+.f33-lifestyle-text h2{
+  color:#fff8ea !important;
+  font-size:clamp(2rem,3.3vw,3rem);
+  line-height:1.05;
+  margin:.25em 0;
+}
+
+.f33-lifestyle-text p{
+  color:#ecd8b8 !important;
+  line-height:1.62;
+}
+
+.f33-lifestyle-gallery{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+.f33-lifestyle-gallery img{
+  width:100%;
+  height:100%;
+  min-height:330px;
+  object-fit:cover;
+  border-radius:24px;
+  display:block;
+  box-shadow:0 18px 44px rgba(0,0,0,.22);
+}
+
+.f33-visible-image-card{
+  padding:0 !important;
+  overflow:hidden !important;
+  background:none !important;
+}
+
+.f33-visible-image-card img{
+  width:100%;
+  height:100%;
+  min-height:260px;
+  object-fit:cover;
+  display:block;
+}
+
+.f33-experience-band,
+.f33-experience-bg{
+  background:none !important;
+}
+
+.f33-experience-bg{
+  display:none !important;
+}
+
+@media(max-width:1100px){
+  .f33-clean-intro,
+  .f33-lifestyle-section{
+    grid-template-columns:1fr !important;
+  }
+  .f33-clean-card{
+    grid-template-columns:1.1fr .9fr !important;
+  }
+}
+
+@media(max-width:700px){
+  .f33-hero h1{
+    font-size:clamp(1.95rem,10vw,3.25rem) !important;
+  }
+  .f33-clean-card{
+    grid-template-columns:1fr !important;
+    min-height:auto !important;
+  }
+  .f33-clean-card img{
+    min-height:210px !important;
+  }
+  .f33-lifestyle-section{
+    padding:18px;
+  }
+  .f33-lifestyle-text{
+    padding:24px;
+  }
+  .f33-lifestyle-gallery{
+    grid-template-columns:1fr !important;
+  }
+  .f33-lifestyle-gallery img{
+    min-height:240px;
+  }
+}
