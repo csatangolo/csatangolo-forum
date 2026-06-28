@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Beléptetés – Csatangoló Fórum</title>
+  <title>Beléptető admin – Csatangoló Fórum</title>
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://unpkg.com/html5-qrcode"></script>
 </head>
 <body>
-  <nav class="topbar">
+  <nav class="topbar no-print">
     <a href="index.html" class="brand">Csatangoló Fórum Beléptetés</a>
     <div class="navlinks">
       <a href="admin.html">Admin</a>
@@ -17,35 +17,72 @@
     </div>
   </nav>
 
-  <main class="page narrow">
-    <section class="hero small">
-      <div class="badge">QR beléptetés</div>
-      <h1>Beléptetés</h1>
-      <p class="motto">Olvasd be a résztvevő QR-kódját</p>
+  <main class="gate-page">
+    <section class="gate-hero">
+      <span class="badge">QR beléptetés</span>
+      <h1>Beléptető admin</h1>
+      <p>A helyszíni belépés ellenőrzése QR-kóddal vagy kézi kódbevitellel.</p>
     </section>
 
-    <section class="card">
-      <h2>Admin kód</h2>
-      <label>Admin kód
-        <input id="gateCode" type="password" placeholder="Írd be az admin kódot">
+    <section id="loginBox" class="gate-card gate-login-card">
+      <h2>Szervezői kód</h2>
+      <p class="hint">A beléptető felület csak a szervezői kód megadása után használható.</p>
+      <label>Szervezői kód
+        <input id="gateCode" type="password" placeholder="Írd be a szervezői kódot">
       </label>
       <button class="button" id="unlockGate">Beléptetés megnyitása</button>
       <div id="gateMessage" class="form-message"></div>
     </section>
 
-    <section id="scannerSection" class="card hidden">
-      <h2>QR olvasó</h2>
-      <p class="hint">Telefonon engedélyezd a kamerát, majd mutasd a QR-kódot.</p>
-      <div id="reader" class="reader-box"></div>
+    <section id="gateDashboard" class="hidden">
+      <section class="gate-stats">
+        <div><strong id="statTotal">0</strong><span>összes belépő</span></div>
+        <div><strong id="statChecked">0</strong><span>belépett</span></div>
+        <div><strong id="statPaid">0</strong><span>fizetve</span></div>
+        <div><strong id="statWaiting">0</strong><span>még várható</span></div>
+      </section>
 
-      <h2>Kézi kódbevitel</h2>
-      <label>Belépőkód
-        <input id="manualCode" type="text" placeholder="FORUM-2026-...">
-      </label>
-      <button class="button" id="manualSearch">Keresés</button>
+      <section class="gate-layout">
+        <div class="gate-card">
+          <div class="gate-card-head">
+            <div>
+              <span class="eyebrow">Kamera</span>
+              <h2>QR-kód beolvasása</h2>
+            </div>
+            <button class="button ghost" id="restartScanner" type="button">Kamera újraindítása</button>
+          </div>
+          <p class="hint">Telefonon engedélyezd a kamerát, majd tartsd a QR-kódot a négyzet elé.</p>
+          <div id="reader" class="reader-box premium-reader"></div>
+
+          <div class="manual-gate-box">
+            <h3>Kézi kódbevitel</h3>
+            <label>Belépőkód
+              <input id="manualCode" type="text" placeholder="FORUM-2026-...">
+            </label>
+            <button class="button" id="manualSearch">Keresés</button>
+          </div>
+        </div>
+
+        <section id="resultBox" class="gate-card gate-result-card">
+          <div class="empty-gate-state">
+            <b>🎟️</b>
+            <h2>Várakozás beolvasásra</h2>
+            <p>Olvass be egy QR-kódot, vagy írd be kézzel a belépőkódot.</p>
+          </div>
+        </section>
+      </section>
+
+      <section class="gate-card gate-list-card">
+        <div class="gate-card-head">
+          <div>
+            <span class="eyebrow">Gyorskereső</span>
+            <h2>Résztvevők</h2>
+          </div>
+          <input id="participantSearch" type="search" placeholder="Keresés név vagy kód alapján">
+        </div>
+        <div id="participantList" class="gate-participant-list"></div>
+      </section>
     </section>
-
-    <section id="resultBox" class="card hidden"></section>
   </main>
 
 <script src="beleptetes.js"></script>
