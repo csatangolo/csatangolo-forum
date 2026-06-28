@@ -273,3 +273,20 @@ async function loadPublicDocuments() {
   setTimeout(addApplySpeakerCard, 800);
   setTimeout(addApplySpeakerCard, 1800);
 })();
+
+
+// Premium v1.9: plusz „Jelentkezz te is előadónak” kártya, ha a lista dinamikusan töltődik
+(function(){
+  function addApplySpeakerCard(){
+    var strip = document.getElementById('speakerList');
+    if(!strip || strip.querySelector('.f33-speaker-apply')) return;
+    var card = document.createElement('article');
+    card.className = 'f33-speaker f33-speaker-apply';
+    card.innerHTML = '<div class="f33-speaker-photo"></div><div class="f33-speaker-body"><span>Nyitott lehetőség</span><h3>Jelentkezz te is előadónak</h3><p>Kerülj fel hamarosan az előadók közé.</p><a href="kapcsolat.html">Kapcsolatfelvétel</a></div>';
+    strip.appendChild(card);
+  }
+  document.addEventListener('DOMContentLoaded', addApplySpeakerCard);
+  window.addEventListener('load', addApplySpeakerCard);
+  setTimeout(addApplySpeakerCard, 800);
+  setTimeout(addApplySpeakerCard, 1800);
+})();

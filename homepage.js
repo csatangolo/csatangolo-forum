@@ -138,3 +138,59 @@ loadParticipantCounter();
     setTimeout(refreshSpeakerCarousel, 2600);
   });
 })();
+
+
+// Premium v1.9: előadói kártyák folyamatos, körbeforduló mozgása
+(function(){
+  function ensureApplyCard(strip){
+    if(!strip || strip.querySelector('.f33-speaker-apply')) return;
+    var card = document.createElement('article');
+    card.className = 'f33-speaker f33-speaker-apply';
+    card.innerHTML = '<div class="f33-speaker-photo"></div><div class="f33-speaker-body"><span>Nyitott lehetőség</span><h3>Jelentkezz te is előadónak</h3><p>Kerülj fel hamarosan az előadók közé.</p><a href="kapcsolat.html">Kapcsolatfelvétel</a></div>';
+    strip.appendChild(card);
+  }
+
+  function initInfiniteSpeakersV19(){
+    var strip = document.getElementById('speakerList');
+    if(!strip || strip.dataset.infiniteSpeakersV19 === '1') return;
+
+    ensureApplyCard(strip);
+
+    var cards = Array.prototype.slice.call(strip.children).filter(function(card){
+      return !card.classList.contains('f33-speaker-clone');
+    });
+    if(cards.length < 2) return;
+
+    strip.dataset.infiniteSpeakersV19 = '1';
+
+    cards.forEach(function(card){
+      var clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      clone.classList.add('f33-speaker-clone');
+      strip.appendChild(clone);
+    });
+
+    var paused = false;
+    var speed = 0.38;
+
+    strip.addEventListener('mouseenter', function(){ paused = true; });
+    strip.addEventListener('mouseleave', function(){ paused = false; });
+    strip.addEventListener('touchstart', function(){ paused = true; }, {passive:true});
+    strip.addEventListener('touchend', function(){ setTimeout(function(){ paused = false; }, 2200); }, {passive:true});
+
+    function tick(){
+      if(!paused && strip.scrollWidth > strip.clientWidth){
+        var half = strip.scrollWidth / 2;
+        strip.scrollLeft += speed;
+        if(strip.scrollLeft >= half){
+          strip.scrollLeft = strip.scrollLeft - half;
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){ setTimeout(initInfiniteSpeakersV19, 700); });
+  window.addEventListener('load', function(){ setTimeout(initInfiniteSpeakersV19, 1200); });
+})();
