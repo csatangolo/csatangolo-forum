@@ -11,7 +11,6 @@ function setText(id, value) {
     el.classList.add("flip-change");
   }
 }
-
 function updateCountdown() {
   const now = new Date();
   let diff = Math.max(0, EVENT_DATE - now);
@@ -30,8 +29,8 @@ updateCountdown();
 window.addEventListener("load", () => {
   const intro = document.getElementById("introScreen");
   if (!intro) return;
-  setTimeout(() => intro.classList.add("hide-intro"), 1200);
-  setTimeout(() => intro.remove(), 2100);
+  setTimeout(() => intro.classList.add("hide-intro"), 1000);
+  setTimeout(() => intro.remove(), 1900);
 });
 
 const themeBtn = document.getElementById("themeToggle");
