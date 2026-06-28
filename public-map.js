@@ -233,7 +233,7 @@ async function initPublicForumMap() {
     scrollWheelZoom: true,
     doubleClickZoom: true,
     boxZoom: true
-  }).setView([47.05, 19.35], 7);
+  }).setView([46.86, 19.25], 8);
 
   L.tileLayer("https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png", {
     maxZoom: 14

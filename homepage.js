@@ -194,3 +194,40 @@ loadParticipantCounter();
   document.addEventListener('DOMContentLoaded', function(){ setTimeout(initInfiniteSpeakersV19, 700); });
   window.addEventListener('load', function(){ setTimeout(initInfiniteSpeakersV19, 1200); });
 })();
+
+
+// Premium v2.8: közösségi tér automatikus, finom képlapozó
+(function(){
+  function initCommunitySlider(){
+    var slider = document.querySelector('.f33-community-slider');
+    if(!slider || slider.dataset.sliderReady === '1') return;
+    slider.dataset.sliderReady = '1';
+
+    var slides = Array.prototype.slice.call(slider.querySelectorAll('.f33-community-slide'));
+    var caption = document.getElementById('communityCaption');
+    var captions = [
+      'Családi programok egész nap',
+      'Csatangoló Lovas Büfé és Fröccsterasz',
+      'Lovas élmények, gyerekprogramok, közösség'
+    ];
+    var i = 0;
+
+    function show(next){
+      slides.forEach(function(slide, index){
+        slide.classList.toggle('is-active', index === next);
+      });
+      if(caption) caption.textContent = captions[next] || captions[0];
+      i = next;
+    }
+
+    if(slides.length > 1){
+      show(0);
+      setInterval(function(){
+        show((i + 1) % slides.length);
+      }, 5600);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', initCommunitySlider);
+  window.addEventListener('load', initCommunitySlider);
+})();
