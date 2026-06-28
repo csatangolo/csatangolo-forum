@@ -41,3 +41,22 @@ async function loadParticipantCounter() {
 updateCountdown();
 setInterval(updateCountdown, 60000);
 loadParticipantCounter();
+
+
+// Csatangoló finomítás: jelentkezők száma csak 200 főtől látszódjon
+function hideRegistrationCountUnder200(){
+  var el = document.getElementById('participantCounter') || document.getElementById('registeredCount') || document.getElementById('registrationCounter');
+  if(!el) return;
+  var n = parseInt((el.textContent || '').replace(/[^0-9]/g,''), 10) || 0;
+  var holder = el.closest('.f33-ribbon, .registration-ribbon, .participant-counter, .counter-card, section, div') || el.parentElement;
+  if(n < 200){
+    if(holder) holder.classList.add('is-hidden-under-200');
+  }else{
+    if(holder) holder.classList.remove('is-hidden-under-200');
+    el.textContent = 'Már több mint ' + n + ' fő jelentkezett';
+  }
+}
+document.addEventListener('DOMContentLoaded', hideRegistrationCountUnder200);
+window.addEventListener('load', hideRegistrationCountUnder200);
+setTimeout(hideRegistrationCountUnder200, 800);
+setTimeout(hideRegistrationCountUnder200, 1800);
