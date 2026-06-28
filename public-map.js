@@ -146,6 +146,63 @@ const PUBLIC_CITY_COORDS = {
   "csongrád":[46.7133,20.1422],
   "csongrad":[46.7133,20.1422]
 };
+;
+
+const PUBLIC_HUNGARY_BORDER = [
+  [48.585,22.155],[48.455,22.710],[48.165,22.885],[47.830,22.885],
+  [47.585,22.620],[47.680,22.240],[47.930,21.985],[48.105,21.450],
+  [48.430,20.750],[48.560,20.165],[48.030,19.620],[48.150,18.860],
+  [47.890,18.570],[47.760,18.030],[47.880,17.230],[47.730,16.650],
+  [47.360,16.440],[46.870,16.085],[46.510,16.280],[46.375,16.800],
+  [46.060,17.045],[45.760,17.640],[45.750,18.425],[45.790,18.910],
+  [46.060,18.960],[46.020,19.500],[46.180,20.000],[46.170,20.720],
+  [46.310,21.120],[46.680,21.450],[46.930,21.780],[47.210,22.050],
+  [47.710,22.130],[48.035,22.340],[48.585,22.155]
+];
+
+const PUBLIC_MAIN_CITY_LABELS = [
+  { name:"Budapest", coords:[47.4979,19.0402] },
+  { name:"Győr", coords:[47.6875,17.6504] },
+  { name:"Székesfehérvár", coords:[47.1860,18.4221] },
+  { name:"Pécs", coords:[46.0727,18.2323] },
+  { name:"Kecskemét", coords:[46.9062,19.6913] },
+  { name:"Szeged", coords:[46.2530,20.1414] },
+  { name:"Szolnok", coords:[47.1621,20.1825] },
+  { name:"Debrecen", coords:[47.5316,21.6273] },
+  { name:"Miskolc", coords:[48.1035,20.7784] },
+  { name:"Nyíregyháza", coords:[47.9495,21.7244] },
+  { name:"Kalocsa", coords:[46.5290,18.9728] },
+  { name:"Öregcsertő", coords:[46.5007,19.1116], home:true }
+];
+
+function addPublicHungaryContext(map) {
+  if (!map || typeof L === "undefined") return;
+
+  L.polyline(PUBLIC_HUNGARY_BORDER, {
+    color: "#4b2814",
+    weight: 3,
+    opacity: .9,
+    smoothFactor: .7,
+    interactive: false,
+    className: "f33-hungary-border"
+  }).addTo(map);
+
+  PUBLIC_MAIN_CITY_LABELS.forEach(city => {
+    const label = L.divIcon({
+      className: "",
+      html: `<span class="f33-map-city-label${city.home ? " is-home" : ""}">${city.name}</span>`,
+      iconSize: null,
+      iconAnchor: [0, 0]
+    });
+
+    L.marker(city.coords, {
+      icon: label,
+      interactive: false,
+      keyboard: false,
+      zIndexOffset: city.home ? 550 : 350
+    }).addTo(map);
+  });
+}
 
 function publicNormalizeCity(city) {
   return String(city || "")
@@ -183,6 +240,7 @@ async function initPublicForumMap() {
   }).addTo(map);
 
   L.control.zoom({ position: "bottomright" }).addTo(map);
+  addPublicHungaryContext(map);
 
   const bounds = [];
   const knownCities = new Set();
@@ -225,6 +283,8 @@ async function initPublicForumMap() {
 
   if (bounds.length > 1) {
     map.fitBounds(bounds, { padding: [28, 28], maxZoom: 8 });
+  } else {
+    map.fitBounds(PUBLIC_HUNGARY_BORDER, { padding: [18, 18], maxZoom: 7 });
   }
 
   if (noteEl) {

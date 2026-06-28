@@ -2881,3 +2881,74 @@ main{
     width:min(100%,330px) !important;
   }
 }
+
+
+/* === Csatangoló kiegészítés: inspiráló blokk finomabb felsorolással === */
+.f33-lower-atmo-text .f33-eyebrow{
+  display:inline-block !important;
+  width:max-content !important;
+  max-width:100% !important;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+  padding:0 !important;
+  letter-spacing:.22em !important;
+}
+
+.f33-experience-list{
+  list-style:none !important;
+  padding:0 !important;
+  margin:22px 0 0 !important;
+  display:grid !important;
+  gap:11px !important;
+  max-width:760px !important;
+}
+
+.f33-experience-list li{
+  position:relative !important;
+  padding-left:30px !important;
+  color:#fff4df !important;
+  font-size:1.03rem !important;
+  line-height:1.45 !important;
+  font-weight:700 !important;
+  text-shadow:0 2px 16px rgba(0,0,0,.28) !important;
+}
+
+.f33-experience-list li:before{
+  content:"" !important;
+  position:absolute !important;
+  left:0 !important;
+  top:.68em !important;
+  width:14px !important;
+  height:1px !important;
+  background:linear-gradient(90deg,#f2cb79,rgba(242,203,121,.18)) !important;
+  box-shadow:0 0 14px rgba(242,203,121,.32) !important;
+}
+
+/* === Csatangoló kiegészítés: térkép határvonal és városfeliratok === */
+.f33-hungary-border{
+  filter:drop-shadow(0 2px 3px rgba(49,24,10,.24));
+}
+
+.f33-map-city-label{
+  background:rgba(255,248,234,.92);
+  color:#4b2814;
+  border:1px solid rgba(94,60,38,.24);
+  border-radius:999px;
+  padding:3px 8px;
+  font-size:11px;
+  font-weight:900;
+  line-height:1;
+  white-space:nowrap;
+  box-shadow:0 6px 16px rgba(70,42,22,.16);
+}
+
+.f33-map-city-label.is-home{
+  background:#5e3c26;
+  color:#fff4df;
+  border-color:rgba(242,203,121,.42);
+}
+
+.f33-public-map-card .leaflet-interactive{
+  outline:none !important;
+}

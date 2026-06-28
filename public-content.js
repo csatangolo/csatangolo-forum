@@ -17,12 +17,18 @@ function youtubeEmbed(url) {
 
 const LOCAL_SPEAKERS = [
   {
-    name: "Panyi Gyuri",
-    subtitle: "Lovas szakember • Gyakorlati szemlélet",
+    name: "Panyi György",
+    subtitle: "Belovaglás, csikóképzés és díjugratás",
     image_url: "assets/panyi-gyuri.jpg",
-    motto: "A lóval való munka alapja a tisztelet, a figyelem és a következetesség.",
-    bio: `A fórumon gyakorlati szemlélettel, sokéves lovas tapasztalattal és nyitott szakmai gondolkodással vesz részt.`,
-    topic: "Belovaglás | Lókiképzés | Gyakorlati tapasztalat",
+    motto: "A jó ló kiképzése mindig a bizalommal kezdődik.",
+    bio: `A lovak egész életemet végigkísérték. Több mint ötven éve foglalkozom velük, és ez idő alatt megtapasztaltam a lovassport szépségeit, kihívásait, valamint azt, hogy a legjobb eredményeket mindig türelemmel, következetességgel és a ló iránti tisztelettel lehet elérni.
+
+Pályafutásom során Magyarország mellett külföldön is dolgoztam, ahol rengeteg tapasztalatot szereztem a lovak képzésében és a fiatal csikók belovaglásában. Az évek során több ezer lóval dolgozhattam együtt, és számomra mindig az volt a legfontosabb, hogy a ló bizalommal, nyugodtan és örömmel működjön együtt az emberrel.
+
+Pályafutásom egyik legemlékezetesebb eredménye, hogy Django nevű lovammal 219 centimétert ugrottam. Ez a teljesítmény a lovas pályám egyik meghatározó pillanata maradt.
+
+Előadásomban saját tapasztalataimon keresztül szeretném megmutatni, hogyan lehet biztos alapokra építeni egy fiatal ló képzését, és milyen szemlélet vezet hosszú távon sikeres, harmonikus együttműködéshez.`,
+    topic: "Belovaglás | Csikóképzés | Díjugratás | Gyakorlati tapasztalat",
     sort_order: 1,
     is_featured: true,
     is_published: true
@@ -51,11 +57,15 @@ const LOCAL_SPEAKERS = [
   },
   {
     name: "Pataky Kata",
-    subtitle: "Oktatás • Lóval való kapcsolat",
+    subtitle: "Okleveles Monty Roberts Instruktor",
     image_url: "assets/pataky-kata.jpg",
-    motto: "A figyelmes jelenlét sokszor többet tanít, mint bármilyen eszköz.",
-    bio: `A lóval való finom, bizalmi kapcsolat és az oktatói jelenlét fontosságát képviseli.`,
-    topic: "Oktatás | Kapcsolat | Bizalom",
+    motto: "A bizalom mindig a kommunikációval kezdődik.",
+    bio: `A lovak mindig arra ösztönöztek, hogy ne csupán irányítani próbáljam őket, hanem valóban megértsem a gondolkodásukat és a kommunikációjukat. Ez vezetett el Monty Roberts erőszakmentes módszeréhez, amely alapjaiban változtatta meg a lovakról alkotott szemléletemet.
+
+Magyarország első okleveles Monty Roberts Instruktoraként hiszem, hogy a sikeres közös munka alapja a bizalom, a tiszta kommunikáció és a kölcsönös tisztelet. A lovak testbeszédének megértése lehetővé teszi, hogy kényszer helyett együttműködésre építsük kapcsolatunkat.
+
+Előadásomban megmutatom, hogyan alkalmazható a Monty Roberts módszer a mindennapi lóhasználat során, legyen szó hobbilovakról, sportlovakról vagy fiatal lovak képzéséről. Célom, hogy minden résztvevő olyan szemléletet és gyakorlati tudást vigyen haza, amely hosszú távon is segíti a lóval való harmonikus együttműködést.`,
+    topic: "Monty Roberts módszer | Lókommunikáció | Bizalomépítés | Földi munka",
     sort_order: 2,
     is_featured: true,
     is_published: true
