@@ -19,7 +19,7 @@ const LOCAL_SPEAKERS = [
   {
     name: "Panyi Gyuri",
     subtitle: "Lovas szakember • Gyakorlati szemlélet",
-    image_url: "assets/panyi-gyuri.webp",
+    image_url: "assets/panyi-gyuri.jpg",
     motto: "A lóval való munka alapja a tisztelet, a figyelem és a következetesség.",
     bio: `A fórumon gyakorlati szemlélettel, sokéves lovas tapasztalattal és nyitott szakmai gondolkodással vesz részt.`,
     topic: "Belovaglás | Lókiképzés | Gyakorlati tapasztalat",
@@ -30,7 +30,7 @@ const LOCAL_SPEAKERS = [
   {
     name: "Karl Péter",
     subtitle: "Western és ranch szemlélet • Horsemanship",
-    image_url: "assets/karl-peter.webp",
+    image_url: "assets/karl-peter.jpg",
     motto: "A jó lóval való kapcsolat nem erőből, hanem megértésből épül.",
     bio: `A ló és ember közötti tiszta kommunikációt, a következetes segítségadást és a bizalmon alapuló munkát képviseli.`,
     topic: "Horsemanship | Kommunikáció | Ranch szemlélet",
@@ -41,7 +41,7 @@ const LOCAL_SPEAKERS = [
   {
     name: "Kevey Bella",
     subtitle: "Díjugratás • Sportló képzés",
-    image_url: "assets/C07657E9-0A27-4329-971E-57260E5DBD25.png",
+    image_url: "assets/kevey-bella.png",
     motto: "A teljesítmény mögött mindig ott van a pontos alapmunka.",
     bio: `Sportlovas szemlélettel, fegyelmezett, elegáns és lóközpontú megközelítéssel kapcsolódik a fórum szakmai programjához.`,
     topic: "Díjugratás | Sportló | Alapmunka",
@@ -52,7 +52,7 @@ const LOCAL_SPEAKERS = [
   {
     name: "Pataky Kata",
     subtitle: "Oktatás • Lóval való kapcsolat",
-    image_url: "assets/pataky-kata.webp",
+    image_url: "assets/pataky-kata.jpg",
     motto: "A figyelmes jelenlét sokszor többet tanít, mint bármilyen eszköz.",
     bio: `A lóval való finom, bizalmi kapcsolat és az oktatói jelenlét fontosságát képviseli.`,
     topic: "Oktatás | Kapcsolat | Bizalom",
@@ -63,7 +63,7 @@ const LOCAL_SPEAKERS = [
   {
     name: "Szabó Árpád",
     subtitle: "Akhal-teke tenyésztő • Csikónevelés",
-    image_url: "assets/szabo-arpad.webp",
+    image_url: "assets/szabo-arpad-card.jpg",
     motto: "Először ki kell vívni a ló tiszteletét. Aztán el kell nyerni a bizalmát.",
     bio: `48 éve foglalkozom lovakkal, és úgy érzem, ma is ugyanazzal a lelkesedéssel tanulok tőlük, mint amikor először ültem nyeregbe. Számomra a lótenyésztés nem a csikó megszületéséig tart, hanem éppen ott kezdődik. Hiszem, hogy a tenyésztő felelőssége már az első pillanattól kialakítani azt a bizalmi kapcsolatot, amelyre később minden további képzés épülhet.`,
     topic: "Csikónevelés | Tenyésztői felelősség | Akhal-teke fajta",
@@ -76,7 +76,7 @@ const LOCAL_SPEAKERS = [
   {
     name: "Kaska Zoltán",
     subtitle: "Díjugratás • Versenytapasztalat",
-    image_url: "assets/kaska-zoltan.webp",
+    image_url: "assets/kaska-zoltan.jpg",
     motto: "A jó ugrás a felkészítésben kezdődik.",
     bio: `Díjugrató szemlélettel, versenytapasztalattal és gyakorlati lófelkészítési gondolatokkal érkezik a fórumra.`,
     topic: "Díjugratás | Versenyló | Felkészítés",
@@ -87,7 +87,7 @@ const LOCAL_SPEAKERS = [
   {
     name: "Benner Jani",
     subtitle: "Terepmunka • Használati ló képzés",
-    image_url: "assets/benner-jani.webp",
+    image_url: "assets/benner-jani.jpg",
     motto: "A képzett ló terepen is magabiztos, figyelmes és együttműködő.",
     bio: `A használati szemléletű lókiképzés, a terepen is működő lovak és a gyakorlati tapasztalat oldaláról kapcsolódik a szakmai naphoz.`,
     topic: "Terepmunka | Használati ló | Lókiképzés",
@@ -98,7 +98,7 @@ const LOCAL_SPEAKERS = [
   {
     name: "Tisza Zoltán",
     subtitle: "Szabadidomítás • Lóval való kommunikáció",
-    image_url: "assets/tisza-zoltan.webp",
+    image_url: "assets/tisza-zoltan.jpg",
     motto: "A látványos munka mögött mindig pontos kommunikáció és bizalom áll.",
     bio: `A lóval való földi munka, a figyelem, a bizalom és a finom kommunikáció területéről hoz gyakorlati tapasztalatokat.`,
     topic: "Szabadidomítás | Földi munka | Kommunikáció",
@@ -109,7 +109,7 @@ const LOCAL_SPEAKERS = [
   {
     name: "Tászler Melinda",
     subtitle: "Lovas bemutató • Klasszikus munka",
-    image_url: "assets/taszler-melinda.webp",
+    image_url: "assets/taszler-melinda.jpg",
     motto: "A lóval való összhang a legszebb bemutató.",
     bio: `Elegáns, bemutató jellegű lovas munkával és a lóval való összhang szemléletével színesíti a fórum szakmai közegét.`,
     topic: "Bemutató | Összhang | Klasszikus munka",
@@ -120,7 +120,7 @@ const LOCAL_SPEAKERS = [
   {
     name: "Szabó Zoltán",
     subtitle: "Terepakadályok • Gyakorlati képzés",
-    image_url: "assets/szabo-zoltan.webp",
+    image_url: "assets/szabo-zoltan.jpg",
     motto: "A bátorság tanítható, ha a ló lépésről lépésre érti a feladatot.",
     bio: `Gyakorlati terepakadályos tapasztalattal és használati szemléletű lófelkészítéssel kapcsolódik a fórum programjához.`,
     topic: "Terepakadály | Bátorság | Gyakorlati képzés",
@@ -129,30 +129,6 @@ const LOCAL_SPEAKERS = [
     is_published: true
   }
 ];
-
-
-function normalizeFeaturedSpeakers(list) {
-  const featuredNames = new Set(["Panyi Gyuri", "Pataky Kata"]);
-  const forcedOrder = {
-    "Panyi Gyuri": 1,
-    "Pataky Kata": 2,
-    "Karl Péter": 3,
-    "Kevey Bella": 4,
-    "Szabó Árpád": 5,
-    "Kaska Zoltán": 6,
-    "Benner Jani": 7,
-    "Tisza Zoltán": 8,
-    "Tászler Melinda": 9,
-    "Szabó Zoltán": 10
-  };
-  return (list || []).map(s => {
-    const item = Object.assign({}, s);
-    item.is_featured = featuredNames.has(item.name);
-    if (forcedOrder[item.name]) item.sort_order = forcedOrder[item.name];
-    if (item.name === "Kevey Bella") item.image_url = "assets/C07657E9-0A27-4329-971E-57260E5DBD25.png";
-    return item;
-  });
-}
 
 function speakerTopics(topic) {
   return String(topic || "").split(/\||,|;/).map(t => t.trim()).filter(Boolean);
@@ -201,8 +177,6 @@ async function loadPublicSpeakers() {
     const exists = speakers.some(s => String(s.name || "").toLowerCase().trim() === local.name.toLowerCase().trim());
     if (!exists) speakers.push(local);
   });
-
-  speakers = normalizeFeaturedSpeakers(speakers);
 
   speakers = speakers
     .filter(s => s && s.is_published !== false)
