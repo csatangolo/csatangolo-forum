@@ -1,11 +1,11 @@
-CSATANGOLÓ FÓRUM CMS 1.1 – TÉRKÉPES STATISZTIKA
+CSATANGOLÓ FÓRUM CMS 1.2 – IDŐJÁRÁS + SUPABASE JAVÍTÓ
 
-Új oldal:
-https://csatangolo.online/csatangolo-forum/terkep.html
+Teendő:
+1. GitHubra töltsd fel / írd felül az összes fájlt.
+2. Supabase-ben futtasd le:
+   supabase_csatangolo_cms_1_2_teljes_javito.sql
 
-Szervezői kód:
-csatangolo2026
-
-GitHubra töltsd fel / írd felül az összes fájlt.
-
-Supabase SQL nem kell.
+Újdonság:
+- Főoldali időjárás Öregcsertőre
+- Lovas ajánló az aktuális időjárás alapján
+- Erősebb Supabase javító SQL

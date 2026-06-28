@@ -1,14 +1,4 @@
-# CSATANGOLÓ FÓRUM CMS 1.1 – TÉRKÉPES STATISZTIKA
-
-## Frissítési útmutató
-
-| Feladat | Kell? |
-|---|---|
-| GitHub fájlok feltöltése | ✅ IGEN |
-| Supabase SQL futtatása | ❌ NEM |
-| Storage bucket | ❌ NEM |
-| Új oldal | ✅ IGEN |
-| Új jelszó | ❌ NINCS |
+# CSATANGOLÓ FÓRUM CMS 1.2 – IDŐJÁRÁS + SUPABASE JAVÍTÁS
 
 ## GitHub
 
@@ -16,25 +6,28 @@ Töltsd fel / írd felül a ZIP összes fájlját.
 
 ## Supabase
 
-Nincs új SQL teendő.
+Mivel az ellenőrző még ugyanazokat a táblahiányokat mutatja, futtasd le ezt az új javító SQL-t:
 
-## Új oldal
+`supabase_csatangolo_cms_1_2_teljes_javito.sql`
 
-Térképes statisztika:
+Ez újra létrehozza / javítja:
+- speakers
+- program_items
+- videos
+- news
+- sponsors
+- gallery
+- documents
+- forum-assets Storage
+- feltöltési jogosultságok
 
-`https://csatangolo.online/csatangolo-forum/terkep.html`
+Nem törli a meglévő regisztrációkat.
 
-Szervezői kód:
+## Újdonság
 
-`csatangolo2026`
+A főoldalra bekerült az időjárás és lovas ajánló Öregcsertőre.
 
-## Adatvédelem
+## Ellenőrzés
 
-A térképen nem jelenik meg név, csak település és létszám.
-
-Példa:
-Kalocsa – 11 résztvevő
-
-## Ha egy település nem jelenik meg a térképen
-
-Az oldal külön listázza a még nem azonosított településeket. Ezekhez később hozzá tudunk adni koordinátát.
+Utána:
+`https://csatangolo.online/csatangolo-forum/ellenorzes.html`

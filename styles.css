@@ -1061,3 +1061,76 @@ input[type="file"]{
   .map-layout{grid-template-columns:1fr}
   #hungaryMap{height:500px}
 }
+
+
+/* CMS 1.2 Időjárás */
+.weather-box{
+  display:grid;
+  gap:16px;
+}
+.weather-current{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+.weather-current div{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:18px;
+  text-align:center;
+}
+.weather-current strong{
+  display:block;
+  font-size:2rem;
+  color:var(--brown);
+}
+.weather-current span{
+  color:var(--muted);
+}
+.weather-advice{
+  border-radius:22px;
+  padding:18px;
+  border:1px solid var(--line);
+}
+.weather-advice.ok{
+  background:#effbef;
+  border-color:#bfe2b8;
+}
+.weather-advice.caution{
+  background:#fff4df;
+  border-color:#e8c47a;
+}
+.weather-advice.warning{
+  background:#ffe8e8;
+  border-color:#cc7777;
+}
+.weather-advice h3{
+  margin-top:0;
+  color:var(--brown);
+}
+.weather-days{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+.weather-days div{
+  background:#fff7ef;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:14px;
+}
+.weather-days span,.weather-days small{
+  display:block;
+  color:var(--muted);
+  margin-top:4px;
+}
+.weather-note{
+  color:var(--muted);
+  font-size:.9rem;
+}
+@media(max-width:760px){
+  .weather-current,.weather-days{
+    grid-template-columns:1fr;
+  }
+}
