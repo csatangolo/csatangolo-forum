@@ -4,27 +4,45 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Támogatás – Csatangoló Fórum</title>
-  <link rel="stylesheet" href="styles.css?v=support-fix-1">
+  <link rel="stylesheet" href="styles.css?v=4.0">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 <nav class="topbar">
-  <a href="index.html" class="brand">Csatangoló Fórum</a>
+  <a href="index.html" class="brand">Csatangoló Lovarda</a>
   <div class="navlinks">
     <a href="index.html">Főoldal</a>
     <a href="program.html">Program</a>
     <a href="eloadok.html">Előadók</a>
-    <a href="regisztracio.html" class="nav-cta">Regisztráció</a>
+    <a href="bemutatkozas.html">Lovarda</a>
+    <a href="tudastar.html">Tudástár</a>
+    <a href="galeria.html">Galéria</a>
+    <a href="tamogatas.html">Támogatás</a>
+    <a class="nav-cta" href="regisztracio.html">Regisztráció</a>
   </div>
 </nav>
-
 <main class="support-page">
   <section class="support-hero-premium">
     <div>
       <span class="badge">Támogatás</span>
-      <h1>Legyél részese a Csatangoló közösség építésének</h1>
-      <p>A fórum részvételi hozzájárulása a rendezvény lebonyolítását segíti. Ezen felül lehetőség van a Csatangoló Lovas Egyesület jövőbeli szakmai és közösségi programjainak támogatására is.</p>
+      <h1>Támogasd a Csatangoló Lovarda szakmai és közösségi programjait</h1>
+      <p>A fórum részvételi hozzájárulása a rendezvény lebonyolítását segíti. Ezen felül lehetőség van a Csatangoló Lovas Egyesület jövőbeli lovas, gyerek és szakmai programjainak támogatására is.</p>
     </div>
+  </section>
+
+  <section class="stripe-support-box">
+    <div>
+      <span class="eyebrow">Online támogatás</span>
+      <h2>Bankkártyás támogatás Stripe fizetéssel</h2>
+      <p>Válassz egy támogatási összeget, vagy kérj egyedi egyeztetést. A gombokhoz Stripe Payment Linket lehet kötni, így a fizetés biztonságosan, külön Stripe oldalon történik.</p>
+    </div>
+    <div class="stripe-amount-grid">
+      <a class="stripe-button" data-stripe-amount="5000" href="#">5 000 Ft</a>
+      <a class="stripe-button" data-stripe-amount="10000" href="#">10 000 Ft</a>
+      <a class="stripe-button" data-stripe-amount="20000" href="#">20 000 Ft</a>
+      <a class="stripe-button muted" data-stripe-amount="custom" href="kapcsolat.html">Egyedi támogatás</a>
+    </div>
+    <p class="stripe-note">A Stripe linkeket a <code>tamogatas.js</code> fájlban lehet megadni. Addig a gombok nem indítanak fizetést.</p>
   </section>
 
   <section class="support-options">
@@ -32,6 +50,21 @@
     <article><b>🌾</b><h2>Takarmány / eszköz</h2><p>A lovarda és a programok működését segítő természetbeni támogatás.</p></article>
     <article><b>🤝</b><h2>Partneri együttműködés</h2><p>Hosszabb távú szakmai vagy helyi közösségi kapcsolat.</p></article>
     <article><b>💛</b><h2>Pénzbeli támogatás</h2><p>Jövőbeli lovas, gyerek és közösségi programokhoz.</p></article>
+  </section>
+
+  <section class="supporters-section">
+    <div class="section-head">
+      <span class="eyebrow">Köszönjük</span>
+      <h2>Támogatóink</h2>
+      <p>Ide kerülnek azok a támogatók és partnerek, akik jóváhagyás után szeretnének megjelenni az oldalon.</p>
+    </div>
+    <div id="supporterList" class="supporter-list">
+      <article class="supporter-card placeholder">
+        <div class="supporter-logo">♞</div>
+        <h3>Hamarosan</h3>
+        <p>A támogatók listája folyamatosan bővül.</p>
+      </article>
+    </div>
   </section>
 
   <section class="support-form-shell">
@@ -57,6 +90,6 @@
   </section>
 </main>
 
-<script src="tamogatas.js"></script>
+<script src="tamogatas.js?v=4.0"></script>
 </body>
 </html>

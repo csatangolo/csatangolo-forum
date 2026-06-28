@@ -196,21 +196,27 @@ loadParticipantCounter();
 })();
 
 
-// Premium fix: közösségi tér automatikus, finom képlapozó
+// === v4.0 közösségi tér: stabil automatikus slider ===
 (function(){
-  function initCommunitySlider(){
+  function initCommunitySliderV4(){
     var slider = document.querySelector('.f33-community-slider');
-    if(!slider || slider.dataset.sliderReady === '1') return;
-    slider.dataset.sliderReady = '1';
+    if(!slider) return;
 
     var slides = Array.prototype.slice.call(slider.querySelectorAll('.f33-community-slide'));
+    if(!slides.length) return;
+
     var caption = document.getElementById('communityCaption');
     var captions = [
       'Családi programok egész nap',
       'Csatangoló Lovas Büfé és Fröccsterasz',
       'Lovas élmények, gyerekprogramok, közösség'
     ];
-    var i = 0;
+
+    if(slider.dataset.v4Ready === '1') return;
+    slider.dataset.v4Ready = '1';
+
+    var i = slides.findIndex(function(s){ return s.classList.contains('is-active'); });
+    if(i < 0) i = 0;
 
     function show(next){
       slides.forEach(function(slide, index){
@@ -220,14 +226,14 @@ loadParticipantCounter();
       i = next;
     }
 
-    if(slides.length > 1){
-      show(0);
-      setInterval(function(){
-        show((i + 1) % slides.length);
-      }, 5600);
-    }
+    show(i);
+    window.setInterval(function(){
+      show((i + 1) % slides.length);
+    }, 4800);
   }
 
-  document.addEventListener('DOMContentLoaded', initCommunitySlider);
-  window.addEventListener('load', initCommunitySlider);
+  document.addEventListener('DOMContentLoaded', initCommunitySliderV4);
+  window.addEventListener('load', initCommunitySliderV4);
+  setTimeout(initCommunitySliderV4, 500);
+  setTimeout(initCommunitySliderV4, 1500);
 })();

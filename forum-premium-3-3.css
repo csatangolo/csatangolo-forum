@@ -2984,3 +2984,250 @@ main{
   font-weight:900;
   font-size:.86rem;
 }
+
+
+/* === v4.0 főoldal végső javítások: menü, logó, főcím, buborékok, visszaszámláló, slider, dark mode === */
+.f33-nav{
+  height:auto!important;
+  min-height:76px!important;
+}
+
+.f33-logo{
+  width:62px!important;
+  height:52px!important;
+  border:0!important;
+  border-radius:0!important;
+  background:url("assets/Photoroom_20250216_213349.png") center/contain no-repeat!important;
+  font-size:0!important;
+}
+
+.f33-brand{
+  gap:13px!important;
+}
+
+.f33-brand strong{
+  font-size:1.08rem!important;
+}
+
+.f33-brand small{
+  color:#7c6047!important;
+}
+
+.f33-menu{
+  gap:18px!important;
+}
+
+.f33-hero h1{
+  line-height:1.05!important;
+  letter-spacing:.028em!important;
+  font-size:clamp(2.65rem,5.15vw,5.7rem)!important;
+}
+
+.f33-event-pills,
+.f33-hero-pills,
+.f33-info-row{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  justify-content:center!important;
+  gap:10px!important;
+  width:auto!important;
+}
+
+.f33-event-pills span,
+.f33-hero-pills span,
+.f33-info-row span,
+.f33-meta span,
+.f33-chip,
+.f33-event-chip{
+  width:auto!important;
+  min-width:0!important;
+  max-width:max-content!important;
+  flex:0 0 auto!important;
+  padding:10px 15px!important;
+  border-radius:999px!important;
+  white-space:nowrap!important;
+}
+
+/* Ha még külön idő-buborék maradt a régi kódból, ne foglaljon plusz helyet */
+.f33-event-chip:nth-child(2):not(:last-child),
+.f33-meta span:nth-child(2):not(:last-child){
+  display:none!important;
+}
+
+/* VISSZASZÁMLÁLÓ: stabil, nagy méret */
+.f33-countdown{
+  display:flex!important;
+  justify-content:center!important;
+  align-items:stretch!important;
+  gap:14px!important;
+  flex-wrap:wrap!important;
+  margin:22px auto 26px!important;
+  width:auto!important;
+  max-width:640px!important;
+}
+
+.f33-countdown div{
+  flex:0 0 auto!important;
+  width:112px!important;
+  min-width:112px!important;
+  height:96px!important;
+  min-height:96px!important;
+  padding:18px 14px 14px!important;
+  border-radius:24px!important;
+  display:grid!important;
+  place-items:center!important;
+  background:rgba(255,248,234,.16)!important;
+  border:1px solid rgba(242,203,121,.34)!important;
+  box-shadow:0 18px 44px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.14)!important;
+  backdrop-filter:blur(10px)!important;
+}
+
+.f33-countdown strong,
+.f33-countdown .num{
+  display:block!important;
+  font-size:clamp(2.15rem,4.2vw,3.05rem)!important;
+  line-height:.86!important;
+  color:#fff8ea!important;
+  font-weight:900!important;
+}
+
+.f33-countdown small{
+  display:block!important;
+  margin-top:8px!important;
+  font-size:.74rem!important;
+  text-transform:uppercase!important;
+  letter-spacing:.12em!important;
+  color:#f2cb79!important;
+  font-weight:900!important;
+}
+
+/* KÖZÖSSÉGI TÉR SLIDER: minden korábbi egymásra írást felülír */
+.f33-inspiring-gallery{
+  display:none!important;
+}
+
+.f33-lower-atmo-card{
+  display:grid!important;
+  grid-template-columns:minmax(0,.82fr) minmax(420px,.92fr)!important;
+  gap:24px!important;
+  min-height:500px!important;
+  padding:30px!important;
+}
+
+.f33-community-slider{
+  display:block!important;
+  position:relative!important;
+  z-index:5!important;
+  align-self:stretch!important;
+  min-height:440px!important;
+  height:100%!important;
+  border-radius:28px!important;
+  overflow:hidden!important;
+  background:#2b1509!important;
+  border:1px solid rgba(242,203,121,.22)!important;
+  box-shadow:0 26px 76px rgba(0,0,0,.28)!important;
+}
+
+.f33-community-slide{
+  display:block!important;
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  transform:scale(1.08)!important;
+  transition:opacity 1.15s ease, visibility 1.15s ease, transform 5.8s ease!important;
+  filter:saturate(.96) sepia(.10) contrast(1.05) brightness(.88)!important;
+}
+
+.f33-community-slide.is-active{
+  opacity:1!important;
+  visibility:visible!important;
+  transform:scale(1)!important;
+}
+
+.f33-community-slider:before{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:6!important;
+  pointer-events:none!important;
+  background:linear-gradient(90deg,rgba(36,17,7,.36),rgba(36,17,7,.08) 45%,transparent),linear-gradient(0deg,rgba(36,17,7,.32),rgba(255,248,234,.06))!important;
+}
+
+.f33-community-caption{
+  position:absolute!important;
+  left:22px!important;
+  bottom:22px!important;
+  z-index:8!important;
+  padding:11px 16px!important;
+  border-radius:999px!important;
+  background:rgba(36,17,7,.66)!important;
+  border:1px solid rgba(242,203,121,.26)!important;
+  color:#fff4df!important;
+  font-weight:900!important;
+  backdrop-filter:blur(8px)!important;
+}
+
+/* Sötét mód / iPad dark interface ellen ne menjen el szürkébe */
+@media (prefers-color-scheme: dark){
+  body.forum33{
+    background:linear-gradient(180deg,#160b06,#24140a 40%,#f4eadb 40%,#fff7eb 78%,#150a05)!important;
+    color:var(--f33-text)!important;
+  }
+  .f33-nav{
+    background:rgba(255,248,234,.92)!important;
+  }
+  .f33-section-light,
+  .f33-paper,
+  .f33-card,
+  .f33-newsletter{
+    background-color:#fff8ea!important;
+    color:#3a2110!important;
+  }
+}
+
+@media(max-width:1050px){
+  .f33-lower-atmo-card{
+    grid-template-columns:1fr!important;
+  }
+  .f33-community-slider{
+    min-height:330px!important;
+  }
+}
+
+@media(max-width:700px){
+  .f33-hero h1{
+    font-size:clamp(2.25rem,10vw,3.25rem)!important;
+    line-height:1.08!important;
+  }
+  .f33-countdown{
+    gap:9px!important;
+  }
+  .f33-countdown div{
+    width:84px!important;
+    min-width:84px!important;
+    height:78px!important;
+    min-height:78px!important;
+    padding:13px 8px 10px!important;
+    border-radius:18px!important;
+  }
+  .f33-countdown strong,
+  .f33-countdown .num{
+    font-size:clamp(1.7rem,8vw,2.25rem)!important;
+  }
+  .f33-countdown small{
+    font-size:.62rem!important;
+  }
+  .f33-event-pills span,
+  .f33-hero-pills span,
+  .f33-info-row span,
+  .f33-meta span,
+  .f33-chip,
+  .f33-event-chip{
+    white-space:normal!important;
+    max-width:calc(100vw - 42px)!important;
+  }
+}
