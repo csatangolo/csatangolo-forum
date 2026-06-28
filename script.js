@@ -109,6 +109,24 @@ form.addEventListener("submit", async (event) => {
     const { error: participantError } = await client.from("participants").insert(participantRows);
     if (participantError) throw participantError;
 
+    try {
+      await client.functions.invoke("send-ticket-email", {
+        body: {
+          registration,
+          participants: participantRows,
+          event: {
+            name: "I. Országos Belovagló és Lókiképző Szakmai Fórum",
+            dateText: "2026. július 25.",
+            timeText: "9.00-tól",
+            locationText: "Csatangoló Lovarda – Öregcsertő, Homokmégyi u. 39.",
+            contributionText: "2 000 Ft / fő, helyszínen fizethető"
+          }
+        }
+      });
+    } catch (emailError) {
+      console.warn("A QR-belépő e-mail küldése nem sikerült, de a regisztráció rögzítve lett:", emailError);
+    }
+
     localStorage.setItem("forumTickets", JSON.stringify(participantRows));
     window.location.href = "koszonjuk.html";
   } catch (error) {
