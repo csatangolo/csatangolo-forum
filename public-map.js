@@ -172,13 +172,14 @@ async function initPublicForumMap() {
     zoomControl: false,
     attributionControl: false,
     dragging: true,
-    scrollWheelZoom: false,
-    doubleClickZoom: false,
-    boxZoom: false
+    touchZoom: true,
+    scrollWheelZoom: true,
+    doubleClickZoom: true,
+    boxZoom: true
   }).setView([47.05, 19.35], 7);
 
   L.tileLayer("https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png", {
-    maxZoom: 10
+    maxZoom: 14
   }).addTo(map);
 
   L.control.zoom({ position: "bottomright" }).addTo(map);

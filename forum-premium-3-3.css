@@ -2346,3 +2346,437 @@ main{
     min-height:300px;
   }
 }
+
+
+/* === Premium v2.4: 3 kép egységesítése + barnás, nagyítható térkép === */
+
+/* Inspiráló környezet: a 3 kép egy összemosott hangulatképpé áll össze */
+.f33-lower-atmo-card{
+  grid-template-columns:minmax(0,.86fr) minmax(430px,.92fr) !important;
+  gap:0 !important;
+  padding:28px !important;
+  overflow:hidden !important;
+}
+
+.f33-lower-atmo-card:before{
+  background-image:url('assets/1_1.png') !important;
+  opacity:.64 !important;
+  filter:saturate(.92) contrast(1.05) brightness(.76) sepia(.12) !important;
+  transform:scale(1.08) !important;
+}
+
+.f33-lower-atmo-card:after{
+  background:
+    linear-gradient(90deg,
+      rgba(36,17,7,.96) 0%,
+      rgba(36,17,7,.86) 35%,
+      rgba(36,17,7,.56) 55%,
+      rgba(36,17,7,.18) 80%,
+      rgba(36,17,7,.06) 100%),
+    linear-gradient(0deg,rgba(36,17,7,.34),rgba(255,248,234,.04)) !important;
+}
+
+.f33-lower-atmo-text{
+  z-index:8 !important;
+  margin:0 !important;
+  background:linear-gradient(90deg,rgba(31,14,7,.74),rgba(31,14,7,.54)) !important;
+  box-shadow:0 24px 70px rgba(0,0,0,.22) !important;
+}
+
+.f33-inspiring-gallery{
+  position:relative !important;
+  z-index:4 !important;
+  display:block !important;
+  min-height:390px !important;
+  align-self:stretch !important;
+  margin-left:-68px !important;
+  border-radius:0 26px 26px 0 !important;
+  overflow:hidden !important;
+  isolation:isolate !important;
+  box-shadow:none !important;
+  background:
+    linear-gradient(90deg,rgba(36,17,7,.40),transparent),
+    url('assets/1_1.png') center/cover !important;
+}
+
+.f33-inspiring-gallery:before{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:5 !important;
+  pointer-events:none !important;
+  background:
+    linear-gradient(90deg,rgba(36,17,7,.72) 0%,rgba(36,17,7,.28) 25%,rgba(36,17,7,0) 48%),
+    linear-gradient(0deg,rgba(36,17,7,.28),rgba(255,248,234,.05)),
+    radial-gradient(circle at 36% 50%,rgba(242,203,121,.12),transparent 42%) !important;
+}
+
+.f33-inspiring-gallery:after{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:6 !important;
+  pointer-events:none !important;
+  background:
+    linear-gradient(135deg,rgba(242,203,121,.12),transparent 38%),
+    linear-gradient(90deg,rgba(255,248,234,.05),transparent 52%) !important;
+  mix-blend-mode:screen !important;
+  opacity:.66 !important;
+}
+
+.f33-inspiring-gallery img{
+  position:absolute !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  object-fit:cover !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  transform:none !important;
+  filter:saturate(.92) contrast(1.06) brightness(.88) sepia(.10) !important;
+}
+
+/* 1_2 kép: bal oldali átmenetes réteg */
+.f33-inspiring-gallery img:first-child{
+  z-index:2 !important;
+  opacity:.76 !important;
+  object-position:center !important;
+  clip-path:polygon(0 0, 58% 0, 76% 100%, 0 100%) !important;
+  -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 50%,transparent 82%) !important;
+  mask-image:linear-gradient(90deg,#000 0%,#000 50%,transparent 82%) !important;
+}
+
+/* 1_3 kép: fő kép jobb oldalon, de átfolyatva */
+.f33-inspiring-gallery img:last-child{
+  z-index:3 !important;
+  opacity:.92 !important;
+  object-position:center !important;
+  clip-path:polygon(24% 0,100% 0,100% 100%,8% 100%) !important;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 26%,#000 100%) !important;
+  mask-image:linear-gradient(90deg,transparent 0%,#000 26%,#000 100%) !important;
+}
+
+/* Térkép: marad a jó helyen, de kap barnás prémium tónust */
+.f33-public-map-section{
+  background:
+    radial-gradient(circle at 18% 20%,rgba(255,248,234,.14),transparent 32%),
+    linear-gradient(135deg,#2a1308,#60391f) !important;
+}
+
+.f33-public-map-card{
+  background:#d9c4a1 !important;
+  border-color:rgba(242,203,121,.28) !important;
+  box-shadow:0 24px 68px rgba(44,21,9,.30) !important;
+}
+
+#publicForumMap{
+  filter:sepia(.28) saturate(.74) contrast(.93) brightness(.98) !important;
+  cursor:grab;
+}
+
+#publicForumMap:active{
+  cursor:grabbing;
+}
+
+.f33-public-map-card:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 50%,transparent 45%,rgba(94,60,38,.10) 100%),
+    linear-gradient(135deg,rgba(242,203,121,.10),transparent 42%);
+  mix-blend-mode:multiply;
+  opacity:.72;
+  z-index:401;
+}
+
+.f33-public-map-card .leaflet-control-container{
+  position:relative;
+  z-index:500;
+}
+
+.f33-public-map-card .leaflet-control-zoom a{
+  background:rgba(255,244,223,.95) !important;
+  color:#5e3c26 !important;
+  font-weight:900 !important;
+}
+
+.f33-map-dot span{
+  background:linear-gradient(135deg,#f6d686,#a8662f) !important;
+  border-color:rgba(255,248,234,.98) !important;
+}
+
+/* Mobilon az inspiráló képrész legyen kevésbé furcsa: egy nagy összemosott kép */
+@media(max-width:1050px){
+  .f33-lower-atmo-card{
+    grid-template-columns:1fr !important;
+    gap:16px !important;
+  }
+
+  .f33-inspiring-gallery{
+    margin-left:0 !important;
+    border-radius:24px !important;
+    min-height:320px !important;
+  }
+}
+
+@media(max-width:700px){
+  .f33-inspiring-gallery{
+    min-height:260px !important;
+  }
+
+  .f33-inspiring-gallery img:first-child{
+    opacity:.52 !important;
+    clip-path:polygon(0 0,62% 0,82% 100%,0 100%) !important;
+  }
+
+  .f33-inspiring-gallery img:last-child{
+    opacity:.96 !important;
+    clip-path:polygon(28% 0,100% 0,100% 100%,10% 100%) !important;
+  }
+
+  .f33-public-map-section{
+    width:calc(100% - 28px) !important;
+  }
+
+  .f33-public-map-card,
+  #publicForumMap{
+    min-height:340px !important;
+  }
+}
+
+
+/* === Premium v2.5 ERŐS látható javítás: képfal + barnás nagyítható térkép === */
+
+/* 3 kép: ne két külön képnek látszódjon, hanem egy nagy összemosott képfalnak */
+.f33-lower-atmo-card{
+  position:relative !important;
+  display:block !important;
+  min-height:500px !important;
+  padding:34px !important;
+  overflow:hidden !important;
+  background:#2b1509 !important;
+}
+
+.f33-lower-atmo-card:before{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  background:
+    linear-gradient(90deg,rgba(36,17,7,.94) 0%,rgba(36,17,7,.82) 34%,rgba(36,17,7,.42) 58%,rgba(36,17,7,.18) 100%),
+    url('assets/1_1.png') center/cover no-repeat !important;
+  opacity:1 !important;
+  transform:scale(1.04) !important;
+  filter:saturate(.86) contrast(1.08) brightness(.72) sepia(.18) !important;
+  z-index:0 !important;
+}
+
+.f33-lower-atmo-card:after{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:4 !important;
+  pointer-events:none !important;
+  background:
+    linear-gradient(90deg,rgba(36,17,7,.92) 0%,rgba(36,17,7,.66) 38%,rgba(36,17,7,.14) 72%,rgba(36,17,7,.04) 100%),
+    radial-gradient(circle at 72% 42%,rgba(242,203,121,.16),transparent 36%) !important;
+}
+
+/* szöveg bal oldalon, képkompozíció mögötte/jobb oldalon */
+.f33-lower-atmo-text{
+  position:relative !important;
+  z-index:8 !important;
+  width:min(610px,52%) !important;
+  min-height:0 !important;
+  padding:38px !important;
+  border-radius:26px !important;
+  background:rgba(31,14,7,.70) !important;
+  border:1px solid rgba(242,203,121,.22) !important;
+  backdrop-filter:blur(10px) !important;
+  box-shadow:0 24px 70px rgba(0,0,0,.32) !important;
+}
+
+/* A képek abszolút rétegekként ússzanak egymásra */
+.f33-inspiring-gallery{
+  position:absolute !important;
+  z-index:2 !important;
+  inset:26px 28px 26px 42% !important;
+  display:block !important;
+  min-height:auto !important;
+  margin:0 !important;
+  border-radius:28px !important;
+  overflow:hidden !important;
+  background:url('assets/1_1.png') center/cover no-repeat !important;
+  box-shadow:inset 0 0 0 1px rgba(242,203,121,.16), 0 24px 70px rgba(0,0,0,.24) !important;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 14%,#000 100%) !important;
+  mask-image:linear-gradient(90deg,transparent 0%,#000 14%,#000 100%) !important;
+}
+
+.f33-inspiring-gallery:before{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:5 !important;
+  pointer-events:none !important;
+  background:
+    linear-gradient(90deg,rgba(36,17,7,.62) 0%,rgba(36,17,7,.14) 28%,transparent 58%),
+    linear-gradient(0deg,rgba(36,17,7,.22),rgba(255,248,234,.05)) !important;
+}
+
+.f33-inspiring-gallery:after{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:6 !important;
+  pointer-events:none !important;
+  background:
+    linear-gradient(135deg,rgba(242,203,121,.20),transparent 38%),
+    radial-gradient(circle at 72% 24%,rgba(255,248,234,.18),transparent 28%) !important;
+  mix-blend-mode:screen !important;
+  opacity:.8 !important;
+}
+
+.f33-inspiring-gallery img{
+  position:absolute !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  min-height:0 !important;
+  object-fit:cover !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  transform:none !important;
+  filter:saturate(.88) contrast(1.08) brightness(.84) sepia(.14) !important;
+}
+
+/* bal réteg */
+.f33-inspiring-gallery img:first-child{
+  z-index:2 !important;
+  opacity:.72 !important;
+  object-position:center !important;
+  clip-path:polygon(0 0, 64% 0, 78% 100%, 0 100%) !important;
+  -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 52%,transparent 84%) !important;
+  mask-image:linear-gradient(90deg,#000 0%,#000 52%,transparent 84%) !important;
+}
+
+/* jobb fő réteg */
+.f33-inspiring-gallery img:last-child{
+  z-index:3 !important;
+  opacity:.95 !important;
+  object-position:center !important;
+  clip-path:polygon(24% 0,100% 0,100% 100%,6% 100%) !important;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 24%,#000 100%) !important;
+  mask-image:linear-gradient(90deg,transparent 0%,#000 24%,#000 100%) !important;
+}
+
+/* Térkép: sokkal láthatóbb barnás tónus, ne legyen világos fehér */
+.f33-public-map-section{
+  background:
+    radial-gradient(circle at 15% 18%,rgba(242,203,121,.16),transparent 34%),
+    linear-gradient(135deg,#241107,#6a4024) !important;
+}
+
+.f33-public-map-card{
+  background:#7a5b38 !important;
+  border:1px solid rgba(242,203,121,.38) !important;
+  box-shadow:0 28px 82px rgba(44,21,9,.34) !important;
+}
+
+#publicForumMap{
+  filter:sepia(.56) saturate(.70) contrast(.88) brightness(.82) !important;
+  cursor:grab !important;
+}
+
+.f33-public-map-card:before{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:400 !important;
+  pointer-events:none !important;
+  background:
+    linear-gradient(135deg,rgba(94,60,38,.24),rgba(242,203,121,.10)),
+    radial-gradient(circle at center,transparent 42%,rgba(94,60,38,.26) 100%) !important;
+  mix-blend-mode:multiply !important;
+}
+
+.f33-public-map-card:after{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  pointer-events:none !important;
+  z-index:401 !important;
+  border-radius:26px !important;
+  box-shadow:inset 0 0 0 1px rgba(255,248,234,.22), inset 0 0 80px rgba(94,60,38,.28) !important;
+}
+
+.f33-public-map-card .leaflet-control-container{
+  position:relative !important;
+  z-index:700 !important;
+}
+
+.f33-public-map-card .leaflet-control-zoom a{
+  background:rgba(62,34,17,.92) !important;
+  color:#f8e3ad !important;
+  border-color:rgba(242,203,121,.24) !important;
+  font-weight:900 !important;
+}
+
+.f33-map-dot span{
+  width:20px !important;
+  height:20px !important;
+  background:linear-gradient(135deg,#ffe09a,#a8662f) !important;
+  border:2px solid rgba(255,248,234,1) !important;
+  box-shadow:0 0 0 9px rgba(242,203,121,.22), 0 12px 26px rgba(44,21,9,.36) !important;
+}
+
+/* Mobilon: ne legyen furcsa rétegződés, de maradjon kompozíció */
+@media(max-width:1050px){
+  .f33-lower-atmo-card{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:18px !important;
+    min-height:auto !important;
+  }
+
+  .f33-lower-atmo-text{
+    width:100% !important;
+  }
+
+  .f33-inspiring-gallery{
+    position:relative !important;
+    inset:auto !important;
+    min-height:320px !important;
+    -webkit-mask-image:none !important;
+    mask-image:none !important;
+  }
+}
+
+@media(max-width:700px){
+  .f33-lower-atmo-card{
+    padding:16px !important;
+  }
+
+  .f33-inspiring-gallery{
+    min-height:270px !important;
+    border-radius:22px !important;
+  }
+
+  .f33-inspiring-gallery img:first-child{
+    opacity:.50 !important;
+    clip-path:polygon(0 0,60% 0,78% 100%,0 100%) !important;
+  }
+
+  .f33-inspiring-gallery img:last-child{
+    opacity:.98 !important;
+    clip-path:polygon(30% 0,100% 0,100% 100%,10% 100%) !important;
+  }
+
+  .f33-public-map-card,
+  #publicForumMap{
+    min-height:360px !important;
+  }
+}
