@@ -41,7 +41,7 @@ const LOCAL_SPEAKERS = [
   {
     name: "Kevey Bella",
     subtitle: "Díjugratás • Sportló képzés",
-    image_url: "assets/kevey-bella.png",
+    image_url: "assets/C07657E9-0A27-4329-971E-57260E5DBD25.png",
     motto: "A teljesítmény mögött mindig ott van a pontos alapmunka.",
     bio: `Sportlovas szemlélettel, fegyelmezett, elegáns és lóközpontú megközelítéssel kapcsolódik a fórum szakmai programjához.`,
     topic: "Díjugratás | Sportló | Alapmunka",
