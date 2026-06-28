@@ -41,7 +41,7 @@ const LOCAL_SPEAKERS = [
   {
     name: "Kevey Bella",
     subtitle: "Díjugratás • Sportló képzés",
-    image_url: "assets/kevey-bella.png",
+    image_url: "assets/kevey-bella.jpeg.PNG",
     motto: "A teljesítmény mögött mindig ott van a pontos alapmunka.",
     bio: `Sportlovas szemlélettel, fegyelmezett, elegáns és lóközpontú megközelítéssel kapcsolódik a fórum szakmai programjához.`,
     topic: "Díjugratás | Sportló | Alapmunka",
@@ -146,7 +146,7 @@ function renderSpeakerCard(s) {
   return `
     <article class="speaker-premium-card ${s.is_featured ? 'is-featured' : ''}">
       <div class="speaker-image-wrap">
-        ${s.image_url ? `<img class="speaker-photo" src="${esc(s.image_url)}" alt="${esc(s.name)}" loading="lazy" onerror="this.onerror=null;this.src=\'assets/kevey-bella.jpg\';">` : `<div class="speaker-photo placeholder">${esc((s.name || '?').charAt(0))}</div>`}
+        ${s.image_url ? `<img class="speaker-photo" src="${esc(s.image_url)}" alt="${esc(s.name)}" loading="lazy" onerror="this.onerror=null;this.src=\'assets/kevey-bella.jpeg.PNG';">` : `<div class="speaker-photo placeholder">${esc((s.name || '?').charAt(0))}</div>`}
         ${s.is_featured ? '<span class="profile-tag floating-tag">⭐ Kiemelt előadó</span>' : ""}
       </div>
       <div class="speaker-body">
