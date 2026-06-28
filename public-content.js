@@ -15,31 +15,85 @@ function youtubeEmbed(url) {
   return id ? `https://www.youtube.com/embed/${id}` : "";
 }
 
+const LOCAL_SPEAKERS = [
+  {
+    name: "Szabó Árpád",
+    subtitle: "Akhal-teke tenyésztő • Csikónevelés",
+    image_url: "assets/szabo-arpad.jpg",
+    motto: "Először ki kell vívni a ló tiszteletét. Aztán el kell nyerni a bizalmát. Végül meg kell szerettetni magunkat vele.",
+    bio: `48 éve foglalkozom lovakkal, és úgy érzem, ma is ugyanazzal a lelkesedéssel tanulok tőlük, mint amikor először ültem nyeregbe.
+
+Számomra a lótenyésztés nem a csikó megszületéséig tart, hanem éppen ott kezdődik. Hiszem, hogy a tenyésztő felelőssége már az első pillanattól kialakítani azt a bizalmi kapcsolatot, amelyre később minden további képzés épülhet. Ezért a csikónevelés életem egyik legfontosabb küldetése.
+
+Elsősorban akhal-teke lovakat tenyésztek, és nagy öröm számomra, hogy ezt a különleges fajtát egyre több emberrel ismertethetem meg. Ennek részeként idén országkerülő lovastúrára indultunk: az első szakaszon Pilismaróttól Mohácsig, 20 nap alatt közel 920 kilométert lovagoltunk végig az országhatár mentén. Ősszel folytatjuk utunkat.
+
+Korábban sok lovat lovagoltam be, ma pedig különösen büszke vagyok arra, amikor egy saját tenyésztésű csikó a korai nevelésnek köszönhetően magabiztosan és könnyedén kezdi meg a munkát. Hiszem, hogy egy jól felkészített fiatal lóval a belovaglás már nem a bizalom kialakításáról, hanem a valódi közös munkáról szól.`,
+    topic: "Csikónevelés | Tenyésztői felelősség | Jól képzett hobbiló | Tereplovaglásra képzett ló | Akhal-teke fajta",
+    facebook_url: "https://www.facebook.com/share/p/18LLaey9Xi/",
+    website_url: "https://nava.hu/id/4473109/",
+    sort_order: 10,
+    is_featured: true,
+    is_published: true
+  }
+];
+
+function speakerTopics(topic) {
+  return String(topic || "").split(/\||,|;/).map(t => t.trim()).filter(Boolean);
+}
+
+function speakerParagraphs(bio) {
+  return String(bio || "").split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
+}
+
+function renderSpeakerCard(s) {
+  const topics = speakerTopics(s.topic);
+  const paragraphs = speakerParagraphs(s.bio);
+  const lead = paragraphs[0] || s.bio || "";
+  const details = paragraphs.slice(1);
+  return `
+    <article class="speaker-premium-card ${s.is_featured ? 'is-featured' : ''}">
+      <div class="speaker-image-wrap">
+        ${s.image_url ? `<img class="speaker-photo" src="${esc(s.image_url)}" alt="${esc(s.name)}">` : `<div class="speaker-photo placeholder">${esc((s.name || '?').charAt(0))}</div>`}
+        ${s.is_featured ? '<span class="profile-tag floating-tag">⭐ Kiemelt előadó</span>' : ""}
+      </div>
+      <div class="speaker-body">
+        <p class="speaker-label">Előadó</p>
+        <h2>${esc(s.name)}</h2>
+        ${s.subtitle ? `<p class="speaker-subtitle">${esc(s.subtitle)}</p>` : ""}
+        ${s.motto ? `<blockquote class="speaker-motto">„${esc(s.motto)}”</blockquote>` : ""}
+        ${lead ? `<p class="speaker-lead">${esc(lead)}</p>` : ""}
+        ${topics.length ? `<div class="speaker-topic-list">${topics.map(t => `<span>${esc(t)}</span>`).join("")}</div>` : ""}
+        ${details.length ? `<details class="speaker-details"><summary>Bemutatkozás</summary>${details.map(p => `<p>${esc(p)}</p>`).join("")}</details>` : ""}
+        <div class="speaker-links">
+          ${s.facebook_url ? `<a href="${esc(s.facebook_url)}" target="_blank" rel="noopener">Facebook</a>` : ""}
+          ${s.instagram_url ? `<a href="${esc(s.instagram_url)}" target="_blank" rel="noopener">Instagram</a>` : ""}
+          ${s.youtube_url ? `<a href="${esc(s.youtube_url)}" target="_blank" rel="noopener">YouTube</a>` : ""}
+          ${s.website_url ? `<a href="${esc(s.website_url)}" target="_blank" rel="noopener">Riport / weboldal</a>` : ""}
+        </div>
+      </div>
+    </article>
+  `;
+}
+
 async function loadPublicSpeakers() {
   const el = document.getElementById("speakerList");
   const { data, error } = await client.from("speakers").select("*").eq("is_published", true).order("sort_order", { ascending: true });
-  if (error || !data || !data.length) {
-    el.innerHTML = `<article class="profile-card featured-profile"><span class="profile-tag">Kiemelt előadó</span><h2>Panyi Gyuri</h2><p>Belovaglás • Lókiképzés • Fiatal lovak képzése</p></article>
-    <article class="profile-card featured-profile"><span class="profile-tag">Kiemelt előadó</span><h2>Pataky Kata</h2><p>Bemutató • Gyakorlati szemlélet</p></article>`;
+  let speakers = (!error && data && data.length) ? data : [];
+
+  LOCAL_SPEAKERS.forEach(local => {
+    const exists = speakers.some(s => String(s.name || "").toLowerCase().trim() === local.name.toLowerCase().trim());
+    if (!exists) speakers.push(local);
+  });
+
+  speakers = speakers
+    .filter(s => s && s.is_published !== false)
+    .sort((a,b) => Number(a.sort_order || 100) - Number(b.sort_order || 100));
+
+  if (!speakers.length) {
+    el.innerHTML = `<article class="profile-card featured-profile"><span class="profile-tag">Kiemelt előadó</span><h2>Hamarosan</h2><p>Az előadók bemutatkozása hamarosan felkerül.</p></article>`;
     return;
   }
-  el.innerHTML = data.map(s => `
-    <article class="profile-card speaker-profile-card">
-      ${s.is_featured ? '<span class="profile-tag floating-tag">⭐ Kiemelt előadó</span>' : ""}
-      ${s.image_url ? `<img class="profile-photo" src="${esc(s.image_url)}" alt="${esc(s.name)}">` : ""}
-      <h2>${esc(s.name)}</h2>
-      ${s.motto ? `<p class="speaker-motto">„${esc(s.motto)}”</p>` : ""}
-      <p><strong>${esc(s.subtitle || "")}</strong></p>
-      ${s.topic ? `<p class="speaker-topic"><em>${esc(s.topic)}</em></p>` : ""}
-      <p>${esc(s.bio || "")}</p>
-      <div class="speaker-links">
-        ${s.facebook_url ? `<a href="${esc(s.facebook_url)}" target="_blank" rel="noopener">Facebook</a>` : ""}
-        ${s.instagram_url ? `<a href="${esc(s.instagram_url)}" target="_blank" rel="noopener">Instagram</a>` : ""}
-        ${s.youtube_url ? `<a href="${esc(s.youtube_url)}" target="_blank" rel="noopener">YouTube</a>` : ""}
-        ${s.website_url ? `<a href="${esc(s.website_url)}" target="_blank" rel="noopener">Weboldal</a>` : ""}
-      </div>
-    </article>
-  `).join("");
+  el.innerHTML = speakers.map(renderSpeakerCard).join("");
 }
 
 async function loadPublicProgram() {
