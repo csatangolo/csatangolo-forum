@@ -2007,3 +2007,171 @@ main{
     clip-path:polygon(28% 0, 100% 0, 100% 100%, 8% 100%) !important;
   }
 }
+
+
+/* === Premium v2.2 mobil finomítás: hírlevél, inspiráló környezet, alsó CTA === */
+
+/* Mobilon az inspiráló blokk ne legyen széteső, hanem kompaktabb magazinos kártya */
+@media(max-width:700px){
+  .f33-lower-atmo-section{
+    width:calc(100% - 28px) !important;
+    margin:34px auto !important;
+  }
+
+  .f33-lower-atmo-card{
+    padding:16px !important;
+    border-radius:26px !important;
+    gap:14px !important;
+  }
+
+  .f33-lower-atmo-card:after{
+    background:
+      linear-gradient(180deg,rgba(36,17,7,.86) 0%,rgba(36,17,7,.72) 46%,rgba(36,17,7,.38) 100%) !important;
+  }
+
+  .f33-lower-atmo-text{
+    width:100% !important;
+    min-height:auto !important;
+    padding:22px !important;
+    border-radius:22px !important;
+  }
+
+  .f33-lower-atmo-text h2{
+    font-size:clamp(1.85rem,9vw,2.7rem) !important;
+    line-height:1.03 !important;
+  }
+
+  .f33-lower-atmo-text p{
+    font-size:.98rem !important;
+    line-height:1.5 !important;
+  }
+
+  .f33-experience-points{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:9px !important;
+    margin-top:16px !important;
+  }
+
+  .f33-experience-points span{
+    width:100% !important;
+    justify-content:flex-start !important;
+    padding:11px 14px !important;
+    font-size:.94rem !important;
+    border-radius:18px !important;
+  }
+
+  .f33-inspiring-gallery{
+    min-height:260px !important;
+    border-radius:22px !important;
+    margin-top:2px !important;
+  }
+
+  .f33-inspiring-gallery img:first-child{
+    opacity:.55 !important;
+    clip-path:polygon(0 0, 60% 0, 76% 100%, 0 100%) !important;
+  }
+
+  .f33-inspiring-gallery img:last-child{
+    opacity:.98 !important;
+    clip-path:polygon(30% 0, 100% 0, 100% 100%, 12% 100%) !important;
+  }
+}
+
+/* Hírlevél mobilon kevesebb üres hellyel és elegánsabb osztással */
+@media(max-width:700px){
+  .f33-newsletter{
+    width:calc(100% - 28px) !important;
+    margin:34px auto 24px !important;
+    padding:24px !important;
+    border-radius:26px !important;
+    display:grid !important;
+    gap:18px !important;
+  }
+
+  .f33-newsletter > div,
+  .f33-newsletter form{
+    width:100% !important;
+  }
+
+  .f33-newsletter b,
+  .f33-newsletter strong{
+    display:block !important;
+    font-size:1.12rem !important;
+    line-height:1.15 !important;
+    margin-top:6px !important;
+  }
+
+  .f33-newsletter small{
+    display:block !important;
+    font-size:.93rem !important;
+    line-height:1.35 !important;
+  }
+
+  .f33-newsletter form{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:10px !important;
+  }
+
+  .f33-newsletter input{
+    height:58px !important;
+    border-radius:18px !important;
+    font-size:1rem !important;
+    padding:0 18px !important;
+  }
+
+  .f33-newsletter button{
+    height:50px !important;
+    border-radius:999px !important;
+    font-size:.92rem !important;
+  }
+}
+
+/* Alsó nagy CTA mobilon ne lógjon ki, legyen rövidebb és olvashatóbb */
+@media(max-width:700px){
+  .f33-footer-prelude{
+    width:calc(100% - 28px) !important;
+    margin:32px auto -12px !important;
+    padding:24px !important;
+    border-radius:26px !important;
+    min-height:auto !important;
+  }
+
+  .f33-footer-prelude h2{
+    font-size:clamp(1.75rem,9vw,2.65rem) !important;
+    line-height:1.04 !important;
+    margin:.18em 0 .32em !important;
+  }
+
+  .f33-footer-prelude p{
+    font-size:.98rem !important;
+    line-height:1.45 !important;
+    max-height:none !important;
+  }
+
+  .f33-footer-prelude a{
+    min-height:48px !important;
+    font-size:.88rem !important;
+  }
+
+  .f33-footer{
+    padding-top:68px !important;
+  }
+}
+
+/* Nagyon keskeny mobilon még kompaktabb */
+@media(max-width:420px){
+  .f33-lower-atmo-text h2,
+  .f33-footer-prelude h2{
+    font-size:2.05rem !important;
+  }
+
+  .f33-lower-atmo-text{
+    padding:19px !important;
+  }
+
+  .f33-footer-prelude{
+    padding:21px !important;
+  }
+}
