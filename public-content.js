@@ -17,22 +17,115 @@ function youtubeEmbed(url) {
 
 const LOCAL_SPEAKERS = [
   {
+    name: "Panyi Gyuri",
+    subtitle: "Lovas szakember • Gyakorlati szemlélet",
+    image_url: "assets/panyi-gyuri.jpg",
+    motto: "A lóval való munka alapja a tisztelet, a figyelem és a következetesség.",
+    bio: `A fórumon gyakorlati szemlélettel, sokéves lovas tapasztalattal és nyitott szakmai gondolkodással vesz részt.`,
+    topic: "Belovaglás | Lókiképzés | Gyakorlati tapasztalat",
+    sort_order: 1,
+    is_featured: true,
+    is_published: true
+  },
+  {
+    name: "Karl Péter",
+    subtitle: "Western és ranch szemlélet • Horsemanship",
+    image_url: "assets/karl-peter.jpg",
+    motto: "A jó lóval való kapcsolat nem erőből, hanem megértésből épül.",
+    bio: `A ló és ember közötti tiszta kommunikációt, a következetes segítségadást és a bizalmon alapuló munkát képviseli.`,
+    topic: "Horsemanship | Kommunikáció | Ranch szemlélet",
+    sort_order: 2,
+    is_featured: true,
+    is_published: true
+  },
+  {
+    name: "Kevey Bella",
+    subtitle: "Díjugratás • Sportló képzés",
+    image_url: "assets/kevey-bella.jpg",
+    motto: "A teljesítmény mögött mindig ott van a pontos alapmunka.",
+    bio: `Sportlovas szemlélettel, fegyelmezett, elegáns és lóközpontú megközelítéssel kapcsolódik a fórum szakmai programjához.`,
+    topic: "Díjugratás | Sportló | Alapmunka",
+    sort_order: 3,
+    is_featured: true,
+    is_published: true
+  },
+  {
+    name: "Pataky Kata",
+    subtitle: "Oktatás • Lóval való kapcsolat",
+    image_url: "assets/pataky-kata.jpg",
+    motto: "A figyelmes jelenlét sokszor többet tanít, mint bármilyen eszköz.",
+    bio: `A lóval való finom, bizalmi kapcsolat és az oktatói jelenlét fontosságát képviseli.`,
+    topic: "Oktatás | Kapcsolat | Bizalom",
+    sort_order: 4,
+    is_featured: false,
+    is_published: true
+  },
+  {
     name: "Szabó Árpád",
     subtitle: "Akhal-teke tenyésztő • Csikónevelés",
-    image_url: "assets/szabo-arpad.jpg",
-    motto: "Először ki kell vívni a ló tiszteletét. Aztán el kell nyerni a bizalmát. Végül meg kell szerettetni magunkat vele.",
-    bio: `48 éve foglalkozom lovakkal, és úgy érzem, ma is ugyanazzal a lelkesedéssel tanulok tőlük, mint amikor először ültem nyeregbe.
-
-Számomra a lótenyésztés nem a csikó megszületéséig tart, hanem éppen ott kezdődik. Hiszem, hogy a tenyésztő felelőssége már az első pillanattól kialakítani azt a bizalmi kapcsolatot, amelyre később minden további képzés épülhet. Ezért a csikónevelés életem egyik legfontosabb küldetése.
-
-Elsősorban akhal-teke lovakat tenyésztek, és nagy öröm számomra, hogy ezt a különleges fajtát egyre több emberrel ismertethetem meg. Ennek részeként idén országkerülő lovastúrára indultunk: az első szakaszon Pilismaróttól Mohácsig, 20 nap alatt közel 920 kilométert lovagoltunk végig az országhatár mentén. Ősszel folytatjuk utunkat.
-
-Korábban sok lovat lovagoltam be, ma pedig különösen büszke vagyok arra, amikor egy saját tenyésztésű csikó a korai nevelésnek köszönhetően magabiztosan és könnyedén kezdi meg a munkát. Hiszem, hogy egy jól felkészített fiatal lóval a belovaglás már nem a bizalom kialakításáról, hanem a valódi közös munkáról szól.`,
-    topic: "Csikónevelés | Tenyésztői felelősség | Jól képzett hobbiló | Tereplovaglásra képzett ló | Akhal-teke fajta",
+    image_url: "assets/szabo-arpad-card.jpg",
+    motto: "Először ki kell vívni a ló tiszteletét. Aztán el kell nyerni a bizalmát.",
+    bio: `48 éve foglalkozom lovakkal, és úgy érzem, ma is ugyanazzal a lelkesedéssel tanulok tőlük, mint amikor először ültem nyeregbe. Számomra a lótenyésztés nem a csikó megszületéséig tart, hanem éppen ott kezdődik. Hiszem, hogy a tenyésztő felelőssége már az első pillanattól kialakítani azt a bizalmi kapcsolatot, amelyre később minden további képzés épülhet.`,
+    topic: "Csikónevelés | Tenyésztői felelősség | Akhal-teke fajta",
     facebook_url: "https://www.facebook.com/share/p/18LLaey9Xi/",
     website_url: "https://nava.hu/id/4473109/",
-    sort_order: 10,
+    sort_order: 5,
     is_featured: true,
+    is_published: true
+  },
+  {
+    name: "Kaska Zoltán",
+    subtitle: "Díjugratás • Versenytapasztalat",
+    image_url: "assets/kaska-zoltan.jpg",
+    motto: "A jó ugrás a felkészítésben kezdődik.",
+    bio: `Díjugrató szemlélettel, versenytapasztalattal és gyakorlati lófelkészítési gondolatokkal érkezik a fórumra.`,
+    topic: "Díjugratás | Versenyló | Felkészítés",
+    sort_order: 6,
+    is_featured: false,
+    is_published: true
+  },
+  {
+    name: "Benner Jani",
+    subtitle: "Terepmunka • Használati ló képzés",
+    image_url: "assets/benner-jani.jpg",
+    motto: "A képzett ló terepen is magabiztos, figyelmes és együttműködő.",
+    bio: `A használati szemléletű lókiképzés, a terepen is működő lovak és a gyakorlati tapasztalat oldaláról kapcsolódik a szakmai naphoz.`,
+    topic: "Terepmunka | Használati ló | Lókiképzés",
+    sort_order: 7,
+    is_featured: false,
+    is_published: true
+  },
+  {
+    name: "Tisza Zoltán",
+    subtitle: "Szabadidomítás • Lóval való kommunikáció",
+    image_url: "assets/tisza-zoltan.jpg",
+    motto: "A látványos munka mögött mindig pontos kommunikáció és bizalom áll.",
+    bio: `A lóval való földi munka, a figyelem, a bizalom és a finom kommunikáció területéről hoz gyakorlati tapasztalatokat.`,
+    topic: "Szabadidomítás | Földi munka | Kommunikáció",
+    sort_order: 8,
+    is_featured: false,
+    is_published: true
+  },
+  {
+    name: "Tászler Melinda",
+    subtitle: "Lovas bemutató • Klasszikus munka",
+    image_url: "assets/taszler-melinda.jpg",
+    motto: "A lóval való összhang a legszebb bemutató.",
+    bio: `Elegáns, bemutató jellegű lovas munkával és a lóval való összhang szemléletével színesíti a fórum szakmai közegét.`,
+    topic: "Bemutató | Összhang | Klasszikus munka",
+    sort_order: 9,
+    is_featured: false,
+    is_published: true
+  },
+  {
+    name: "Szabó Zoltán",
+    subtitle: "Terepakadályok • Gyakorlati képzés",
+    image_url: "assets/szabo-zoltan.jpg",
+    motto: "A bátorság tanítható, ha a ló lépésről lépésre érti a feladatot.",
+    bio: `Gyakorlati terepakadályos tapasztalattal és használati szemléletű lófelkészítéssel kapcsolódik a fórum programjához.`,
+    topic: "Terepakadály | Bátorság | Gyakorlati képzés",
+    sort_order: 10,
+    is_featured: false,
     is_published: true
   }
 ];
