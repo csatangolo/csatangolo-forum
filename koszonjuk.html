@@ -3,58 +3,102 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Köszönjük a regisztrációt</title>
+  <title>Köszönjük a regisztrációt – QR-belépő</title>
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-  <main class="page narrow">
-    <section class="hero">
+  <main class="ticket-confirm-page">
+    <section class="ticket-confirm-hero">
       <div class="badge">Sikeres regisztráció</div>
       <h1>Köszönjük a regisztrációdat!</h1>
-      <p class="motto">Már nagyon várjuk, hogy személyesen is találkozzunk Veled.</p>
-      <p>Sikeresen rögzítettük a jelentkezésedet az <strong>I. Országos Belovagló és Lókiképző Szakmai Fórumra</strong>.</p>
-      <p>A rendezvény szervezési költségeihez való hozzájárulásként <strong>2 000 Ft/fő támogatást</strong> kérünk, amelyet a helyszínen lehet megfizetni.</p>
-      <p><strong>A névre szóló QR-kódokat itt azonnal látod, és e-mailben is megküldjük a megadott címre.</strong></p>
-      <div class="hero-actions">
-        <a class="button" href="belepo.html">Beléptető kártyák megnyitása</a>
-        <a class="button ghost" href="profil.html">Saját belépőim</a>
+      <p class="motto">A névre szóló QR-belépőkártyád elkészült.</p>
+
+      <div class="save-ticket-notice">
+        <strong>Fontos!</strong>
+        <span>Kérjük, készíts képernyőfotót a belépőkártyáról, és hozd magaddal a rendezvényre.</span>
+      </div>
+
+      <p class="ticket-confirm-help">Ha több személyt regisztráltál, minden résztvevő külön QR-kódot kap. Érkezéskor mindenki saját kártyáját mutassa be.</p>
+
+      <div class="hero-actions no-print">
+        <button class="button" onclick="window.print()">Mentés / nyomtatás</button>
         <a class="button ghost" href="index.html">Vissza a Fórum oldalára</a>
       </div>
     </section>
 
-    <section class="card">
-      <h2>Névre szóló digitális belépők</h2>
-      <p class="hint">Érkezéskor minden résztvevő saját QR-kódját kell majd bemutatni.</p>
-      <div id="tickets" class="tickets"></div>
+    <section class="ticket-card-section">
+      <div id="tickets" class="entry-ticket-grid"></div>
+      <p id="emptyTickets" class="ticket-empty-message" hidden>Nincs megjeleníthető belépő ezen az eszközön. A regisztráció ettől még sikeres lehetett.</p>
+    </section>
+
+    <section class="ticket-info-box no-print">
+      <h2>Mit kell tenned most?</h2>
+      <div class="ticket-info-steps">
+        <div><b>1.</b><span>Készíts képernyőfotót a belépőkártyáról.</span></div>
+        <div><b>2.</b><span>Őrizd meg a telefonodon a rendezvény napjáig.</span></div>
+        <div><b>3.</b><span>Belépéskor mutasd be a QR-kódot.</span></div>
+      </div>
     </section>
   </main>
 
   <script>
     const tickets = JSON.parse(localStorage.getItem("forumTickets") || "[]");
     const holder = document.getElementById("tickets");
+    const empty = document.getElementById("emptyTickets");
+
+    function safe(text) {
+      return String(text || "").replace(/[&<>"']/g, c => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      }[c]));
+    }
 
     if (!tickets.length) {
-      holder.innerHTML = '<p>Nincs megjeleníthető QR-kód ezen az eszközön. A regisztráció ettől még sikeres lehetett.</p>';
+      empty.hidden = false;
     } else {
       tickets.forEach((ticket, index) => {
-        const card = document.createElement("div");
-        card.className = "ticket-card premium-ticket";
+        const card = document.createElement("article");
+        card.className = "entry-ticket-card-simple";
         card.innerHTML = `
-          <span class="ticket-label">Digitális belépő</span>
-          <h3>${ticket.name}</h3>
-          <p>${ticket.type}</p>
-          <div id="qr-${index}" class="qr-box"></div>
-          <p class="code">${ticket.participant_code}</p>
-          <a class="mini-link" href="profil.html?code=${encodeURIComponent(ticket.participant_code)}">Belépő megnyitása</a>
-          <small>I. Országos Belovagló és Lókiképző Szakmai Fórum</small>
+          <div class="ticket-save-ribbon">Mentsd le képernyőfotóként</div>
+
+          <div class="entry-ticket-header">
+            <div class="entry-ticket-mark">♞</div>
+            <div>
+              <strong>Csatangoló Lovarda</strong>
+              <span>Digitális QR-belépő</span>
+            </div>
+          </div>
+
+          <div class="entry-ticket-name">
+            <small>Név</small>
+            <h2>${safe(ticket.name)}</h2>
+            <p>${safe(ticket.type || "Résztvevő")}</p>
+          </div>
+
+          <div class="entry-ticket-qr-wrap">
+            <div id="qr-${index}" class="entry-ticket-qr"></div>
+          </div>
+
+          <div class="entry-ticket-event">
+            <p><b>Rendezvény:</b> I. Országos Belovagló és Lókiképző Szakmai Fórum</p>
+            <p><b>Időpont:</b> 2026. július 25. • 9.00-tól</p>
+            <p><b>Helyszín:</b> Csatangoló Lovarda – Öregcsertő, Homokmégyi u. 39.</p>
+            <p><b>Hozzájárulás:</b> 2 000 Ft / fő, helyszínen fizethető</p>
+          </div>
+
+          <div class="entry-ticket-code">${safe(ticket.participant_code)}</div>
         `;
         holder.appendChild(card);
 
         new QRCode(document.getElementById(`qr-${index}`), {
           text: ticket.participant_code,
-          width: 160,
-          height: 160
+          width: 170,
+          height: 170
         });
       });
     }
