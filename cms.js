@@ -154,7 +154,8 @@ async function loadAll() {
     loadTable("news","newsAdminList", r => `<strong>${esc(r.title)}</strong><span>${esc(r.body || "")}</span>`),
     loadTable("sponsors","sponsorAdminList", r => `<strong>${esc(r.name)}</strong><span>${esc(r.website_url || "")}</span>${r.logo_url ? `<img class="cms-thumb small" src="${esc(r.logo_url)}">` : ""}`),
     loadTable("gallery","galleryAdminList", r => `<strong>${esc(r.title || "Galéria kép")}</strong><span>${esc(r.description || "")}</span>${r.image_url ? `<img class="cms-thumb" src="${esc(r.image_url)}">` : ""}`),
-    loadTable("documents","documentAdminList", r => `<strong>${esc(r.title)}</strong><span>${esc(r.description || "")}</span>${r.file_url ? `<a class="mini-link" href="${esc(r.file_url)}" target="_blank">Fájl megnyitása</a>` : ""}`)
+    loadTable("documents","documentAdminList", r => `<strong>${esc(r.title)}</strong><span>${esc(r.description || "")}</span>${r.file_url ? `<a class="mini-link" href="${esc(r.file_url)}" target="_blank">Fájl megnyitása</a>` : ""}`),
+    loadTable("media_uploads","uploadAdminList", r => `<strong>${esc(r.uploader_name || "Névtelen feltöltő")}</strong><span>${esc(r.note || "")}</span>${r.file_url ? `<a class="mini-link" href="${esc(r.file_url)}" target="_blank">Megnyitás</a>` : ""}`)
   ]);
 }
 

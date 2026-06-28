@@ -1,8 +1,10 @@
-CSATANGOLÓ FÓRUM CMS 1.3 – ELŐADÓI MOTTÓ
+CSATANGOLÓ FÓRUM CMS 1.4
 
-Teendő:
-1. GitHubra töltsd fel / írd felül az összes fájlt.
-2. Supabase-ben futtasd le:
-   supabase_csatangolo_cms_1_3_eloadok_motto.sql
+Újdonság:
+- Élményfeltöltés képekkel és videókkal
+- Alap Fórum Asszisztens
+- YouTube beágyazott videóblokk
+- Prémium belépőkártya finomítás
 
-Az előadók mottója és linkjei innentől a tartalomkezelőből szerkeszthetők.
+Supabase:
+csatangolo_master_install_v3_media.sql

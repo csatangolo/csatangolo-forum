@@ -1,4 +1,4 @@
-# CSATANGOLÓ FÓRUM CMS 1.3 – ELŐADÓI MOTTÓ
+# CSATANGOLÓ FÓRUM CMS 1.4 – ÉLMÉNYFELTÖLTÉS + ALAP ASSZISZTENS
 
 ## GitHub
 
@@ -8,16 +8,18 @@ Töltsd fel / írd felül a ZIP összes fájlját.
 
 Futtasd le:
 
-`supabase_csatangolo_cms_1_3_eloadok_motto.sql`
+`csatangolo_master_install_v3_media.sql`
 
-## Újdonság
+## Új funkciók
 
-Az előadóknál már szerkeszthető:
-- mottó / idézet
-- Facebook link
-- Instagram link
-- YouTube link
-- weboldal
-- kiemelt előadó jelölés
+- Résztvevők tudnak képet/videót feltölteni a szervezőknek.
+- A feltöltés nem jelenik meg automatikusan nyilvánosan.
+- A tartalomkezelőben megjelennek a beküldött anyagok.
+- Alap, ingyenes szabályalapú Fórum Asszisztens.
+- Főoldali YouTube videóblokk: a videók az oldalon ágyazva játszódnak le.
+- Prémiumabb digitális belépőkártya stílus.
 
-A kiemelt előadók már nem kapnak erősen átszínezett hátteret, csak egy elegáns „⭐ Kiemelt előadó” jelvényt.
+## Új oldalak
+
+- `feltoltes.html`
+- `asszisztens.html`
