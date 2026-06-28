@@ -146,63 +146,18 @@ const PUBLIC_CITY_COORDS = {
   "csongrád":[46.7133,20.1422],
   "csongrad":[46.7133,20.1422]
 };
-;
 
-const PUBLIC_HUNGARY_BORDER = [
-  [48.585,22.155],[48.455,22.710],[48.165,22.885],[47.830,22.885],
-  [47.585,22.620],[47.680,22.240],[47.930,21.985],[48.105,21.450],
-  [48.430,20.750],[48.560,20.165],[48.030,19.620],[48.150,18.860],
-  [47.890,18.570],[47.760,18.030],[47.880,17.230],[47.730,16.650],
-  [47.360,16.440],[46.870,16.085],[46.510,16.280],[46.375,16.800],
-  [46.060,17.045],[45.760,17.640],[45.750,18.425],[45.790,18.910],
-  [46.060,18.960],[46.020,19.500],[46.180,20.000],[46.170,20.720],
-  [46.310,21.120],[46.680,21.450],[46.930,21.780],[47.210,22.050],
-  [47.710,22.130],[48.035,22.340],[48.585,22.155]
+const PUBLIC_MAIN_CITIES = [
+  ["Budapest", 47.4979, 19.0402],
+  ["Győr", 47.6875, 17.6504],
+  ["Pécs", 46.0727, 18.2323],
+  ["Szeged", 46.2530, 20.1414],
+  ["Debrecen", 47.5316, 21.6273],
+  ["Miskolc", 48.1035, 20.7784],
+  ["Kecskemét", 46.9062, 19.6913],
+  ["Kalocsa", 46.5290, 18.9728],
+  ["Öregcsertő", 46.5007, 19.1116]
 ];
-
-const PUBLIC_MAIN_CITY_LABELS = [
-  { name:"Budapest", coords:[47.4979,19.0402] },
-  { name:"Győr", coords:[47.6875,17.6504] },
-  { name:"Székesfehérvár", coords:[47.1860,18.4221] },
-  { name:"Pécs", coords:[46.0727,18.2323] },
-  { name:"Kecskemét", coords:[46.9062,19.6913] },
-  { name:"Szeged", coords:[46.2530,20.1414] },
-  { name:"Szolnok", coords:[47.1621,20.1825] },
-  { name:"Debrecen", coords:[47.5316,21.6273] },
-  { name:"Miskolc", coords:[48.1035,20.7784] },
-  { name:"Nyíregyháza", coords:[47.9495,21.7244] },
-  { name:"Kalocsa", coords:[46.5290,18.9728] },
-  { name:"Öregcsertő", coords:[46.5007,19.1116], home:true }
-];
-
-function addPublicHungaryContext(map) {
-  if (!map || typeof L === "undefined") return;
-
-  L.polyline(PUBLIC_HUNGARY_BORDER, {
-    color: "#4b2814",
-    weight: 3,
-    opacity: .9,
-    smoothFactor: .7,
-    interactive: false,
-    className: "f33-hungary-border"
-  }).addTo(map);
-
-  PUBLIC_MAIN_CITY_LABELS.forEach(city => {
-    const label = L.divIcon({
-      className: "",
-      html: `<span class="f33-map-city-label${city.home ? " is-home" : ""}">${city.name}</span>`,
-      iconSize: null,
-      iconAnchor: [0, 0]
-    });
-
-    L.marker(city.coords, {
-      icon: label,
-      interactive: false,
-      keyboard: false,
-      zIndexOffset: city.home ? 550 : 350
-    }).addTo(map);
-  });
-}
 
 function publicNormalizeCity(city) {
   return String(city || "")
@@ -218,31 +173,21 @@ function publicDisplayCity(city) {
   return c ? c.charAt(0).toUpperCase() + c.slice(1) : "";
 }
 
+function projectCity(lat, lng) {
+  // Approximate Hungary bounding box projection into SVG viewBox.
+  const minLng = 16.0, maxLng = 23.0;
+  const minLat = 45.6, maxLat = 48.8;
+  const x = 120 + ((lng - minLng) / (maxLng - minLng)) * 760;
+  const y = 520 - ((lat - minLat) / (maxLat - minLat)) * 390;
+  return [Math.max(60, Math.min(940, x)), Math.max(70, Math.min(570, y))];
+}
+
 async function initPublicForumMap() {
   const mapEl = document.getElementById("publicForumMap");
   const noteEl = document.getElementById("publicMapNote");
-  if (!mapEl || typeof L === "undefined" || typeof supabase === "undefined") return;
+  if (!mapEl || typeof supabase === "undefined") return;
 
   const client = supabase.createClient(PUBLIC_MAP_SUPABASE_URL, PUBLIC_MAP_SUPABASE_ANON_KEY);
-
-  const map = L.map(mapEl, {
-    zoomControl: false,
-    attributionControl: false,
-    dragging: true,
-    touchZoom: true,
-    scrollWheelZoom: true,
-    doubleClickZoom: true,
-    boxZoom: true
-  }).setView([46.86, 19.25], 8);
-
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png", {
-    maxZoom: 14
-  }).addTo(map);
-
-  L.control.zoom({ position: "bottomright" }).addTo(map);
-  addPublicHungaryContext(map);
-
-  const bounds = [];
   const knownCities = new Set();
 
   try {
@@ -262,38 +207,87 @@ async function initPublicForumMap() {
     console.warn("Publikus térkép adatbetöltési hiba:", e);
   }
 
-  // Ha még nincs megjeleníthető település, legalább a helyszín legyen rajta.
   if (!knownCities.size && PUBLIC_CITY_COORDS["öregcsertő"]) {
     knownCities.add("öregcsertő");
   }
 
-  knownCities.forEach(key => {
+  const pinMarkup = Array.from(knownCities).map((key, index) => {
     const coords = PUBLIC_CITY_COORDS[key];
-    bounds.push(coords);
+    const [lat, lng] = coords;
+    const [x, y] = projectCity(lat, lng);
+    const delay = (index % 6) * 0.22;
+    return `<button class="f33-map-pin" style="left:${x}px;top:${y}px;--d:${delay}s" title="${publicDisplayCity(key)}" aria-label="${publicDisplayCity(key)}"><span></span></button>`;
+  }).join("");
 
-    const dot = L.divIcon({
-      className: "f33-map-dot",
-      html: "<span></span>",
-      iconSize: [24, 24],
-      iconAnchor: [12, 12]
-    });
+  const labelMarkup = PUBLIC_MAIN_CITIES.map(([name, lat, lng]) => {
+    const [x, y] = projectCity(lat, lng);
+    return `<span class="f33-map-city-label" style="left:${x}px;top:${y}px">${name}</span>`;
+  }).join("");
 
-    L.marker(coords, { icon: dot, keyboard: false }).addTo(map);
+  mapEl.innerHTML = `
+    <div class="f33-map-stage" id="publicMapStage">
+      <svg class="f33-hungary-svg" viewBox="0 0 1000 640" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <defs>
+          <linearGradient id="huLand" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stop-color="#f6e4c4"/>
+            <stop offset="48%" stop-color="#d8ad70"/>
+            <stop offset="100%" stop-color="#8f5d32"/>
+          </linearGradient>
+          <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="20" stdDeviation="18" flood-color="#2b1509" flood-opacity=".35"/>
+          </filter>
+        </defs>
+
+        <path class="f33-map-glow" d="M124 329 C169 239, 255 201, 340 171 C440 137, 527 92, 615 132 C705 172, 784 185, 858 247 C921 300, 905 389, 828 430 C753 471, 687 490, 591 493 C487 496, 429 528, 330 489 C235 452, 92 437, 124 329 Z"/>
+        <path class="f33-map-land" filter="url(#softShadow)" d="M124 329 C169 239, 255 201, 340 171 C440 137, 527 92, 615 132 C705 172, 784 185, 858 247 C921 300, 905 389, 828 430 C753 471, 687 490, 591 493 C487 496, 429 528, 330 489 C235 452, 92 437, 124 329 Z"/>
+
+        <path class="f33-map-river" d="M435 150 C421 205, 468 238, 448 286 C430 331, 390 354, 408 410 C421 449, 478 463, 475 501"/>
+        <path class="f33-map-river second" d="M660 184 C626 222, 620 275, 655 316 C691 358, 688 402, 644 456"/>
+
+        <path class="f33-map-route" d="M266 370 C353 310, 453 306, 544 334 C644 365, 722 333, 809 272"/>
+        <circle class="f33-map-home" cx="${projectCity(46.5007, 19.1116)[0]}" cy="${projectCity(46.5007, 19.1116)[1]}" r="10"/>
+      </svg>
+      <div class="f33-map-labels">${labelMarkup}</div>
+      <div class="f33-map-pins">${pinMarkup}</div>
+    </div>
+    <div class="f33-map-controls">
+      <button type="button" id="mapZoomIn">+</button>
+      <button type="button" id="mapZoomOut">−</button>
+      <button type="button" id="mapZoomReset">↺</button>
+    </div>
+  `;
+
+  let zoom = 1;
+  const stage = document.getElementById("publicMapStage");
+  function applyZoom() {
+    stage.style.transform = `scale(${zoom})`;
+  }
+
+  document.getElementById("mapZoomIn").addEventListener("click", () => {
+    zoom = Math.min(1.55, +(zoom + 0.12).toFixed(2));
+    applyZoom();
+  });
+  document.getElementById("mapZoomOut").addEventListener("click", () => {
+    zoom = Math.max(.88, +(zoom - 0.12).toFixed(2));
+    applyZoom();
+  });
+  document.getElementById("mapZoomReset").addEventListener("click", () => {
+    zoom = 1;
+    applyZoom();
   });
 
-  if (bounds.length > 1) {
-    map.fitBounds(bounds, { padding: [28, 28], maxZoom: 8 });
-  } else {
-    map.fitBounds(PUBLIC_HUNGARY_BORDER, { padding: [18, 18], maxZoom: 7 });
-  }
+  mapEl.addEventListener("wheel", (e) => {
+    e.preventDefault();
+    zoom = e.deltaY < 0 ? Math.min(1.55, zoom + .08) : Math.max(.88, zoom - .08);
+    zoom = +zoom.toFixed(2);
+    applyZoom();
+  }, { passive:false });
 
   if (noteEl) {
     noteEl.textContent = knownCities.size > 1
       ? "A pontok azt mutatják, mely településekről érkeznek résztvevők."
       : "A térkép a regisztrációk alapján frissül.";
   }
-
-  setTimeout(() => map.invalidateSize(), 400);
 }
 
 document.addEventListener("DOMContentLoaded", initPublicForumMap);
