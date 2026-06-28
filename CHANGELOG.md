@@ -1,8 +1,10 @@
 # Changelog
 
-## Premium 3.2 Forum Lux
-- A kiválasztott látványterv kódosítása
-- Barnás-arany luxus főoldal
-- Hangsúly: I. Országos Belovagló és Lókiképző Szakmai Fórum
-- Másodperc számláló eltávolítva
-- Nagy, prémium hero szekció
+## Premium 3.3 Final Style
+- Főoldal a látványtervhez közelebb hozva
+- Készre szerkesztett, képekkel feltöltött szekciók
+- Rugalmas „A nap felépítése” blokk
+- Lapozható/görgethető előadói sor
+- Kiemelt előadók finom jelöléssel
+- Időjárás blokk helyett szakmai és hangulati tartalom
+- Nincs másodperc számláló
