@@ -3,208 +3,150 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>I. Országos Belovagló és Lókiképző Szakmai Fórum</title>
-  <meta name="description" content="I. Országos Belovagló és Lókiképző Szakmai Fórum – Csatangoló Lovarda, 2026. július 25.">
+  <title>I. Csatangoló Fórum</title>
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
-  <nav class="topbar">
-    <a href="index.html" class="brand">Csatangoló Fórum</a>
-    <div class="navlinks">
+<body class="premium-home">
+  <div class="intro-screen" id="introScreen">
+    <div class="intro-mark">🐴</div>
+    <div class="intro-title">Csatangoló Fórum</div>
+    <div class="intro-line"></div>
+  </div>
+
+  <nav class="premium-nav">
+    <a class="premium-brand" href="index.html">
+      <span class="brand-horse">♞</span>
+      <span><strong>Csatangoló</strong><small>Lovas Egyesület</small></span>
+    </a>
+    <div class="premium-links">
       <a href="program.html">Program</a>
       <a href="eloadok.html">Előadók</a>
-      <a href="tudastar.html">Tudástár</a>
-    <a href="hirek.html">Hírek</a>
-    <a href="galeria.html">Galéria</a>
-      <a class="nav-cta" href="regisztracio.html">Regisztráció</a>
+      <a href="regisztracio.html">Regisztráció</a>
+      <a href="tamogatas.html">Az Egyesület támogatása</a>
+      <a href="asszisztens.html">Asszisztens</a>
     </div>
+    <button class="sound-toggle" type="button">🔊 Természet hangjai</button>
   </nav>
 
+  <header class="premium-hero">
+    <div class="hero-content">
+      <p class="hero-kicker">Első országos szakmai találkozó</p>
+      <h1>I. Csatangoló Fórum</h1>
+      <p class="hero-subtitle">Ahol a lovak iránti szenvedély találkozik a tudással.</p>
+      <div class="hero-actions">
+        <a class="premium-button" href="regisztracio.html">Regisztrálok</a>
+        <a class="premium-button secondary" href="program.html">Program megtekintése</a>
+      </div>
+    </div>
+    <a class="scroll-orb" href="#countdown">⌄</a>
+  </header>
+
   <main>
-    <section class="cinema-hero">
-      <div class="cinema-bg"></div>
-      <div class="cinema-overlay"></div>
-      <div class="cinema-content">
-        <div class="badge gold-badge">Hagyományteremtő rendezvény</div>
-        <h1>I. Országos Belovagló és Lókiképző Szakmai Fórum</h1>
-        <p class="subtitle">Szakmai előadások • Gyakorlati bemutatók • Kötetlen szakmai beszélgetések • Családi programok</p>
-        <p class="motto">Egymástól tanulunk. A lovakért. Egy közösségként.</p>
-
-        <div class="countdown premium-countdown" aria-label="Visszaszámláló a rendezvényig">
-          <div><span id="days">--</span><small>nap</small></div>
-          <div><span id="hours">--</span><small>óra</small></div>
-          <div><span id="minutes">--</span><small>perc</small></div>
-        </div>
-
-        <div id="participantCounter" class="participant-counter hidden">
-          Már <strong id="participantCount">200+</strong> résztvevő regisztrált!
-        </div>
-
-        <div class="event-info glass-info">
-          <div><strong>📅 2026. július 25. szombat</strong></div>
-          <div><strong>🕘 9:00 órától akár késő estig</strong></div>
-          <div><strong>📍 Csatangoló Lovarda</strong><br>Öregcsertő, Homokmégyi utca 39.</div>
-        </div>
-
-        <div class="hero-actions">
-          <a class="button" href="regisztracio.html">Regisztrálok</a>
-          <a class="button ghost" href="program.html">Programok</a>
-        </div>
+    <section id="countdown" class="premium-section countdown-section">
+      <div class="section-heading"><span></span><h2>A fórum kezdetéig hátra van</h2><span></span></div>
+      <div class="countdown-wrap">
+        <div class="flip-card"><strong id="cdDays">00</strong><small>nap</small></div>
+        <div class="flip-card"><strong id="cdHours">00</strong><small>óra</small></div>
+        <div class="flip-card"><strong id="cdMinutes">00</strong><small>perc</small></div>
+        <div class="flip-card"><strong id="cdSeconds">00</strong><small>másodperc</small></div>
+      </div>
+      <div class="event-meta-card">
+        <div><span>📅</span><strong>2026. július 25.</strong><small>szombat, 9:00</small></div>
+        <div><span>📍</span><strong>Csatangoló Lovarda</strong><small>Öregcsertő, Homokmégyi u. 39.</small></div>
       </div>
     </section>
 
-    <section class="page">
-      
-      <section class="weather-section card">
+    <section class="premium-section">
+      <div class="registration-ribbon">
+        <div class="ribbon-icon">👥</div>
+        <div><small>Már ennyien velünk tartanak</small><strong id="participantCounter">0</strong></div>
+        <div class="ribbon-heart">♡</div>
+      </div>
+    </section>
+
+    <section class="premium-section">
+      <div class="section-heading"><span></span><h2>Kiemelt előadóink</h2><span></span></div>
+      <div id="speakerList" class="premium-speaker-grid">
+        <article class="premium-speaker-card">
+          <span class="speaker-badge">⭐ Kiemelt előadó</span>
+          <div class="speaker-photo placeholder"></div>
+          <h3>Panyi György</h3>
+          <p class="speaker-motto">„Egymástól tanulunk. A lovakért.”</p>
+          <a href="eloadok.html">Bemutatkozás</a>
+        </article>
+        <article class="premium-speaker-card">
+          <span class="speaker-badge">⭐ Kiemelt előadó</span>
+          <div class="speaker-photo placeholder"></div>
+          <h3>Pataky Gábor</h3>
+          <p class="speaker-motto">„A lóval való munka mindig párbeszéd.”</p>
+          <a href="eloadok.html">Bemutatkozás</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="premium-section">
+      <div class="section-heading"><span></span><h2>Miért érdemes eljönni?</h2><span></span></div>
+      <div class="reason-grid">
+        <div><b>🎤</b><strong>Előadások</strong><small>neves szakemberektől</small></div>
+        <div><b>🐎</b><strong>Gyakorlati bemutatók</strong><small>valódi lovas helyzetekkel</small></div>
+        <div><b>🤝</b><strong>Kapcsolatépítés</strong><small>szakmai közegben</small></div>
+        <div><b>☕</b><strong>Kötetlen beszélgetések</strong><small>jó hangulatban</small></div>
+        <div><b>👨‍👩‍👧</b><strong>Családbarát programok</strong><small>egész napos élmény</small></div>
+      </div>
+    </section>
+
+    <section class="premium-section split-section">
+      <div class="premium-panel">
         <span class="eyebrow">Időjárás a helyszínen</span>
         <h2>Lovas ajánló Öregcsertőre</h2>
-        <div id="weatherBox" class="weather-box">
-          <p class="hint">Időjárás betöltése...</p>
-        </div>
-      </section>
+        <div id="weatherBox" class="weather-box"><p class="hint">Időjárás betöltése...</p></div>
+      </div>
+      <div class="premium-panel support-panel-premium">
+        <span class="eyebrow">Csatangoló Lovas Egyesület</span>
+        <h2>Az Egyesület támogatása</h2>
+        <p>A rendezvényszervezési hozzájáruláson felül is lehetőséged van támogatni a Csatangoló Lovas Egyesület munkáját, programjait és jövőbeli kezdeményezéseit.</p>
+        <a class="premium-button" href="tamogatas.html">Támogatási lehetőségek</a>
+      </div>
+    </section>
 
-<section class="support-panel">
+    <section class="premium-section">
+      <div class="premium-panel center">
+        <span class="eyebrow">Fórum Videótár</span>
+        <h2>Az előadások a rendezvény után lesznek visszanézhetők</h2>
+        <p>A fórum szakmai videói külön YouTube lejátszási listában jelennek majd meg, ezen az oldalon beágyazva.</p>
+        <div class="coming-soon-video">▶ Hamarosan</div>
+      </div>
+    </section>
+
+    <section class="premium-section">
+      <div class="newsletter-card">
         <div>
-          <span class="eyebrow">Részvételi hozzájárulás</span>
-          <h2>2 000 Ft / fő</h2>
-          <p>A fórum színvonalas megszervezésének támogatására.</p>
+          <span class="eyebrow">Értesítések</span>
+          <h2>Ne maradj le a következő információkról!</h2>
+          <p>A fontos fórumértesítéseket kulturáltan, leiratkozási lehetőséggel küldjük.</p>
         </div>
-        <ul>
-          <li>A hozzájárulás a helyszínen fizethető.</li>
-          <li>Minden résztvevő saját, névre szóló QR-kódos belépőt kap.</li>
-          <li>A rendezvény nonprofit jelleggel valósul meg; a hozzájárulás kizárólag a fórum megszervezésének és lebonyolításának költségeit támogatja.</li>
-        </ul>
-      </section>
-
-      <section class="card intro-card">
-        <span class="eyebrow">Üdvözlünk!</span>
-        <h2>Nyílt szakmai és családi nap</h2>
-        <p>Örülünk, hogy érdeklődsz az <strong>I. Országos Belovagló és Lókiképző Szakmai Fórum</strong> iránt.</p>
-        <p>Célunk, hogy egy olyan szakmai találkozót hozzunk létre, ahol a lovas szakemberek, tenyésztők, oktatók, kiképzők, lótartók és minden érdeklődő értékes tapasztalatokat szerezhet, inspirálódhat és új kapcsolatokat építhet.</p>
-        <p><strong>Szeretettel várunk minden szakmabelit, valamint mindenkit, aki érdeklődik a lovak világa iránt. A családokat is örömmel fogadjuk, a gyermekek számára pedig külön programokkal készülünk.</strong></p>
-      </section>
-
-      <section class="highlight-strip">
-        <div>🐎 <strong>Belovaglás</strong></div>
-        <div>🐴 <strong>Fiatal lovak</strong></div>
-        <div>💬 <strong>Kérdezz-felelek</strong></div>
-        <div>🍷 <strong>Fröccsterasz</strong></div>
-      </section>
-
-      <section id="program" class="timeline-section">
-        <span class="eyebrow">A nap menete</span>
-        <h2>Programhangulat</h2>
-        <div class="timeline premium-timeline">
-          <div><time>09:00</time><strong>Érkezés és regisztráció</strong><span>Kávé, beszélgetés, fröccsterasz hangulat</span></div>
-          <div><time>Délelőtt</time><strong>Szakmai előadások</strong><span>Belovaglás, fiatal lovak képzése, lókiképzés</span></div>
-          <div><time>Délután</time><strong>Gyakorlati bemutatók</strong><span>A Csatangoló Lovarda lovaival</span></div>
-          <div><time>Egész nap</time><strong>Családi programok</strong><span>Gyermekprogramok, lovas kvíz, büfé</span></div>
-          <div><time>Estétől</time><strong>Kötetlen szakmai beszélgetések</strong><span>Akár másnap reggelig</span></div>
-        </div>
-      </section>
-
-      <section id="eloadok" class="speaker-section">
-        <span class="eyebrow">Előadóink</span>
-        <h2>Akikkel biztosan találkozhatsz</h2>
-        <div class="speaker-grid">
-          <article class="speaker-card featured"><span>Panyi Gyuri</span><small>Belovaglás • Lókiképzés</small></article>
-          <article class="speaker-card featured"><span>Pataky Kata</span><small>Bemutató • Lókommunikáció</small></article>
-          <article class="speaker-card"><span>Karl Péter</span><small>Meghívott szakember</small></article>
-          <article class="speaker-card"><span>Benner Jani</span><small>Meghívott szakember</small></article>
-          <article class="speaker-card"><span>Tászler Melinda</span><small>Meghívott szakember</small></article>
-          <article class="speaker-card"><span>Kevey Bella</span><small>Meghívott szakember</small></article>
-          <article class="speaker-card"><span>Szabó Árpi</span><small>Meghívott szakember</small></article>
-          <article class="speaker-card"><span>Tisza Zoltán</span><small>Meghívott szakember</small></article>
-          <article class="speaker-card"><span>Kaska Zoltán</span><small>Meghívott szakember</small></article>
-          <article class="speaker-card"><span>Szabó Zoltán</span><small>Meghívott szakember</small></article>
-        </div>
-        <p class="center note"><strong>Meglepetés előadók is érkeznek!</strong> Ha szakmabeliként szívesen megosztanád tapasztalataidat, még jelentkezhetsz előadónak is.</p>
-      </section>
-
-      <section class="video-section card">
-        <span class="eyebrow">Hamarosan</span>
-        <h2>Tudástár és YouTube videók</h2>
-        <p>A fórum után a videók, beszámolók és szakmai tartalmak YouTube-beágyazással kerülnek majd fel az oldalra, így a tudás nem csak egy napig lesz elérhető, a YouTube-csatorna nézettsége pedig természetesen növekedhet.</p>
-        <div class="video-placeholder">
-          <div class="play">▶</div>
-          <p>Ide kerül majd a Fórum bemutató videója vagy meghívója.</p>
-        </div>
-      </section>
-
-      
-      <section class="card social-section">
-        <span class="eyebrow">Kövess minket</span>
-        <h2>Csatangoló videók és közösségi oldalak</h2>
-        <p>A videók ezen az oldalon játszódnak le, YouTube beágyazással, így a Csatangoló csatorna nézettségét is erősítik.</p>
-        <div id="homeVideoBox" class="home-video-box">
-          <div class="video-placeholder"><div class="play">▶</div><p>Hamarosan itt jelennek meg a lovardás videók.</p></div>
-        </div>
-        <div class="social-links">
-          <a href="#" aria-label="YouTube">YouTube</a>
-          <a href="#" aria-label="Facebook">Facebook</a>
-          <a href="#" aria-label="Instagram">Instagram</a>
-          <a href="#" aria-label="TikTok">TikTok</a>
-        </div>
-      </section>
-
-      <section class="card center">
-        <h2>Van egy jó pillanatod a rendezvényről?</h2>
-        <p>Tölts fel képet vagy videót a szervezőknek. Nem jelenik meg automatikusan nyilvánosan.</p>
-        <a class="button" href="feltoltes.html">Élmény feltöltése</a>
-      </section>
-
-      <section class="card center">
-        <h2>Gyors kérdésed van?</h2>
-        <p>Az alap Fórum Asszisztens azonnal válaszol a legfontosabb tudnivalókra.</p>
-        <a class="button ghost dark" href="asszisztens.html">Asszisztens megnyitása</a>
-      </section>
-
-      <section id="gyik" class="faq-section">
-        <span class="eyebrow">Gyakori kérdések</span>
-        <h2>Hasznos tudnivalók</h2>
-        <details open>
-          <summary>Kell előre regisztrálni?</summary>
-          <p>Igen, kérjük, hogy mindenki regisztráljon előre, mert így tudjuk pontosabban tervezni a helyszínt, a beléptetést és a családi programokat.</p>
-        </details>
-        <details>
-          <summary>Mikor kell fizetni a hozzájárulást?</summary>
-          <p>A 2 000 Ft / fő részvételi hozzájárulás a helyszínen fizethető.</p>
-        </details>
-        <details>
-          <summary>Lehet gyerekkel érkezni?</summary>
-          <p>Igen, szeretettel várjuk a családokat is. A gyermekprogramok jelenleg szervezés alatt állnak.</p>
-        </details>
-        <details>
-          <summary>Rossz idő esetén is megtartjátok?</summary>
-          <p>Igen, időjárástól függetlenül megtartjuk, fedeles lovardában is tudunk programot tartani.</p>
-        </details>
-      </section>
-
-      <section class="mission">
-        <h2>A fórum hitvallása</h2>
-        <p>A lovak nem tudnak beszélni. Ezért nekünk kell egymással beszélgetnünk róluk.</p>
-        <p>Hiszünk abban, hogy minden ember más tapasztalatot hoz magával, és minden jól feltett kérdés közelebb visz bennünket ahhoz, hogy jobb lovasok, jobb kiképzők és jobb lótartók legyünk.</p>
-        <p><strong>Ez a fórum nem arról szól, hogy kinek van igaza. Hanem arról, hogy együtt keressük a legjobb utat a lovak számára.</strong></p>
-      </section>
-
-      <section class="card center final-cta">
-        <h2>Csatlakozz az első fórumhoz</h2>
-        <p>A részletes programmal, előadói bemutatkozásokkal, parkolási információkkal, szálláslehetőségekkel és további hasznos tudnivalókkal hamarosan bővül az oldal.</p>
-        <a class="button" href="regisztracio.html">Regisztráció a Fórumra</a>
-        <a class="button ghost dark" href="eloadok.html">Előadók megtekintése</a>
-      </section>
+        <a class="premium-button secondary" href="regisztracio.html">Regisztrálok</a>
+      </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <strong>Egymástól tanulunk.</strong>
-    <strong>A lovakért.</strong>
-    <strong>Egy közösségként.</strong>
+  <footer class="premium-footer">
+    <div class="footer-sunset">
+      <h2>Köszönjük, hogy a Csatangoló Fórum részese vagy.</h2>
+      <div class="footer-heart">♡</div>
+    </div>
+    <div class="footer-info">
+      <div><strong>Csatangoló Lovas Egyesület</strong><small>Öregcsertő, Homokmégyi u. 39.</small></div>
+      <div><strong>Kövess minket</strong><small>Facebook • Instagram • YouTube • TikTok</small></div>
+      <div><strong>Hasznos linkek</strong><small>Adatkezelés • Impresszum • Kapcsolat</small></div>
+    </div>
   </footer>
+
+  <button id="themeToggle" class="theme-toggle" type="button">🌙</button>
 
   <script src="homepage.js"></script>
   <script src="weather.js"></script>
-  <script src="home-videos.js"></script>
+  <script src="premium-design.js"></script>
 </body>
 </html>

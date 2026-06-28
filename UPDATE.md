@@ -1,25 +1,16 @@
-# CSATANGOLÓ FÓRUM CMS 1.4 – ÉLMÉNYFELTÖLTÉS + ALAP ASSZISZTENS
+# Csatangoló Fórum – Premium Design 2.0
 
 ## GitHub
-
 Töltsd fel / írd felül a ZIP összes fájlját.
 
 ## Supabase
+Ehhez a dizájnfrissítéshez nincs új SQL.
 
-Futtasd le:
-
-`csatangolo_master_install_v3_media.sql`
-
-## Új funkciók
-
-- Résztvevők tudnak képet/videót feltölteni a szervezőknek.
-- A feltöltés nem jelenik meg automatikusan nyilvánosan.
-- A tartalomkezelőben megjelennek a beküldött anyagok.
-- Alap, ingyenes szabályalapú Fórum Asszisztens.
-- Főoldali YouTube videóblokk: a videók az oldalon ágyazva játszódnak le.
-- Prémiumabb digitális belépőkártya stílus.
-
-## Új oldalak
-
-- `feltoltes.html`
-- `asszisztens.html`
+## Újdonság
+- új prémium főoldal
+- bézs–arany–barna irány
+- látványos animált visszaszámláló
+- nyitó animáció
+- világos/sötét mód gomb
+- Fórum Videótár „hamarosan” blokk
+- Az Egyesület támogatása blokk
