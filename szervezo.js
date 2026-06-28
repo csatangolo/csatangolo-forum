@@ -120,6 +120,7 @@ function render(rows) {
       <td>${escapeHtml(p.city || "")}</td>
       <td><button class="mini-button ${p.checked_in ? "ok" : ""}" data-action="checkin" data-id="${p.id}">${p.checked_in ? "Belépett" : "Beléptetés"}</button></td>
       <td><button class="mini-button ${p.contribution_paid ? "ok" : ""}" data-action="paid" data-id="${p.id}">${p.contribution_paid ? "Rendezve" : "Fizetendő"}</button></td>
+      <td><button class="mini-button danger" data-action="delete" data-id="${p.id}">Törlés</button></td>
     `;
     body.appendChild(tr);
   });
@@ -131,6 +132,11 @@ body.addEventListener("click", async (e) => {
   const id = btn.dataset.id;
   const p = participants.find(x => x.id === id);
   if (!p) return;
+
+  if (btn.dataset.action === "delete") {
+    await deleteParticipantOrRegistration(p);
+    return;
+  }
 
   const update = btn.dataset.action === "checkin"
     ? { checked_in: !p.checked_in, checked_in_at: !p.checked_in ? new Date().toISOString() : null }
@@ -167,6 +173,52 @@ document.getElementById("exportCsv").addEventListener("click", () => {
   a.click();
   URL.revokeObjectURL(url);
 });
+
+
+const exportRegsBtn = document.getElementById("exportRegistrations");
+if (exportRegsBtn) {
+  exportRegsBtn.addEventListener("click", () => {
+    const rows = [["Név","E-mail","Telefon","Település","Gyermekkel érkezik","Szállás","Bemutató érdeklődés","Kérdés címzettje","Kérdés","Témák","Szerepek","Regisztráció ideje"]];
+    registrations.forEach(r => rows.push([
+      r.main_name,
+      r.email,
+      r.phone,
+      r.city,
+      r.has_children,
+      r.accommodation,
+      r.demo_interest,
+      r.question_for,
+      r.speaker_question,
+      arrText(r.topics),
+      arrText(r.roles),
+      r.created_at || ""
+    ]));
+    downloadCsv(rows, "csatangolo_forum_regisztraciok.csv");
+  });
+}
+
+function downloadCsv(rows, filename) {
+  const csv = rows.map(r => r.map(cell => `"${String(cell || "").replaceAll('"','""')}"`).join(";")).join("\n");
+  const blob = new Blob(["\ufeff" + csv], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function arrText(v) {
+  if (Array.isArray(v)) return v.join(", ");
+  if (typeof v === "string") {
+    try {
+      const parsed = JSON.parse(v);
+      if (Array.isArray(parsed)) return parsed.join(", ");
+    } catch {}
+    return v;
+  }
+  return "";
+}
 
 function clean(v) {
   return String(v || "").trim();

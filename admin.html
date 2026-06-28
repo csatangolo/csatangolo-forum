@@ -44,7 +44,8 @@
       <section class="card">
         <div class="admin-header">
           <h2>Résztvevők</h2>
-          <button class="button" id="exportCsv">CSV export</button>
+          <button class="button" id="exportCsv">Résztvevők export</button>
+            <button class="button ghost" id="exportRegistrations">Regisztrációk export</button>
         </div>
         <label>Keresés név, kód, település szerint
           <input id="searchInput" type="search" placeholder="Kezdj el gépelni...">
@@ -59,6 +60,7 @@
                 <th>Település</th>
                 <th>Belépett</th>
                 <th>Hozzájárulás</th>
+                <th>Törlés</th>
               </tr>
             </thead>
             <tbody id="participantsBody"></tbody>
