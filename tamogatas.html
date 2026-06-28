@@ -1,1 +1,62 @@
-<!doctype html><html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Az Egyesület támogatása – Csatangoló Fórum</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="premium-3.css"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script></head><body><main class="p3-section"><div class="p3-panel"><span class="p3-eyebrow">Csatangoló Lovas Egyesület</span><h1>Az Egyesület támogatása</h1><p><strong>Fontos:</strong> a rendezvényen fizetendő 2 000 Ft/fő részvételi hozzájárulás a fórum lebonyolítását szolgálja. Az itt található lehetőségek kizárólag azoknak szólnak, akik ezen felül szeretnék támogatni a Csatangoló Lovas Egyesület munkáját és jövőbeli programjait.</p><form id="supportForm" class="form"><label>Támogató neve / cégnév<input name="supporter_name" required></label><label>E-mail<input name="email" type="email" required></label><label>Telefon<input name="phone"></label><label>Támogatás típusa<select name="support_type"><option>Pénzbeli támogatás</option><option>Tombolatárgy</option><option>Takarmány / eszköz</option><option>Önkéntes segítség</option><option>Partneri együttműködés</option><option>Egyéb</option></select></label><label>Összeg, ha pénzbeli támogatás<input name="amount" placeholder="pl. 10000 Ft"></label><label>Mivel és hogyan szeretnél támogatni?<textarea name="support_details" rows="4" required></textarea></label><label>Logó feltöltése cégeknek<input name="logo" type="file" accept="image/*"></label><label class="check"><input name="anonymous" type="checkbox"> Névtelenül szeretnék szerepelni</label><label class="check"><input name="public_display" type="checkbox" checked> Jóváhagyás után megjelenhet a támogatói listán</label><button class="p3-button" type="submit">Támogatási szándék elküldése</button><div id="supportMessage" class="form-message"></div></form><p><a href="index.html">Vissza a főoldalra</a></p></div></main><script src="tamogatas.js"></script></body></html>
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Támogatás – Csatangoló Fórum</title>
+  <link rel="stylesheet" href="styles.css?v=support-fix-1">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<nav class="topbar">
+  <a href="index.html" class="brand">Csatangoló Fórum</a>
+  <div class="navlinks">
+    <a href="index.html">Főoldal</a>
+    <a href="program.html">Program</a>
+    <a href="eloadok.html">Előadók</a>
+    <a href="regisztracio.html" class="nav-cta">Regisztráció</a>
+  </div>
+</nav>
+
+<main class="support-page">
+  <section class="support-hero-premium">
+    <div>
+      <span class="badge">Támogatás</span>
+      <h1>Legyél részese a Csatangoló közösség építésének</h1>
+      <p>A fórum részvételi hozzájárulása a rendezvény lebonyolítását segíti. Ezen felül lehetőség van a Csatangoló Lovas Egyesület jövőbeli szakmai és közösségi programjainak támogatására is.</p>
+    </div>
+  </section>
+
+  <section class="support-options">
+    <article><b>🎁</b><h2>Tombolatárgy</h2><p>Felajánlás a résztvevőknek vagy családi programokhoz.</p></article>
+    <article><b>🌾</b><h2>Takarmány / eszköz</h2><p>A lovarda és a programok működését segítő természetbeni támogatás.</p></article>
+    <article><b>🤝</b><h2>Partneri együttműködés</h2><p>Hosszabb távú szakmai vagy helyi közösségi kapcsolat.</p></article>
+    <article><b>💛</b><h2>Pénzbeli támogatás</h2><p>Jövőbeli lovas, gyerek és közösségi programokhoz.</p></article>
+  </section>
+
+  <section class="support-form-shell">
+    <div class="support-form-intro">
+      <span class="eyebrow">Támogatói szándék</span>
+      <h2>Írd meg, miben tudsz segíteni</h2>
+      <p>A beküldés után a szervezők felveszik veled a kapcsolatot. Céges támogatóknál logó is feltölthető, amely jóváhagyás után megjelenhet a támogatói felületen.</p>
+    </div>
+
+    <form id="supportForm" class="form support-form">
+      <label>Támogató neve / cégnév<input name="supporter_name" required></label>
+      <label>E-mail<input name="email" type="email" required></label>
+      <label>Telefon<input name="phone"></label>
+      <label>Támogatás típusa<select name="support_type"><option>Pénzbeli támogatás</option><option>Tombolatárgy</option><option>Takarmány / eszköz</option><option>Önkéntes segítség</option><option>Partneri együttműködés</option><option>Egyéb</option></select></label>
+      <label>Összeg, ha pénzbeli támogatás<input name="amount" placeholder="pl. 10000 Ft"></label>
+      <label>Mivel és hogyan szeretnél támogatni?<textarea name="support_details" rows="4" required></textarea></label>
+      <label>Logó feltöltése cégeknek<input name="logo" type="file" accept="image/*"></label>
+      <label class="check"><input name="anonymous" type="checkbox"> Névtelenül szeretnék szerepelni</label>
+      <label class="check"><input name="public_display" type="checkbox" checked> Jóváhagyás után megjelenhet a támogatói listán</label>
+      <button class="button" type="submit">Támogatási szándék elküldése</button>
+      <div id="supportMessage" class="form-message"></div>
+    </form>
+  </section>
+</main>
+
+<script src="tamogatas.js"></script>
+</body>
+</html>

@@ -90,7 +90,7 @@ async function buildSpeakerRow(f, existing = {}) {
     motto: val(f,"motto"),
     bio: val(f,"bio"),
     topic: val(f,"topic"),
-    image_url: uploadedMain || val(f,"image_url") || existing.image_url || "",
+    image_url: uploadedMain ? (uploadedMain + "?v=" + Date.now()) : (val(f,"image_url") || existing.image_url || ""),
     gallery_image_1_url: uploadedGallery1 || val(f,"gallery_image_1_url") || existing.gallery_image_1_url || "",
     gallery_image_2_url: uploadedGallery2 || val(f,"gallery_image_2_url") || existing.gallery_image_2_url || "",
     gallery_image_3_url: uploadedGallery3 || val(f,"gallery_image_3_url") || existing.gallery_image_3_url || "",

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Program – Csatangoló Fórum</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=program-fix-1">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
@@ -20,18 +20,26 @@
     <a class="nav-cta" href="regisztracio.html">Regisztráció</a>
   </div>
 </nav>
-<main class="page">
-  <section class="hero small">
+<main class="page program-page">
+  <section class="hero small page-hero-refined">
     <div class="badge">Program</div>
     <h1>A nap menete</h1>
-    <p class="motto">A pontos program folyamatosan frissül.</p>
+    <p class="motto">Nem percre pontos konferencia, hanem rugalmas, tartalmas, egész napos szakmai jelenlét.</p>
   </section>
 
-  <section class="support-panel compact">
+  <section class="program-overview-grid">
+    <article><b>☕</b><h2>Érkezés</h2><p>Regisztráció, kávé, ismerkedés.</p></article>
+    <article><b>🎤</b><h2>Szakmai gondolatindító</h2><p>Előadások és tapasztalatok.</p></article>
+    <article><b>🐴</b><h2>Gyakorlati bemutatók</h2><p>Fedeles lovardában vagy kültéren.</p></article>
+    <article><b>🤝</b><h2>Kötetlen beszélgetések</h2><p>Kérdések, kapcsolatok, közös gondolkodás.</p></article>
+    <article><b>🌙</b><h2>Esti levezetés</h2><p>Akár késő estig, jó hangulatban.</p></article>
+  </section>
+
+  <section class="support-panel compact program-note">
     <div>
       <span class="eyebrow">Fontos</span>
-      <h2>A program folyamatosan bővül</h2>
-      <p>A pontos időpontokat és programpontokat a szervezői felületről tudjuk frissíteni.</p>
+      <h2>A program rugalmasan alakul</h2>
+      <p>A fórum lényege, hogy az előadások, a bemutatók és a beszélgetések természetesen kapcsolódjanak egymáshoz. A pontos programpontokat a szervezői felületről tudjuk frissíteni.</p>
     </div>
   </section>
 
@@ -40,7 +48,7 @@
   </section>
 </main>
 <footer class="footer"><strong>Egymástól tanulunk.</strong><strong>A lovakért.</strong><strong>Egy közösségként.</strong></footer>
-<script src="public-content.js"></script>
+<script src="public-content.js?v=program-fix-1"></script>
 <script>loadPublicProgram();</script>
 </body>
 </html>

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Előadók – Csatangoló Fórum</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=speaker-fix-1">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
@@ -20,27 +20,32 @@
     <a class="nav-cta" href="regisztracio.html">Regisztráció</a>
   </div>
 </nav>
-<main class="page">
-  <section class="hero small">
+<main class="page speakers-page">
+  <section class="hero small page-hero-refined">
     <div class="badge">Előadók</div>
-    <h1>Akikkel találkozhatsz</h1>
-    <p class="motto">Tapasztalat. Tudás. Közös gondolkodás.</p>
+    <h1>Akiktől érdemes személyesen tanulni</h1>
+    <p class="motto">Gyakorlati tudás, valódi tapasztalatok és különböző lovas szemléletek egy napon, egy helyen.</p>
   </section>
 
-  <section class="card intro-card">
+  <section class="card intro-card elegant-intro">
+    <span class="eyebrow">Szakmai közösség</span>
     <h2>Előadóink és meghívott szakembereink</h2>
-    <p>A névsor folyamatosan bővül. A tartalmakat már a szervezői felületről tudjuk kezelni.</p>
+    <p>A kártyákra kattintva minden előadóról külön bemutatkozást olvashatsz. A névsor folyamatosan bővül, a részletes tartalmakat a szervezői felületről tudjuk frissíteni.</p>
   </section>
 
-  <section id="speakerList" class="profile-grid"></section>
+  <section id="speakerList" class="profile-grid speaker-directory"></section>
 
-  <section class="mission">
-    <h2>Előadóként csatlakoznál?</h2>
-    <p>Ha belovaglással, lókiképzéssel, fiatal lovak képzésével vagy kapcsolódó lovas szakmai témával foglalkozol, és szívesen megosztanád tapasztalataidat, jelezd felénk.</p>
+  <section class="speaker-contact-banner">
+    <div>
+      <span class="eyebrow">Kapcsolatfelvétel</span>
+      <h2>Előadóként csatlakoznál?</h2>
+      <p>Ha belovaglással, lókiképzéssel, fiatal lovak képzésével vagy kapcsolódó lovas szakmai témával foglalkozol, és szívesen megosztanád tapasztalataidat, jelezd felénk.</p>
+    </div>
+    <a class="button" href="kapcsolat.html">Kapcsolatfelvétel</a>
   </section>
 </main>
 <footer class="footer"><strong>Egymástól tanulunk.</strong><strong>A lovakért.</strong><strong>Egy közösségként.</strong></footer>
-<script src="public-content.js"></script>
+<script src="public-content.js?v=speaker-fix-1"></script>
 <script>loadPublicSpeakers();</script>
 </body>
 </html>

@@ -121,7 +121,11 @@ Előadásomban megmutatom, hogyan alkalmazható a Monty Roberts módszer a minde
     subtitle: "Lovas bemutató • Klasszikus munka",
     image_url: "assets/taszler-melinda.jpg",
     motto: "A lóval való összhang a legszebb bemutató.",
-    bio: `Elegáns, bemutató jellegű lovas munkával és a lóval való összhang szemléletével színesíti a fórum szakmai közegét.`,
+    bio: `A klasszikus lovas munka számomra nem pusztán látványos bemutató, hanem a lóval való finom, tiszta és következetes kommunikáció eredménye. Hiszem, hogy a valódi összhang akkor születik meg, amikor a lovas nem uralni akarja a lovat, hanem érti a jelzéseit, figyel rá, és türelemmel építi fel a közös munkát.
+
+A fórumon azt a szemléletet szeretném képviselni, amelyben a szépség, a fegyelem és a ló iránti tisztelet egyszerre van jelen. Fontosnak tartom, hogy a bemutató mögött mindig legyen szakmai tartalom: átgondolt alapmunka, bizalom, fokozatosság és a ló testi-lelki állapotának figyelembevétele.
+
+Szeretném megmutatni, hogy a klasszikus jellegű munka nem elérhetetlen különlegesség, hanem olyan út, amely a mindennapi lóval való kapcsolatot is szebbé, pontosabbá és harmonikusabbá teheti.`,
     topic: "Bemutató | Összhang | Klasszikus munka",
     sort_order: 9,
     is_featured: false,
@@ -140,6 +144,16 @@ Előadásomban megmutatom, hogyan alkalmazható a Monty Roberts módszer a minde
   }
 ];
 
+
+function speakerSlug(name) {
+  return String(name || "")
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/gyorgy/g, "gyuri")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
 function speakerTopics(topic) {
   return String(topic || "").split(/\||,|;/).map(t => t.trim()).filter(Boolean);
 }
@@ -148,28 +162,59 @@ function speakerParagraphs(bio) {
   return String(bio || "").split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
 }
 
+function speakerImage(s) {
+  return s.image_url || s.main_image_url || s.photo_url || s.profile_image_url || "";
+}
+
 function renderSpeakerCard(s) {
   const topics = speakerTopics(s.topic);
   const paragraphs = speakerParagraphs(s.bio);
   const lead = paragraphs[0] || s.bio || "";
-  const details = paragraphs.slice(1);
+  const img = speakerImage(s);
+  const slug = speakerSlug(s.name);
+  return `
+    <article class="speaker-premium-card ${s.is_featured ? 'is-featured' : ''}" id="speaker-${esc(slug)}">
+      <button class="speaker-card-open" type="button" data-speaker-slug="${esc(slug)}" aria-label="${esc(s.name)} bemutatása">
+        <div class="speaker-image-wrap">
+          ${img ? `<img class="speaker-photo" src="${esc(img)}" alt="${esc(s.name)}" loading="lazy" onerror="this.onerror=null;this.src='assets/panyi-gyuri.jpg';">` : `<div class="speaker-photo placeholder">${esc((s.name || '?').charAt(0))}</div>`}
+          ${s.is_featured ? '<span class="profile-tag floating-tag">⭐ Kiemelt előadó</span>' : ""}
+        </div>
+        <div class="speaker-body">
+          <p class="speaker-label">Előadó</p>
+          <h2>${esc(s.name)}</h2>
+          ${s.subtitle ? `<p class="speaker-subtitle">${esc(s.subtitle)}</p>` : ""}
+          ${s.motto ? `<blockquote class="speaker-motto">„${esc(s.motto)}”</blockquote>` : ""}
+          ${lead ? `<p class="speaker-lead">${esc(lead)}</p>` : ""}
+          ${topics.length ? `<div class="speaker-topic-list">${topics.slice(0,4).map(t => `<span>${esc(t)}</span>`).join("")}</div>` : ""}
+          <span class="speaker-more">Bővebben erről az előadóról</span>
+        </div>
+      </button>
+    </article>
+  `;
+}
+
+function renderSpeakerDetail(s) {
+  const topics = speakerTopics(s.topic);
+  const paragraphs = speakerParagraphs(s.bio);
+  const img = speakerImage(s);
   const speakerImages = [s.gallery_image_1_url, s.gallery_image_2_url, s.gallery_image_3_url].filter(Boolean);
   return `
-    <article class="speaker-premium-card ${s.is_featured ? 'is-featured' : ''}">
-      <div class="speaker-image-wrap">
-        ${s.image_url ? `<img class="speaker-photo" src="${esc(s.image_url)}" alt="${esc(s.name)}" loading="lazy" onerror="this.onerror=null;this.src=\'assets/kevey-bella.jpg\';">` : `<div class="speaker-photo placeholder">${esc((s.name || '?').charAt(0))}</div>`}
-        ${s.is_featured ? '<span class="profile-tag floating-tag">⭐ Kiemelt előadó</span>' : ""}
+    <article class="speaker-detail-panel">
+      <div class="speaker-detail-hero">
+        ${img ? `<img src="${esc(img)}" alt="${esc(s.name)}">` : ""}
+        <div>
+          <span class="eyebrow">Előadó</span>
+          <h2>${esc(s.name)}</h2>
+          ${s.subtitle ? `<p>${esc(s.subtitle)}</p>` : ""}
+          ${s.motto ? `<blockquote>„${esc(s.motto)}”</blockquote>` : ""}
+        </div>
       </div>
-      <div class="speaker-body">
-        <p class="speaker-label">Előadó</p>
-        <h2>${esc(s.name)}</h2>
-        ${s.subtitle ? `<p class="speaker-subtitle">${esc(s.subtitle)}</p>` : ""}
-        ${s.motto ? `<blockquote class="speaker-motto">„${esc(s.motto)}”</blockquote>` : ""}
-        ${lead ? `<p class="speaker-lead">${esc(lead)}</p>` : ""}
-        ${speakerImages.length ? `<div class="speaker-mini-gallery">${speakerImages.map((img, i) => `<img src="${esc(img)}" alt="${esc(s.name)} bemutatkozó kép ${i + 1}" loading="lazy">`).join("")}</div>` : ""}
-        ${topics.length ? `<div class="speaker-topic-list">${topics.map(t => `<span>${esc(t)}</span>`).join("")}</div>` : ""}
-        ${details.length ? `<details class="speaker-details"><summary>Bemutatkozás</summary>${details.map(p => `<p>${esc(p)}</p>`).join("")}</details>` : ""}
-        <div class="speaker-links">
+      <div class="speaker-detail-content">
+        <h3>Bemutatkozás</h3>
+        ${paragraphs.length ? paragraphs.map(p => `<p>${esc(p)}</p>`).join("") : `<p>${esc(s.bio || "A bemutatkozó hamarosan bővül.")}</p>`}
+        ${topics.length ? `<div class="speaker-topic-list detail-topics">${topics.map(t => `<span>${esc(t)}</span>`).join("")}</div>` : ""}
+        ${speakerImages.length ? `<div class="speaker-detail-gallery">${speakerImages.map((img, i) => `<img src="${esc(img)}" alt="${esc(s.name)} bemutatkozó kép ${i + 1}" loading="lazy">`).join("")}</div>` : ""}
+        <div class="speaker-links detail-links">
           ${s.facebook_url ? `<a href="${esc(s.facebook_url)}" target="_blank" rel="noopener">Facebook</a>` : ""}
           ${s.instagram_url ? `<a href="${esc(s.instagram_url)}" target="_blank" rel="noopener">Instagram</a>` : ""}
           ${s.youtube_url ? `<a href="${esc(s.youtube_url)}" target="_blank" rel="noopener">YouTube</a>` : ""}
@@ -180,8 +225,10 @@ function renderSpeakerCard(s) {
   `;
 }
 
+
 async function loadPublicSpeakers() {
   const el = document.getElementById("speakerList");
+  if (!el) return;
   const { data, error } = await client.from("speakers").select("*").eq("is_published", true).order("sort_order", { ascending: true });
   let speakers = (!error && data && data.length) ? data : [];
 
@@ -194,20 +241,67 @@ async function loadPublicSpeakers() {
     .filter(s => s && s.is_published !== false)
     .sort((a,b) => Number(a.sort_order || 100) - Number(b.sort_order || 100));
 
+  window.CSATANGOLO_SPEAKERS = speakers;
+
   if (!speakers.length) {
     el.innerHTML = `<article class="profile-card featured-profile"><span class="profile-tag">Kiemelt előadó</span><h2>Hamarosan</h2><p>Az előadók bemutatkozása hamarosan felkerül.</p></article>`;
     return;
   }
+
   el.innerHTML = speakers.map(renderSpeakerCard).join("");
+
+  el.querySelectorAll("[data-speaker-slug]").forEach(btn => {
+    btn.addEventListener("click", () => openSpeakerDetail(btn.dataset.speakerSlug));
+  });
+
+  if (!document.getElementById("speakerModal")) {
+    document.body.insertAdjacentHTML("beforeend", `
+      <div id="speakerModal" class="speaker-modal hidden" role="dialog" aria-modal="true">
+        <div class="speaker-modal-backdrop" data-close-speaker></div>
+        <div class="speaker-modal-window">
+          <button class="speaker-modal-close" type="button" data-close-speaker>×</button>
+          <div id="speakerModalContent"></div>
+        </div>
+      </div>
+    `);
+    document.querySelectorAll("[data-close-speaker]").forEach(x => x.addEventListener("click", closeSpeakerDetail));
+  }
+
+  const hash = decodeURIComponent(location.hash || "").replace("#", "");
+  if (hash) {
+    const found = speakers.find(s => speakerSlug(s.name) === hash || speakerSlug(s.name).includes(hash));
+    if (found) openSpeakerDetail(speakerSlug(found.name), false);
+  }
 }
 
-async function loadPublicProgram() {
+function openSpeakerDetail(slug, updateHash = true) {
+  const speakers = window.CSATANGOLO_SPEAKERS || [];
+  const s = speakers.find(x => speakerSlug(x.name) === slug);
+  if (!s) return;
+  const modal = document.getElementById("speakerModal");
+  const content = document.getElementById("speakerModalContent");
+  content.innerHTML = renderSpeakerDetail(s);
+  modal.classList.remove("hidden");
+  document.body.classList.add("modal-open");
+  if (updateHash) history.replaceState(null, "", "#" + speakerSlug(s.name));
+}
+
+function closeSpeakerDetail() {
+  const modal = document.getElementById("speakerModal");
+  if (modal) modal.classList.add("hidden");
+  document.body.classList.remove("modal-open");
+}
+
+async function loadPublicProgramasync function loadPublicProgram() {
   const el = document.getElementById("programList");
   const { data, error } = await client.from("program_items").select("*").eq("is_published", true).order("sort_order", { ascending: true });
   if (error || !data || !data.length) {
-    el.innerHTML = `<div><time>09:00</time><strong>Érkezés és regisztráció</strong><span>Kávé, beszélgetés, fröccsterasz hangulat.</span></div>
-    <div><time>Délelőtt</time><strong>Szakmai előadások</strong><span>Belovaglás, fiatal lovak képzése, lókiképzés.</span></div>
-    <div><time>Délután</time><strong>Gyakorlati bemutatók</strong><span>A Csatangoló Lovarda lovaival.</span></div>`;
+    el.innerHTML = `<div><time>09:00</time><strong>Érkezés, regisztráció, kávé</strong><span>Ismerkedés, beszélgetés, a nap közös megnyitása.</span></div>
+    <div><time>Délelőtt</time><strong>Szakmai gondolatindító előadások</strong><span>Belovaglás, fiatal lovak képzése, lókiképzési szemléletek és gyakorlati tapasztalatok.</span></div>
+    <div><time>Kora délután</time><strong>Gyakorlati bemutatók</strong><span>Fedeles lovardában vagy kültéren, az időjáráshoz igazítva.</span></div>
+    <div><time>Délután</time><strong>Kötetlen szakmai beszélgetések</strong><span>Kérdések, válaszok, kapcsolatok és közös gondolkodás.</span></div>
+    <div><time>Egész nap</time><strong>Lovas büfé és Fröccsterasz</strong><span>Pihenés, családi programok és közösségi találkozások.</span></div>
+    <div><time>Estig</time><strong>Levezetés jó hangulatban</strong><span>A nap tapasztalatainak összegzése, közösségi beszélgetés akár késő estig.</span></div>`;
     return;
   }
   el.innerHTML = data.map(p => `<div><time>${esc(p.time_label)}</time><strong>${esc(p.title)}</strong><span>${esc(p.description || "")}</span></div>`).join("");
