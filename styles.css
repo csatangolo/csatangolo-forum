@@ -1311,3 +1311,71 @@ input[type="file"]{
     padding:22px;
   }
 }
+
+/* CMS 1.4 – előadók szerkesztése és bemutatkozó képek */
+.form-subtitle{
+  margin:14px 0 2px;
+  color:var(--brown);
+  font-size:1.05rem;
+}
+.form-actions,.cms-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.button.secondary{
+  background:#fff7ef;
+  color:var(--brown);
+  border:1px solid var(--line);
+}
+.mini-button.danger{
+  background:#fff3ed;
+  color:#8a3922;
+}
+.cms-list-title{
+  margin:24px 0 8px;
+  color:var(--brown);
+}
+.cms-thumb-row{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.current-image{
+  background:#fff7ef;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:12px;
+}
+.current-image-grid{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:8px;
+}
+.current-image-grid img{
+  width:96px;
+  height:72px;
+  object-fit:cover;
+  border-radius:12px;
+  border:1px solid var(--line);
+}
+.speaker-mini-gallery{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:10px;
+  margin:16px 0;
+}
+.speaker-mini-gallery img{
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  border-radius:18px;
+  border:1px solid rgba(94,60,38,.12);
+  box-shadow:0 10px 22px rgba(94,60,38,.10);
+}
+@media(max-width:560px){
+  .speaker-mini-gallery{grid-template-columns:1fr;}
+}

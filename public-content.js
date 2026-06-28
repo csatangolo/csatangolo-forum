@@ -143,6 +143,7 @@ function renderSpeakerCard(s) {
   const paragraphs = speakerParagraphs(s.bio);
   const lead = paragraphs[0] || s.bio || "";
   const details = paragraphs.slice(1);
+  const speakerImages = [s.gallery_image_1_url, s.gallery_image_2_url, s.gallery_image_3_url].filter(Boolean);
   return `
     <article class="speaker-premium-card ${s.is_featured ? 'is-featured' : ''}">
       <div class="speaker-image-wrap">
@@ -155,6 +156,7 @@ function renderSpeakerCard(s) {
         ${s.subtitle ? `<p class="speaker-subtitle">${esc(s.subtitle)}</p>` : ""}
         ${s.motto ? `<blockquote class="speaker-motto">„${esc(s.motto)}”</blockquote>` : ""}
         ${lead ? `<p class="speaker-lead">${esc(lead)}</p>` : ""}
+        ${speakerImages.length ? `<div class="speaker-mini-gallery">${speakerImages.map((img, i) => `<img src="${esc(img)}" alt="${esc(s.name)} bemutatkozó kép ${i + 1}" loading="lazy">`).join("")}</div>` : ""}
         ${topics.length ? `<div class="speaker-topic-list">${topics.map(t => `<span>${esc(t)}</span>`).join("")}</div>` : ""}
         ${details.length ? `<details class="speaker-details"><summary>Bemutatkozás</summary>${details.map(p => `<p>${esc(p)}</p>`).join("")}</details>` : ""}
         <div class="speaker-links">
