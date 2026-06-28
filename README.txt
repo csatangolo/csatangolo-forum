@@ -1,10 +1,3 @@
-CSATANGOLÓ FÓRUM CMS 1.4
+Csatangoló Fórum Premium 3.0 Master Edition
 
-Újdonság:
-- Élményfeltöltés képekkel és videókkal
-- Alap Fórum Asszisztens
-- YouTube beágyazott videóblokk
-- Prémium belépőkártya finomítás
-
-Supabase:
-csatangolo_master_install_v3_media.sql
+A csomag a feltöltött 1.3 teljes projektből készült, és hozzáadja a Premium 3.0 dizájnt, támogatási oldalt, élményfeltöltést, asszisztenst és Master SQL-t.

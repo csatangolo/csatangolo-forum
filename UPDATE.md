@@ -1,10 +1,11 @@
-# Csatangoló Fórum – Premium Design 2.0 javított
+# Frissítés – Premium 3.0 Master Edition
 
 ## GitHub
 Töltsd fel / írd felül a ZIP összes fájlját.
 
 ## Supabase
-Ehhez nincs új SQL.
+Futtasd le ezt az egy SQL-t, ha a támogatási vagy élményfeltöltési modulokat is használni szeretnéd:
 
-## Javítás
-A styles.css és premium-design.js biztosan benne van a csomagban, ezért a főoldal nem nyers HTML-ként fog megjelenni.
+`csatangolo_master_install_v3_0.sql`
+
+Ez nem törli a meglévő adatokat.
