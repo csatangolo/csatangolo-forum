@@ -6,8 +6,9 @@
   <title>I. Országos Belovagló és Lókiképző Szakmai Fórum</title>
   <link rel="preload" as="image" href="assets/hero-forum.jpg">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="forum-premium-3-3.css?v=2.0">
+  <link rel="stylesheet" href="forum-premium-3-3.css?v=2.3">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body class="forum33">
   <nav class="f33-nav">
@@ -174,6 +175,21 @@
       <div class="f33-card f33-registration-card"><span class="f33-eyebrow">Jelentkezés</span><h2>Regisztráció a fórumra</h2><p>A regisztráció után névre szóló digitális QR-belépőt kapsz, amelyet a helyszíni beléptetésnél tudunk ellenőrizni.</p><ul><li>Digitális QR-belépő</li><li>Egész napos szakmai program</li><li>Büfé és fröccsterasz a helyszínen</li></ul><a href="regisztracio.html">Regisztrálok</a></div>
     </section>
 
+    <section class="f33-section f33-public-map-section">
+      <div class="f33-public-map-copy">
+        <span class="f33-eyebrow">Lovas közösség</span>
+        <h2>Innen érkeznek a résztvevők</h2>
+        <p>A térképen csak a települések jelennek meg, személyes adatok és létszámok nélkül. Egy finom arany pont jelzi, honnan csatlakoznak a fórumhoz.</p>
+        <div class="f33-map-legend">
+          <span><i></i> Résztvevői település</span>
+          <small id="publicMapNote">A térkép a regisztrációk alapján frissül.</small>
+        </div>
+      </div>
+      <div class="f33-public-map-card">
+        <div id="publicForumMap"></div>
+      </div>
+    </section>
+
     <section class="f33-newsletter">
       <div><b>✉</b><strong>Ne maradj le a fórum híreiről!</strong><small>A fontos értesítéseket kulturáltan, leiratkozási lehetőséggel küldjük.</small></div>
       <form><input type="email" placeholder="E-mail címed"><button type="button">Feliratkozom</button></form>
@@ -222,7 +238,7 @@
     </div>
   </footer>
 
-  <script src="homepage.js?v=2.0"></script>
+  <script src="homepage.js?v=2.3"></script>
   <script src="forum-premium-3-3.js?v=3.3.0"></script>
 
 <script id="f33-count-threshold-200">
@@ -254,5 +270,7 @@
 })();
 </script>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="public-map.js?v=2.3"></script>
 </body>
 </html>

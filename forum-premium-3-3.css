@@ -2175,3 +2175,174 @@ main{
     padding:21px !important;
   }
 }
+
+
+/* === Premium v2.3 publikus térkép a főoldalon === */
+.f33-public-map-section{
+  width:min(1320px,calc(100% - 44px));
+  margin:54px auto 44px;
+  display:grid;
+  grid-template-columns:.82fr 1.18fr;
+  gap:24px;
+  align-items:stretch;
+  padding:28px;
+  border-radius:32px;
+  background:
+    radial-gradient(circle at 18% 20%,rgba(255,248,234,.18),transparent 32%),
+    linear-gradient(135deg,#2b1509,#5e3c26);
+  border:1px solid rgba(242,203,121,.22);
+  box-shadow:0 28px 84px rgba(70,42,22,.18);
+  overflow:hidden;
+  position:relative;
+}
+
+.f33-public-map-section:before{
+  content:"";
+  position:absolute;
+  inset:-120px auto auto -120px;
+  width:320px;
+  height:320px;
+  border-radius:50%;
+  background:rgba(242,203,121,.08);
+  pointer-events:none;
+}
+
+.f33-public-map-copy{
+  position:relative;
+  z-index:2;
+  padding:28px;
+  border-radius:26px;
+  background:rgba(31,14,7,.48);
+  border:1px solid rgba(242,203,121,.17);
+  color:#fff4df;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.f33-public-map-copy h2{
+  color:#fff8ea;
+  font-size:clamp(2rem,3.2vw,3.05rem);
+  line-height:1.05;
+  margin:.25em 0 .45em;
+}
+
+.f33-public-map-copy p{
+  color:#ecd8b8;
+  line-height:1.62;
+  margin:0;
+}
+
+.f33-map-legend{
+  margin-top:20px;
+  display:grid;
+  gap:8px;
+}
+
+.f33-map-legend span{
+  display:inline-flex;
+  width:max-content;
+  max-width:100%;
+  align-items:center;
+  gap:9px;
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(255,248,234,.11);
+  border:1px solid rgba(242,203,121,.17);
+  color:#fff4df;
+  font-weight:800;
+}
+
+.f33-map-legend i{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#f5d98e,#b87935);
+  box-shadow:0 0 0 6px rgba(242,203,121,.16);
+}
+
+.f33-map-legend small{
+  color:#d9bd91;
+  line-height:1.35;
+}
+
+.f33-public-map-card{
+  position:relative;
+  z-index:2;
+  border-radius:26px;
+  overflow:hidden;
+  min-height:380px;
+  border:1px solid rgba(242,203,121,.18);
+  background:#efe3cf;
+  box-shadow:0 22px 60px rgba(0,0,0,.22);
+}
+
+#publicForumMap{
+  width:100%;
+  height:100%;
+  min-height:380px;
+  filter:saturate(.72) sepia(.14) contrast(.95) brightness(1.03);
+}
+
+.f33-map-dot{
+  background:transparent;
+}
+
+.f33-map-dot span{
+  display:block;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#f9df95,#b87935);
+  border:2px solid rgba(255,248,234,.96);
+  box-shadow:
+    0 0 0 7px rgba(242,203,121,.22),
+    0 10px 22px rgba(75,45,24,.22);
+  animation:f33MapPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes f33MapPulse{
+  0%,100%{transform:scale(1); box-shadow:0 0 0 6px rgba(242,203,121,.22),0 10px 22px rgba(75,45,24,.22);}
+  50%{transform:scale(1.08); box-shadow:0 0 0 12px rgba(242,203,121,.08),0 14px 28px rgba(75,45,24,.26);}
+}
+
+.f33-public-map-card .leaflet-control-zoom{
+  border:0 !important;
+  box-shadow:0 10px 28px rgba(70,42,22,.18) !important;
+}
+
+.f33-public-map-card .leaflet-control-zoom a{
+  background:rgba(255,248,234,.94) !important;
+  color:#5e3c26 !important;
+  border-color:rgba(160,106,50,.18) !important;
+}
+
+@media(max-width:900px){
+  .f33-public-map-section{
+    grid-template-columns:1fr;
+  }
+  .f33-public-map-card,
+  #publicForumMap{
+    min-height:320px;
+  }
+}
+
+@media(max-width:700px){
+  .f33-public-map-section{
+    width:calc(100% - 28px);
+    margin:34px auto;
+    padding:18px;
+    border-radius:26px;
+  }
+  .f33-public-map-copy{
+    padding:22px;
+    border-radius:22px;
+  }
+  .f33-public-map-copy h2{
+    font-size:clamp(1.85rem,9vw,2.7rem);
+  }
+  .f33-public-map-card,
+  #publicForumMap{
+    min-height:300px;
+  }
+}
