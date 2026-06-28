@@ -754,3 +754,39 @@ main{
     min-height:240px;
   }
 }
+
+
+/* === Premium v1.4 képjavítás: csak tiszta képek, felirat/képernyőkép nélkül === */
+.f33-clean-card img,
+.f33-lifestyle-gallery img,
+.f33-visible-image-card img{
+  opacity:1 !important;
+  filter:saturate(1.02) contrast(1.02) !important;
+  background:#ead6b5 !important;
+}
+
+.f33-clean-card{
+  background:linear-gradient(135deg,#fff8ea,#ead6b5) !important;
+}
+
+.f33-clean-card img:before,
+.f33-clean-card img:after{
+  display:none !important;
+}
+
+.f33-lifestyle-section{
+  background:linear-gradient(135deg,#2a1409,#5e3c26) !important;
+}
+
+.f33-experience-bg,
+.f33-experience-band{
+  display:none !important;
+}
+
+body,
+.f33-page,
+main{
+  background:
+    radial-gradient(circle at top, rgba(214,162,75,.10), transparent 30%),
+    linear-gradient(180deg,#120804 0,#241107 32%,#f7efdf 32%,#f3e6cf 100%) !important;
+}
