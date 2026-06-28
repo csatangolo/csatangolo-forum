@@ -78,8 +78,8 @@ document.getElementById("speakerForm").addEventListener("submit", async e => {
   try {
     const uploaded = await uploadFile(file(f,"image_file"), "speakers");
     await insertRow("speakers", {
-      name: val(f,"name"), subtitle: val(f,"subtitle"), bio: val(f,"bio"), topic: val(f,"topic"),
-      image_url: uploaded || val(f,"image_url"), sort_order: Number(val(f,"sort_order") || 100),
+      name: val(f,"name"), subtitle: val(f,"subtitle"), motto: val(f,"motto"), bio: val(f,"bio"), topic: val(f,"topic"),
+      image_url: uploaded || val(f,"image_url"), facebook_url: val(f,"facebook_url"), instagram_url: val(f,"instagram_url"), youtube_url: val(f,"youtube_url"), website_url: val(f,"website_url"), sort_order: Number(val(f,"sort_order") || 100),
       is_featured: checked(f,"is_featured"), is_published: checked(f,"is_published")
     }, f);
   } catch(err) { alert(err.message); }
@@ -148,7 +148,7 @@ document.getElementById("documentForm").addEventListener("submit", async e => {
 
 async function loadAll() {
   await Promise.all([
-    loadTable("speakers","speakerAdminList", r => `<strong>${esc(r.name)}</strong><span>${esc(r.subtitle || "")}</span>${r.image_url ? `<img class="cms-thumb" src="${esc(r.image_url)}">` : ""}`),
+    loadTable("speakers","speakerAdminList", r => `<strong>${esc(r.name)}</strong><span>${esc(r.motto ? "„" + r.motto + "”" : "")}</span><span>${esc(r.subtitle || "")}</span>${r.is_featured ? "<small>⭐ Kiemelt előadó</small>" : ""}${r.image_url ? `<img class="cms-thumb" src="${esc(r.image_url)}">` : ""}`),
     loadTable("program_items","programAdminList", r => `<strong>${esc(r.time_label)} – ${esc(r.title)}</strong><span>${esc(r.description || "")}</span>`),
     loadTable("videos","videoAdminList", r => `<strong>${esc(r.title)}</strong><span>${esc(r.youtube_url || "")}</span>`),
     loadTable("news","newsAdminList", r => `<strong>${esc(r.title)}</strong><span>${esc(r.body || "")}</span>`),

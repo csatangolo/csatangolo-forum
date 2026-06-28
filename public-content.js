@@ -24,13 +24,20 @@ async function loadPublicSpeakers() {
     return;
   }
   el.innerHTML = data.map(s => `
-    <article class="profile-card ${s.is_featured ? "featured-profile" : ""}">
-      ${s.is_featured ? '<span class="profile-tag">Kiemelt előadó</span>' : ""}
+    <article class="profile-card speaker-profile-card">
+      ${s.is_featured ? '<span class="profile-tag floating-tag">⭐ Kiemelt előadó</span>' : ""}
       ${s.image_url ? `<img class="profile-photo" src="${esc(s.image_url)}" alt="${esc(s.name)}">` : ""}
       <h2>${esc(s.name)}</h2>
+      ${s.motto ? `<p class="speaker-motto">„${esc(s.motto)}”</p>` : ""}
       <p><strong>${esc(s.subtitle || "")}</strong></p>
+      ${s.topic ? `<p class="speaker-topic"><em>${esc(s.topic)}</em></p>` : ""}
       <p>${esc(s.bio || "")}</p>
-      ${s.topic ? `<p><em>Téma: ${esc(s.topic)}</em></p>` : ""}
+      <div class="speaker-links">
+        ${s.facebook_url ? `<a href="${esc(s.facebook_url)}" target="_blank" rel="noopener">Facebook</a>` : ""}
+        ${s.instagram_url ? `<a href="${esc(s.instagram_url)}" target="_blank" rel="noopener">Instagram</a>` : ""}
+        ${s.youtube_url ? `<a href="${esc(s.youtube_url)}" target="_blank" rel="noopener">YouTube</a>` : ""}
+        ${s.website_url ? `<a href="${esc(s.website_url)}" target="_blank" rel="noopener">Weboldal</a>` : ""}
+      </div>
     </article>
   `).join("");
 }
