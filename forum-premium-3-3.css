@@ -2954,35 +2954,153 @@ main{
 }
 
 
-/* === Premium v2.9: új, rajzolt térkép + visszaszámláló javítás === */
+/* === FIX v3.0: realisztikus térkép + közösségi slider + visszaszámláló === */
+.f33-inspiring-gallery{display:none!important}
 
-/* VISSZASZÁMLÁLÓ: stabilan nagy, ne tudjon összemenni */
+.f33-lower-atmo-card{
+  display:grid!important;
+  grid-template-columns:minmax(0,.82fr) minmax(420px,.92fr)!important;
+  gap:24px!important;
+  min-height:500px!important;
+  padding:30px!important;
+}
+
+.f33-community-slider{
+  position:relative!important;
+  z-index:4!important;
+  min-height:440px!important;
+  align-self:stretch!important;
+  border-radius:28px!important;
+  overflow:hidden!important;
+  border:1px solid rgba(242,203,121,.20)!important;
+  box-shadow:0 26px 76px rgba(0,0,0,.28)!important;
+  background:#2b1509!important;
+  isolation:isolate!important;
+}
+
+.f33-community-slide{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  opacity:0!important;
+  transform:scale(1.08)!important;
+  transition:opacity 1.25s ease, transform 6.2s ease!important;
+}
+
+.f33-community-slide.is-active{
+  opacity:1!important;
+  transform:scale(1)!important;
+}
+
+.f33-community-caption{
+  position:absolute!important;
+  left:22px!important;
+  bottom:22px!important;
+  z-index:8!important;
+  padding:11px 16px!important;
+  border-radius:999px!important;
+  background:rgba(36,17,7,.62)!important;
+  border:1px solid rgba(242,203,121,.26)!important;
+  color:#fff4df!important;
+  font-weight:900!important;
+  backdrop-filter:blur(8px)!important;
+}
+
+.f33-public-map-card{
+  background:#4a2b17!important;
+  border:1px solid rgba(242,203,121,.34)!important;
+  overflow:hidden!important;
+}
+
+#publicForumMap{
+  min-height:430px!important;
+  filter:sepia(.26) saturate(.82) contrast(.96) brightness(.90)!important;
+  background:#d9c4a1!important;
+}
+
+.f33-public-map-card:after{
+  content:"Nagyítható, városos térkép"!important;
+  position:absolute!important;
+  left:18px!important;
+  top:18px!important;
+  z-index:700!important;
+  right:auto!important;
+  bottom:auto!important;
+  padding:9px 13px!important;
+  border-radius:999px!important;
+  background:rgba(43,21,9,.70)!important;
+  color:#fff4df!important;
+  border:1px solid rgba(242,203,121,.26)!important;
+  font-size:.78rem!important;
+  font-weight:900!important;
+  backdrop-filter:blur(8px)!important;
+}
+
+.f33-real-map-label span{
+  display:inline-flex;
+  padding:4px 8px;
+  border-radius:999px;
+  background:rgba(255,248,234,.80);
+  color:#3b2110;
+  border:1px solid rgba(94,60,38,.16);
+  font-size:12px;
+  font-weight:900;
+  box-shadow:0 6px 18px rgba(43,21,9,.12);
+}
+
+.f33-real-map-pin span{
+  position:absolute;
+  left:6px;
+  top:6px;
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#fff0b4,#b87935);
+  border:2px solid #fff8ea;
+  box-shadow:0 0 0 9px rgba(242,203,121,.26),0 14px 28px rgba(43,21,9,.34);
+  animation:f33MapPulse 2.4s ease-in-out infinite;
+}
+
+.f33-real-map-pin b{
+  position:absolute;
+  left:22px;
+  top:-4px;
+  padding:5px 8px;
+  border-radius:999px;
+  background:rgba(43,21,9,.72);
+  color:#fff4df;
+  font-size:11px;
+  white-space:nowrap;
+  border:1px solid rgba(242,203,121,.22);
+}
+
+.f33-real-tooltip{
+  background:#3b2110!important;
+  color:#fff4df!important;
+  border:1px solid rgba(242,203,121,.30)!important;
+  border-radius:999px!important;
+  font-weight:900!important;
+}
+
 .f33-countdown,
 .countdown,
 #countdown{
-  display:flex !important;
-  justify-content:center !important;
-  align-items:stretch !important;
-  flex-wrap:wrap !important;
-  gap:14px !important;
-  margin:24px auto !important;
-  max-width:760px !important;
+  display:flex!important;
+  justify-content:center!important;
+  gap:14px!important;
+  flex-wrap:wrap!important;
+  margin:24px auto!important;
 }
 
 .f33-countdown div,
 .countdown div,
-#countdown div,
-.f33-countdown-box{
-  min-width:108px !important;
-  min-height:94px !important;
-  padding:18px 18px 15px !important;
-  border-radius:24px !important;
-  background:rgba(255,248,234,.15) !important;
-  border:1px solid rgba(242,203,121,.32) !important;
-  box-shadow:
-    0 18px 44px rgba(0,0,0,.18),
-    inset 0 1px 0 rgba(255,255,255,.16) !important;
-  backdrop-filter:blur(10px) !important;
+#countdown div{
+  min-width:108px!important;
+  min-height:94px!important;
+  padding:18px!important;
+  border-radius:24px!important;
 }
 
 .f33-countdown strong,
@@ -2991,260 +3109,11 @@ main{
 .countdown .num,
 #countdown strong,
 #countdown .num{
-  display:block !important;
-  font-size:clamp(2rem,4.2vw,3.05rem) !important;
-  line-height:.9 !important;
-  color:#fff8ea !important;
-  font-weight:900 !important;
+  font-size:clamp(2rem,4.2vw,3.05rem)!important;
+  line-height:.9!important;
 }
 
-.f33-countdown small,
-.countdown small,
-#countdown small{
-  display:block !important;
-  margin-top:9px !important;
-  color:#f2cb79 !important;
-  font-size:.78rem !important;
-  text-transform:uppercase !important;
-  letter-spacing:.12em !important;
-  font-weight:900 !important;
-}
-
-/* TÉRKÉP: teljesen új, nem Leaflet kinézet */
-.f33-public-map-section{
-  background:
-    radial-gradient(circle at 18% 20%,rgba(242,203,121,.15),transparent 34%),
-    radial-gradient(circle at 88% 82%,rgba(255,248,234,.09),transparent 32%),
-    linear-gradient(135deg,#241107,#60391f) !important;
-  border:1px solid rgba(242,203,121,.28) !important;
-  box-shadow:0 32px 94px rgba(44,21,9,.24) !important;
-}
-
-.f33-public-map-card{
-  position:relative !important;
-  overflow:hidden !important;
-  min-height:430px !important;
-  background:
-    radial-gradient(circle at 50% 42%,rgba(255,248,234,.16),transparent 42%),
-    linear-gradient(135deg,#7b5935,#3d210f) !important;
-  border:1px solid rgba(242,203,121,.34) !important;
-  box-shadow:
-    0 26px 78px rgba(0,0,0,.28),
-    inset 0 0 0 1px rgba(255,248,234,.12) !important;
-}
-
-#publicForumMap{
-  position:relative !important;
-  width:100% !important;
-  height:100% !important;
-  min-height:430px !important;
-  overflow:hidden !important;
-  filter:none !important;
-  cursor:default !important;
-  background:
-    linear-gradient(135deg,rgba(255,248,234,.08),transparent 38%),
-    radial-gradient(circle at center,rgba(242,203,121,.10),transparent 54%) !important;
-}
-
-.f33-map-stage{
-  position:absolute !important;
-  inset:0 !important;
-  transform-origin:center !important;
-  transition:transform .35s ease !important;
-}
-
-.f33-hungary-svg{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-}
-
-.f33-map-glow{
-  fill:rgba(242,203,121,.24);
-  filter:blur(14px);
-}
-
-.f33-map-land{
-  fill:url(#huLand);
-  stroke:#3b2110;
-  stroke-width:7;
-  stroke-linejoin:round;
-}
-
-.f33-map-river{
-  fill:none;
-  stroke:rgba(255,248,234,.55);
-  stroke-width:7;
-  stroke-linecap:round;
-  opacity:.48;
-}
-
-.f33-map-river.second{
-  opacity:.30;
-  stroke-width:5;
-}
-
-.f33-map-route{
-  fill:none;
-  stroke:rgba(94,60,38,.38);
-  stroke-width:3;
-  stroke-dasharray:10 12;
-  stroke-linecap:round;
-}
-
-.f33-map-home{
-  fill:#fff8ea;
-  stroke:#7a4323;
-  stroke-width:5;
-  filter:drop-shadow(0 8px 16px rgba(43,21,9,.30));
-}
-
-.f33-map-labels,
-.f33-map-pins{
-  position:absolute;
-  inset:0;
-  width:1000px;
-  height:640px;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  pointer-events:none;
-}
-
-.f33-map-city-label{
-  position:absolute;
-  transform:translate(-50%,-50%);
-  color:#3d210f;
-  font-size:13px;
-  font-weight:900;
-  letter-spacing:.02em;
-  text-shadow:0 1px 0 rgba(255,248,234,.50);
-  opacity:.78;
-  white-space:nowrap;
-}
-
-.f33-map-pin{
-  position:absolute;
-  transform:translate(-50%,-50%);
-  width:30px;
-  height:30px;
-  border:0;
-  background:transparent;
-  padding:0;
-  pointer-events:auto;
-  cursor:pointer;
-}
-
-.f33-map-pin span{
-  display:block;
-  width:20px;
-  height:20px;
-  margin:5px;
-  border-radius:50%;
-  background:linear-gradient(135deg,#fff0b4,#b87935);
-  border:2px solid #fff8ea;
-  box-shadow:
-    0 0 0 9px rgba(242,203,121,.25),
-    0 14px 28px rgba(43,21,9,.35);
-  animation:f33MapPulse 2.4s ease-in-out infinite;
-  animation-delay:var(--d);
-}
-
-.f33-map-pin:hover span{
-  transform:scale(1.18);
-}
-
-.f33-map-controls{
-  position:absolute;
-  right:18px;
-  bottom:18px;
-  z-index:10;
-  display:flex;
-  gap:8px;
-}
-
-.f33-map-controls button{
-  width:42px;
-  height:42px;
-  border-radius:14px;
-  border:1px solid rgba(242,203,121,.28);
-  background:rgba(43,21,9,.78);
-  color:#f5d98e;
-  font-weight:900;
-  font-size:1.2rem;
-  box-shadow:0 12px 32px rgba(0,0,0,.22);
-  backdrop-filter:blur(8px);
-}
-
-.f33-public-map-card:before,
-.f33-public-map-card:after{
-  pointer-events:none !important;
-}
-
-.f33-public-map-card:after{
-  content:"Rajzolt közösségi térkép" !important;
-  position:absolute !important;
-  left:18px !important;
-  top:18px !important;
-  right:auto !important;
-  z-index:10 !important;
-  padding:9px 13px !important;
-  border-radius:999px !important;
-  background:rgba(43,21,9,.66) !important;
-  border:1px solid rgba(242,203,121,.28) !important;
-  color:#fff4df !important;
-  font-size:.78rem !important;
-  font-weight:900 !important;
-  backdrop-filter:blur(8px) !important;
-  box-shadow:0 12px 32px rgba(0,0,0,.20) !important;
-}
-
-@media(max-width:700px){
-  .f33-countdown,
-  .countdown,
-  #countdown{
-    gap:9px !important;
-    margin:18px auto !important;
-  }
-
-  .f33-countdown div,
-  .countdown div,
-  #countdown div,
-  .f33-countdown-box{
-    min-width:76px !important;
-    min-height:78px !important;
-    padding:13px 10px 11px !important;
-    border-radius:18px !important;
-  }
-
-  .f33-countdown strong,
-  .f33-countdown .num,
-  .countdown strong,
-  .countdown .num,
-  #countdown strong,
-  #countdown .num{
-    font-size:clamp(1.55rem,8vw,2.15rem) !important;
-  }
-
-  .f33-countdown small,
-  .countdown small,
-  #countdown small{
-    font-size:.66rem !important;
-    letter-spacing:.08em !important;
-  }
-
-  .f33-public-map-card,
-  #publicForumMap{
-    min-height:360px !important;
-  }
-
-  .f33-map-city-label{
-    font-size:11px;
-  }
-
-  .f33-map-labels,
-  .f33-map-pins{
-    transform:translate(-50%,-50%) scale(.84);
-  }
+@media(max-width:1050px){
+  .f33-lower-atmo-card{grid-template-columns:1fr!important}
+  .f33-community-slider{min-height:320px!important}
 }

@@ -44,6 +44,7 @@ form.addEventListener("submit", async (event) => {
 
   try {
     const companions = [value("companion1"), value("companion2"), value("companion3"), value("companion4"), value("companion5")].filter(Boolean);
+    const children = [value("child1"), value("child2"), value("child3"), value("child4"), value("child5")].filter(Boolean);
     const childPrograms = checkedValues("childPrograms");
     if (value("childProgramsOther")) childPrograms.push(value("childProgramsOther"));
 
@@ -64,6 +65,7 @@ form.addEventListener("submit", async (event) => {
       companions: companions,
       has_children: value("hasChildren"),
       children_details: value("childrenDetails"),
+      children_names: children,
       child_programs: childPrograms,
       accommodation: value("accommodation"),
       demo_interest: value("demoInterest"),
@@ -100,6 +102,17 @@ form.addEventListener("submit", async (event) => {
         city: registration.city,
         checked_in: false,
         contribution_paid: false
+      })),
+      ...children.map((name, i) => ({
+        registration_id: registrationId,
+        participant_code: makeParticipantCode(companions.length + i + 2),
+        name: name,
+        type: "Gyermek",
+        email_contact: registration.email,
+        phone_contact: registration.phone,
+        city: registration.city,
+        checked_in: false,
+        contribution_paid: false
       }))
     ];
 
@@ -108,24 +121,6 @@ form.addEventListener("submit", async (event) => {
 
     const { error: participantError } = await client.from("participants").insert(participantRows);
     if (participantError) throw participantError;
-
-    try {
-      await client.functions.invoke("send-ticket-email", {
-        body: {
-          registration,
-          participants: participantRows,
-          event: {
-            name: "I. Országos Belovagló és Lókiképző Szakmai Fórum",
-            dateText: "2026. július 25.",
-            timeText: "9.00-tól",
-            locationText: "Csatangoló Lovarda – Öregcsertő, Homokmégyi u. 39.",
-            contributionText: "2 000 Ft / fő, helyszínen fizethető"
-          }
-        }
-      });
-    } catch (emailError) {
-      console.warn("A QR-belépő e-mail küldése nem sikerült, de a regisztráció rögzítve lett:", emailError);
-    }
 
     localStorage.setItem("forumTickets", JSON.stringify(participantRows));
     window.location.href = "koszonjuk.html";

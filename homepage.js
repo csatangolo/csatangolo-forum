@@ -196,7 +196,7 @@ loadParticipantCounter();
 })();
 
 
-// Premium v2.8: közösségi tér automatikus, finom képlapozó
+// Premium fix: közösségi tér automatikus, finom képlapozó
 (function(){
   function initCommunitySlider(){
     var slider = document.querySelector('.f33-community-slider');

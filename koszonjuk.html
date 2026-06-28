@@ -4,22 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Köszönjük a regisztrációt – QR-belépő</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=qr-card-2">
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 </head>
-<body>
-  <main class="ticket-confirm-page">
-    <section class="ticket-confirm-hero">
+<body class="qr-ticket-body">
+  <main class="qr-confirm-page">
+    <section class="qr-confirm-hero">
       <div class="badge">Sikeres regisztráció</div>
       <h1>Köszönjük a regisztrációdat!</h1>
-      <p class="motto">A névre szóló QR-belépőkártyád elkészült.</p>
+      <p>A névre szóló QR-belépőkártyád elkészült.</p>
 
-      <div class="save-ticket-notice">
+      <div class="qr-save-notice">
         <strong>Fontos!</strong>
         <span>Kérjük, készíts képernyőfotót a belépőkártyáról, és hozd magaddal a rendezvényre.</span>
       </div>
-
-      <p class="ticket-confirm-help">Ha több személyt regisztráltál, minden résztvevő külön QR-kódot kap. Érkezéskor mindenki saját kártyáját mutassa be.</p>
 
       <div class="hero-actions no-print">
         <button class="button" onclick="window.print()">Mentés / nyomtatás</button>
@@ -27,17 +25,17 @@
       </div>
     </section>
 
-    <section class="ticket-card-section">
-      <div id="tickets" class="entry-ticket-grid"></div>
-      <p id="emptyTickets" class="ticket-empty-message" hidden>Nincs megjeleníthető belépő ezen az eszközön. A regisztráció ettől még sikeres lehetett.</p>
+    <section class="qr-ticket-section">
+      <div id="tickets" class="qr-ticket-grid"></div>
+      <p id="emptyTickets" class="qr-ticket-empty" hidden>Nincs megjeleníthető belépő ezen az eszközön. A regisztráció ettől még sikeres lehetett.</p>
     </section>
 
-    <section class="ticket-info-box no-print">
+    <section class="qr-steps no-print">
       <h2>Mit kell tenned most?</h2>
-      <div class="ticket-info-steps">
-        <div><b>1.</b><span>Készíts képernyőfotót a belépőkártyáról.</span></div>
-        <div><b>2.</b><span>Őrizd meg a telefonodon a rendezvény napjáig.</span></div>
-        <div><b>3.</b><span>Belépéskor mutasd be a QR-kódot.</span></div>
+      <div>
+        <span><b>1.</b> Készíts képernyőfotót a belépőkártyáról.</span>
+        <span><b>2.</b> Őrizd meg a telefonodon a rendezvény napjáig.</span>
+        <span><b>3.</b> Belépéskor mutasd be a QR-kódot.</span>
       </div>
     </section>
   </main>
@@ -62,43 +60,42 @@
     } else {
       tickets.forEach((ticket, index) => {
         const card = document.createElement("article");
-        card.className = "entry-ticket-card-simple";
+        card.className = "qr-entry-card";
         card.innerHTML = `
-          <div class="ticket-save-ribbon">Mentsd le képernyőfotóként</div>
-
-          <div class="entry-ticket-header">
-            <div class="entry-ticket-mark">♞</div>
+          <div class="qr-card-ribbon">Mentsd le</div>
+          <div class="qr-card-top">
+            <div class="qr-logo">♞</div>
             <div>
               <strong>Csatangoló Lovarda</strong>
               <span>Digitális QR-belépő</span>
             </div>
           </div>
 
-          <div class="entry-ticket-name">
+          <div class="qr-card-name">
             <small>Név</small>
             <h2>${safe(ticket.name)}</h2>
             <p>${safe(ticket.type || "Résztvevő")}</p>
           </div>
 
-          <div class="entry-ticket-qr-wrap">
-            <div id="qr-${index}" class="entry-ticket-qr"></div>
+          <div class="qr-card-main">
+            <div id="qr-${index}" class="qr-card-codebox"></div>
           </div>
 
-          <div class="entry-ticket-event">
+          <div class="qr-card-details">
             <p><b>Rendezvény:</b> I. Országos Belovagló és Lókiképző Szakmai Fórum</p>
             <p><b>Időpont:</b> 2026. július 25. • 9.00-tól</p>
             <p><b>Helyszín:</b> Csatangoló Lovarda – Öregcsertő, Homokmégyi u. 39.</p>
             <p><b>Hozzájárulás:</b> 2 000 Ft / fő, helyszínen fizethető</p>
           </div>
 
-          <div class="entry-ticket-code">${safe(ticket.participant_code)}</div>
+          <div class="qr-card-id">${safe(ticket.participant_code)}</div>
         `;
         holder.appendChild(card);
 
         new QRCode(document.getElementById(`qr-${index}`), {
           text: ticket.participant_code,
-          width: 170,
-          height: 170
+          width: 172,
+          height: 172
         });
       });
     }

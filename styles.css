@@ -1381,37 +1381,441 @@ input[type="file"]{
 }
 
 
-/* === Admin export és törlés finomítás === */
-.admin-actions{
+/* === FIX: QR-belépőkártya prémium dizájn + gyermek QR mezők === */
+.child-name-box{
+  margin:16px 0 8px;
+  padding:18px;
+  border-radius:22px;
+  background:#fff8ea;
+  border:1px solid rgba(160,106,50,.18);
+}
+
+.qr-ticket-body{
+  background:
+    radial-gradient(circle at 12% 0%, rgba(214,162,75,.22), transparent 30%),
+    linear-gradient(180deg,#f8eee3,#ead6b5)!important;
+}
+
+.qr-confirm-page{
+  min-height:100vh;
+  padding:30px 16px 46px;
+  color:#3a2110;
+}
+
+.qr-confirm-hero{
+  width:min(980px,100%);
+  margin:0 auto 24px;
+  padding:32px 22px;
+  text-align:center;
+  border-radius:32px;
+  background:linear-gradient(135deg,#fff8ea,#ead6b5);
+  border:1px solid rgba(160,106,50,.22);
+  box-shadow:0 24px 70px rgba(70,42,22,.14);
+}
+
+.qr-confirm-hero h1{
+  margin:.18em 0;
+  color:#3a2110;
+  font-size:clamp(2rem,5vw,3.8rem);
+  line-height:1;
+}
+
+.qr-save-notice{
+  width:min(740px,100%);
+  margin:20px auto 0;
+  display:grid;
+  gap:6px;
+  padding:17px 20px;
+  border-radius:24px;
+  background:linear-gradient(135deg,#2b1509,#5e3c26);
+  color:#fff8ea;
+  border:1px solid rgba(242,203,121,.30);
+  box-shadow:0 18px 50px rgba(70,42,22,.20);
+}
+
+.qr-save-notice strong{
+  color:#f5d98e;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-size:.78rem;
+}
+
+.qr-ticket-section{
+  width:min(1120px,100%);
+  margin:0 auto;
+}
+
+.qr-ticket-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:22px;
+}
+
+.qr-entry-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:32px;
+  padding:24px;
+  background:
+    linear-gradient(135deg,rgba(36,17,7,.95),rgba(94,60,38,.90)),
+    url("assets/fokep.png");
+  background-size:cover;
+  background-position:center;
+  color:#fff8ea;
+  border:1px solid rgba(242,203,121,.30);
+  box-shadow:0 28px 82px rgba(70,42,22,.24);
+}
+
+.qr-entry-card:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(36,17,7,.96),rgba(36,17,7,.78),rgba(36,17,7,.60)),
+    radial-gradient(circle at 82% 14%,rgba(242,203,121,.18),transparent 30%);
+  z-index:0;
+}
+
+.qr-entry-card > *{
+  position:relative;
+  z-index:1;
+}
+
+.qr-card-ribbon{
+  position:absolute;
+  right:-44px;
+  top:22px;
+  z-index:3;
+  transform:rotate(35deg);
+  background:linear-gradient(135deg,#f5d98e,#b87935);
+  color:#2b1509;
+  font-weight:900;
+  font-size:.72rem;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  padding:8px 52px;
+}
+
+.qr-card-top{
   display:flex;
-  gap:10px;
-  flex-wrap:wrap;
   align-items:center;
+  gap:14px;
+  padding-right:80px;
+  margin-bottom:22px;
 }
 
-.mini-button.danger{
-  background:#ffe0da;
-  color:#9f2f24;
-  border-color:rgba(159,47,36,.22);
+.qr-logo{
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#fff8ea;
+  color:#7a4323;
+  font-size:1.65rem;
+  box-shadow:0 12px 32px rgba(0,0,0,.20);
 }
 
-.mini-button.danger:hover{
-  background:#f4b9ae;
+.qr-card-top strong{
+  display:block;
+  font-size:1.16rem;
 }
 
-.muted-table-cell{
+.qr-card-top span{
+  display:block;
+  color:#ecd8b8;
+  margin-top:3px;
+}
+
+.qr-card-name small{
+  color:#f2cb79;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  font-weight:900;
+}
+
+.qr-card-name h2{
+  margin:.12em 0 .05em;
+  color:#fff8ea;
+  font-size:clamp(1.75rem,5vw,2.6rem);
+  line-height:1.03;
+}
+
+.qr-card-name p{
+  margin:0;
+  color:#ecd8b8;
+  font-weight:700;
+}
+
+.qr-card-main{
+  display:grid;
+  place-items:center;
+  margin:22px 0;
+}
+
+.qr-card-codebox{
+  padding:14px;
+  background:#fff8ea;
+  border-radius:24px;
+  box-shadow:0 16px 42px rgba(0,0,0,.28);
+}
+
+.qr-card-details{
+  padding-top:17px;
+  border-top:1px solid rgba(242,203,121,.24);
+}
+
+.qr-card-details p{
+  margin:7px 0;
+  color:#f8ead0;
+  line-height:1.35;
+}
+
+.qr-card-id{
+  margin-top:18px;
+  display:inline-flex;
+  padding:10px 13px;
+  border-radius:999px;
+  background:rgba(255,248,234,.12);
+  border:1px solid rgba(242,203,121,.24);
+  color:#f5d98e;
+  font-weight:900;
+  letter-spacing:.05em;
+  font-size:.86rem;
+}
+
+.qr-steps{
+  width:min(980px,100%);
+  margin:26px auto 0;
+  padding:24px;
+  border-radius:28px;
+  background:rgba(255,248,234,.88);
+  border:1px solid rgba(160,106,50,.20);
+}
+
+.qr-steps h2{
   text-align:center;
-  padding:22px!important;
-  color:var(--muted);
+  margin-top:0;
 }
 
-.admin-table th:last-child,
-.admin-table td:last-child{
-  text-align:center;
+.qr-steps div{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.qr-steps span{
+  padding:15px;
+  border-radius:18px;
+  background:#fff8ea;
+  border:1px solid rgba(160,106,50,.14);
+}
+
+.qr-steps b{
+  display:inline-grid;
+  place-items:center;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  background:#5e3c26;
+  color:#f5d98e;
+  margin-right:8px;
 }
 
 @media(max-width:760px){
-  .admin-actions .button{
-    width:100%;
+  .qr-ticket-grid,
+  .qr-steps div{
+    grid-template-columns:1fr;
+  }
+  .qr-confirm-page{
+    padding:18px 12px 34px;
+  }
+  .qr-confirm-hero,
+  .qr-entry-card{
+    border-radius:26px;
+  }
+}
+
+/* === FIX: közösségi tér slider visszaállítása === */
+.f33-inspiring-gallery{
+  display:none!important;
+}
+
+.f33-lower-atmo-card{
+  display:grid!important;
+  grid-template-columns:minmax(0,.82fr) minmax(420px,.92fr)!important;
+  gap:24px!important;
+  min-height:500px!important;
+  padding:30px!important;
+}
+
+.f33-community-slider{
+  position:relative!important;
+  z-index:4!important;
+  min-height:440px!important;
+  align-self:stretch!important;
+  border-radius:28px!important;
+  overflow:hidden!important;
+  border:1px solid rgba(242,203,121,.20)!important;
+  box-shadow:0 26px 76px rgba(0,0,0,.28)!important;
+  background:#2b1509!important;
+  isolation:isolate!important;
+}
+
+.f33-community-slide{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  opacity:0!important;
+  transform:scale(1.08)!important;
+  transition:opacity 1.25s ease, transform 6.2s ease!important;
+  filter:saturate(.96) sepia(.10) contrast(1.05) brightness(.88)!important;
+}
+
+.f33-community-slide.is-active{
+  opacity:1!important;
+  transform:scale(1.0)!important;
+}
+
+.f33-community-slider:before{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:5!important;
+  pointer-events:none!important;
+  background:
+    linear-gradient(90deg,rgba(36,17,7,.38) 0%,rgba(36,17,7,.08) 36%,transparent 64%),
+    linear-gradient(0deg,rgba(36,17,7,.32),rgba(255,248,234,.06))!important;
+}
+
+.f33-community-caption{
+  position:absolute!important;
+  left:22px!important;
+  bottom:22px!important;
+  z-index:8!important;
+  padding:11px 16px!important;
+  border-radius:999px!important;
+  background:rgba(36,17,7,.62)!important;
+  border:1px solid rgba(242,203,121,.26)!important;
+  color:#fff4df!important;
+  font-weight:900!important;
+  box-shadow:0 14px 34px rgba(0,0,0,.22)!important;
+  backdrop-filter:blur(8px)!important;
+}
+
+@media(max-width:1050px){
+  .f33-lower-atmo-card{
+    grid-template-columns:1fr!important;
+  }
+  .f33-community-slider{
+    min-height:320px!important;
+  }
+}
+
+/* === FIX: realisztikus, városos publikus térkép === */
+.f33-public-map-card{
+  background:#4a2b17!important;
+  border:1px solid rgba(242,203,121,.34)!important;
+  box-shadow:0 26px 78px rgba(0,0,0,.24)!important;
+  overflow:hidden!important;
+}
+
+#publicForumMap{
+  min-height:430px!important;
+  filter:sepia(.26) saturate(.82) contrast(.96) brightness(.90)!important;
+  background:#d9c4a1!important;
+}
+
+.f33-public-map-card:after{
+  content:"Nagyítható, városos térkép"!important;
+  position:absolute!important;
+  left:18px!important;
+  top:18px!important;
+  z-index:700!important;
+  right:auto!important;
+  bottom:auto!important;
+  padding:9px 13px!important;
+  border-radius:999px!important;
+  background:rgba(43,21,9,.70)!important;
+  color:#fff4df!important;
+  border:1px solid rgba(242,203,121,.26)!important;
+  font-size:.78rem!important;
+  font-weight:900!important;
+  backdrop-filter:blur(8px)!important;
+}
+
+.f33-real-map-label span{
+  display:inline-flex;
+  padding:4px 8px;
+  border-radius:999px;
+  background:rgba(255,248,234,.80);
+  color:#3b2110;
+  border:1px solid rgba(94,60,38,.16);
+  font-size:12px;
+  font-weight:900;
+  box-shadow:0 6px 18px rgba(43,21,9,.12);
+}
+
+.f33-real-map-pin{
+  background:transparent;
+}
+
+.f33-real-map-pin span{
+  position:absolute;
+  left:6px;
+  top:6px;
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#fff0b4,#b87935);
+  border:2px solid #fff8ea;
+  box-shadow:0 0 0 9px rgba(242,203,121,.26),0 14px 28px rgba(43,21,9,.34);
+  animation:f33MapPulse 2.4s ease-in-out infinite;
+}
+
+.f33-real-map-pin b{
+  position:absolute;
+  left:22px;
+  top:-4px;
+  padding:5px 8px;
+  border-radius:999px;
+  background:rgba(43,21,9,.72);
+  color:#fff4df;
+  font-size:11px;
+  white-space:nowrap;
+  border:1px solid rgba(242,203,121,.22);
+  box-shadow:0 10px 24px rgba(0,0,0,.18);
+}
+
+.f33-real-tooltip{
+  background:#3b2110!important;
+  color:#fff4df!important;
+  border:1px solid rgba(242,203,121,.30)!important;
+  border-radius:999px!important;
+  box-shadow:0 10px 28px rgba(0,0,0,.20)!important;
+  font-weight:900!important;
+}
+
+.f33-public-map-card .leaflet-control-zoom a{
+  background:rgba(43,21,9,.86)!important;
+  color:#f5d98e!important;
+  border-color:rgba(242,203,121,.24)!important;
+  font-weight:900!important;
+}
+
+@media print{
+  .no-print,.qr-steps,.hero-actions{
+    display:none!important;
+  }
+  .qr-confirm-page{
+    padding:0!important;
+    background:white!important;
+  }
+  .qr-entry-card{
+    break-inside:avoid;
+    page-break-inside:avoid;
+    box-shadow:none!important;
   }
 }
