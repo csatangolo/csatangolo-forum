@@ -2780,3 +2780,104 @@ main{
     min-height:360px !important;
   }
 }
+
+
+/* === Premium v2.6 hero/regisztráció finomítás + új overlay kép === */
+
+/* Új feltöltött kép finom prémium rétegként a hero részben */
+.f33-hero{
+  position:relative !important;
+  isolation:isolate !important;
+}
+
+.f33-hero:before{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:-2 !important;
+  background-image:
+    linear-gradient(90deg,rgba(18,8,4,.82),rgba(18,8,4,.42),rgba(18,8,4,.78)),
+    url('assets/0EE940B3-0EB2-4C6B-8ED7-C771864C799B.PNG') !important;
+  background-size:cover !important;
+  background-position:center !important;
+  opacity:.28 !important;
+  filter:saturate(.9) sepia(.2) contrast(1.04) brightness(.82) blur(.2px) !important;
+  mix-blend-mode:soft-light !important;
+  pointer-events:none !important;
+}
+
+/* A meglévő hero háttér marad, de kicsit sötétebb, hogy a cím jobban olvasható legyen */
+.f33-hero:after{
+  background:
+    radial-gradient(circle at 50% 40%,rgba(255,248,234,.06),transparent 32%),
+    linear-gradient(180deg,rgba(18,8,4,.42),rgba(18,8,4,.74)) !important;
+}
+
+/* Főcím kisebb, levegősebb */
+.f33-hero h1{
+  font-size:clamp(1.72rem,3.62vw,3.72rem) !important;
+  line-height:.96 !important;
+  letter-spacing:.01em !important;
+  max-width:860px !important;
+}
+
+/* Felső arany kis szöveg olvashatóbb */
+.f33-kicker{
+  color:#f3d796 !important;
+  text-shadow:0 2px 18px rgba(0,0,0,.38) !important;
+  letter-spacing:.24em !important;
+}
+
+/* Dátum/helyszín badge marad elegáns, az időpont jobban kiemelve */
+.f33-meta-line span{
+  font-size:.9rem !important;
+  min-height:38px !important;
+}
+
+.f33-meta-line .f33-meta-time{
+  transform:scale(1.08) !important;
+  background:linear-gradient(135deg,rgba(245,217,142,.28),rgba(184,121,53,.22)) !important;
+  border-color:rgba(245,217,142,.48) !important;
+  color:#fff7e6 !important;
+  box-shadow:
+    0 12px 32px rgba(184,121,53,.18),
+    inset 0 1px 0 rgba(255,255,255,.18) !important;
+}
+
+/* Visszaszámláló picit hangsúlyosabb */
+.f33-countdown div,
+.f33-countdown-box,
+.f33-countdown > *{
+  border-color:rgba(245,217,142,.30) !important;
+}
+
+.f33-countdown strong,
+.f33-countdown .num{
+  font-size:1.08em !important;
+}
+
+/* Regisztráció gomb picit erősebb */
+.f33-actions a:first-child,
+.f33-hero .button-primary{
+  min-height:54px !important;
+  padding-inline:30px !important;
+}
+
+/* Mobilon is kisebb főcím és szebb időpont */
+@media(max-width:700px){
+  .f33-hero h1{
+    font-size:clamp(1.55rem,8.2vw,2.75rem) !important;
+    line-height:.98 !important;
+    max-width:94% !important;
+  }
+
+  .f33-hero:before{
+    opacity:.20 !important;
+    background-position:center top !important;
+  }
+
+  .f33-meta-line .f33-meta-time{
+    transform:none !important;
+    width:min(100%,330px) !important;
+  }
+}
