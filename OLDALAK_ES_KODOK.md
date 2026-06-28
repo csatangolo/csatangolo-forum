@@ -18,6 +18,7 @@
 - Teljes QR kapu: https://csatangolo.online/csatangolo-forum/kapu.html
 - Egyszerű kapu segítőknek: https://csatangolo.online/csatangolo-forum/kapu-egyszeru.html
 - Rendszerellenőrzés: https://csatangolo.online/csatangolo-forum/ellenorzes.html
+- Térképes statisztika: https://csatangolo.online/csatangolo-forum/terkep.html
 
 ## Kódok
 

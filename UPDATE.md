@@ -1,8 +1,14 @@
-# CSATANGOLÓ FÓRUM CMS 1.0.1 – JAVÍTOTT KIADÁS
+# CSATANGOLÓ FÓRUM CMS 1.1 – TÉRKÉPES STATISZTIKA
 
-## Most ezt töltsd fel
+## Frissítési útmutató
 
-Ezt a 1.0.1 csomagot töltsd fel GitHubra, ne az előzőt.
+| Feladat | Kell? |
+|---|---|
+| GitHub fájlok feltöltése | ✅ IGEN |
+| Supabase SQL futtatása | ❌ NEM |
+| Storage bucket | ❌ NEM |
+| Új oldal | ✅ IGEN |
+| Új jelszó | ❌ NINCS |
 
 ## GitHub
 
@@ -10,33 +16,25 @@ Töltsd fel / írd felül a ZIP összes fájlját.
 
 ## Supabase
 
-Supabase → SQL Editor → New query
+Nincs új SQL teendő.
 
-Futtasd le ezt:
+## Új oldal
 
-`supabase_csatangolo_cms_1_0_1_teljes.sql`
+Térképes statisztika:
 
-Ez javítja:
-- hiányzó CMS táblák
-- speakers
-- program_items
-- videos
-- news
-- sponsors
-- gallery
-- documents
-- Storage bucket
-- feltöltési jogosultságok
-- ellenőrző oldal Storage logikája
-
-Újra lefuttatható, nem törli a meglévő regisztrációkat.
-
-## Ellenőrzés
-
-Utána nyisd meg:
-
-`https://csatangolo.online/csatangolo-forum/ellenorzes.html`
+`https://csatangolo.online/csatangolo-forum/terkep.html`
 
 Szervezői kód:
 
 `csatangolo2026`
+
+## Adatvédelem
+
+A térképen nem jelenik meg név, csak település és létszám.
+
+Példa:
+Kalocsa – 11 résztvevő
+
+## Ha egy település nem jelenik meg a térképen
+
+Az oldal külön listázza a még nem azonosított településeket. Ezekhez később hozzá tudunk adni koordinátát.

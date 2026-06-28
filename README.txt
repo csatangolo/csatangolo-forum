@@ -1,9 +1,11 @@
-CSATANGOLÓ FÓRUM CMS 1.0.1 – JAVÍTOTT TELJES KIADÁS
+CSATANGOLÓ FÓRUM CMS 1.1 – TÉRKÉPES STATISZTIKA
 
-Ezt töltsd fel GitHubra.
+Új oldal:
+https://csatangolo.online/csatangolo-forum/terkep.html
 
-Supabase-ben ezt futtasd le:
-supabase_csatangolo_cms_1_0_1_teljes.sql
+Szervezői kód:
+csatangolo2026
 
-Utána ellenőrzés:
-https://csatangolo.online/csatangolo-forum/ellenorzes.html
+GitHubra töltsd fel / írd felül az összes fájlt.
+
+Supabase SQL nem kell.

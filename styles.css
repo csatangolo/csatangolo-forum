@@ -1008,3 +1008,56 @@ input[type="file"]{
   flex-wrap:wrap;
   gap:12px;
 }
+
+
+/* CMS 1.1 Térképes statisztika */
+.map-layout{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:18px;
+  margin:24px 0;
+}
+.map-card{
+  padding:14px;
+}
+#hungaryMap{
+  width:100%;
+  height:640px;
+  border-radius:22px;
+  overflow:hidden;
+  border:1px solid var(--line);
+}
+.map-summary{
+  display:grid;
+  gap:12px;
+}
+.map-summary div{
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:14px;
+  background:#fff;
+}
+.map-summary strong{
+  display:block;
+  font-size:2rem;
+  color:var(--brown);
+}
+.map-summary span{
+  color:var(--muted);
+}
+.tag-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.tag-list span{
+  background:#fff7ef;
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:8px 12px;
+  color:var(--brown);
+}
+@media(max-width:900px){
+  .map-layout{grid-template-columns:1fr}
+  #hungaryMap{height:500px}
+}
