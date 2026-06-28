@@ -3,39 +3,37 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Köszönjük a regisztrációt – QR-belépő</title>
-  <link rel="stylesheet" href="styles.css?v=qr-card-2">
+  <title>Köszönjük a regisztrációt – QR-vendégkártya</title>
+  <link rel="stylesheet" href="styles.css?v=guest-card-5">
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 </head>
-<body class="qr-ticket-body">
-  <main class="qr-confirm-page">
-    <section class="qr-confirm-hero">
+<body class="guest-card-body">
+  <main class="guest-confirm-page">
+    <section class="guest-confirm-hero">
       <div class="badge">Sikeres regisztráció</div>
       <h1>Köszönjük a regisztrációdat!</h1>
-      <p>A névre szóló QR-belépőkártyád elkészült.</p>
-
-      <div class="qr-save-notice">
-        <strong>Fontos!</strong>
-        <span>Kérjük, készíts képernyőfotót a belépőkártyáról, és hozd magaddal a rendezvényre.</span>
+      <p>Az alábbi névre szóló vendégkártyákat kérjük mentsd le képernyőfotóként.</p>
+      <div class="guest-save-alert">
+        <strong>Fontos</strong>
+        <span>Belépéskor ezt a QR-kódos vendégkártyát kell bemutatni. Ha több főt regisztráltál, minden résztvevő külön kártyát kap.</span>
       </div>
-
-      <div class="hero-actions no-print">
+      <div class="guest-actions no-print">
         <button class="button" onclick="window.print()">Mentés / nyomtatás</button>
-        <a class="button ghost" href="index.html">Vissza a Fórum oldalára</a>
+        <a class="button ghost dark" href="index.html">Vissza a fórum oldalára</a>
       </div>
     </section>
 
-    <section class="qr-ticket-section">
-      <div id="tickets" class="qr-ticket-grid"></div>
-      <p id="emptyTickets" class="qr-ticket-empty" hidden>Nincs megjeleníthető belépő ezen az eszközön. A regisztráció ettől még sikeres lehetett.</p>
+    <section class="guest-card-wrap">
+      <div id="tickets" class="guest-card-grid"></div>
+      <p id="emptyTickets" class="guest-empty" hidden>Nincs megjeleníthető vendégkártya ezen az eszközön.</p>
     </section>
 
-    <section class="qr-steps no-print">
-      <h2>Mit kell tenned most?</h2>
+    <section class="guest-next-steps no-print">
+      <h2>Mit kell tenned?</h2>
       <div>
-        <span><b>1.</b> Készíts képernyőfotót a belépőkártyáról.</span>
-        <span><b>2.</b> Őrizd meg a telefonodon a rendezvény napjáig.</span>
-        <span><b>3.</b> Belépéskor mutasd be a QR-kódot.</span>
+        <article><b>1</b><span>Készíts képernyőfotót minden vendégkártyáról.</span></article>
+        <article><b>2</b><span>Őrizd meg a telefonodon a rendezvény napjáig.</span></article>
+        <article><b>3</b><span>Belépéskor mutasd be a QR-kódot.</span></article>
       </div>
     </section>
   </main>
@@ -60,42 +58,41 @@
     } else {
       tickets.forEach((ticket, index) => {
         const card = document.createElement("article");
-        card.className = "qr-entry-card";
+        card.className = "premium-guest-card";
         card.innerHTML = `
-          <div class="qr-card-ribbon">Mentsd le</div>
-          <div class="qr-card-top">
-            <div class="qr-logo">♞</div>
+          <div class="guest-card-shine"></div>
+          <div class="guest-card-header">
+            <div class="guest-logo-mark">♞</div>
             <div>
               <strong>Csatangoló Lovarda</strong>
-              <span>Digitális QR-belépő</span>
+              <span>I. Országos Belovagló és Lókiképző Szakmai Fórum</span>
             </div>
           </div>
 
-          <div class="qr-card-name">
-            <small>Név</small>
-            <h2>${safe(ticket.name)}</h2>
-            <p>${safe(ticket.type || "Résztvevő")}</p>
+          <div class="guest-card-main">
+            <div class="guest-person">
+              <small>Vendégkártya</small>
+              <h2>${safe(ticket.name)}</h2>
+              <p>${safe(ticket.type || "Résztvevő")}</p>
+            </div>
+            <div id="qr-${index}" class="guest-qr"></div>
           </div>
 
-          <div class="qr-card-main">
-            <div id="qr-${index}" class="qr-card-codebox"></div>
+          <div class="guest-card-footer">
+            <div><span>Időpont</span><b>2026. július 25. • 9:00-tól</b></div>
+            <div><span>Helyszín</span><b>Csatangoló Lovarda, Öregcsertő</b></div>
+            <div><span>Belépőkód</span><b>${safe(ticket.participant_code)}</b></div>
           </div>
 
-          <div class="qr-card-details">
-            <p><b>Rendezvény:</b> I. Országos Belovagló és Lókiképző Szakmai Fórum</p>
-            <p><b>Időpont:</b> 2026. július 25. • 9.00-tól</p>
-            <p><b>Helyszín:</b> Csatangoló Lovarda – Öregcsertő, Homokmégyi u. 39.</p>
-            <p><b>Hozzájárulás:</b> 2 000 Ft / fő, helyszínen fizethető</p>
-          </div>
-
-          <div class="qr-card-id">${safe(ticket.participant_code)}</div>
+          <div class="guest-card-note">Hozzájárulás: 2 000 Ft / fő, helyszínen fizethető</div>
         `;
         holder.appendChild(card);
 
         new QRCode(document.getElementById(`qr-${index}`), {
           text: ticket.participant_code,
-          width: 172,
-          height: 172
+          width: 168,
+          height: 168,
+          correctLevel: QRCode.CorrectLevel.M
         });
       });
     }

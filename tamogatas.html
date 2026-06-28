@@ -36,13 +36,21 @@
       <h2>Bankkártyás támogatás Stripe fizetéssel</h2>
       <p>Válassz egy támogatási összeget, vagy kérj egyedi egyeztetést. A gombokhoz Stripe Payment Linket lehet kötni, így a fizetés biztonságosan, külön Stripe oldalon történik.</p>
     </div>
-    <div class="stripe-amount-grid">
-      <a class="stripe-button" data-stripe-amount="5000" href="#">5 000 Ft</a>
-      <a class="stripe-button" data-stripe-amount="10000" href="#">10 000 Ft</a>
-      <a class="stripe-button" data-stripe-amount="20000" href="#">20 000 Ft</a>
-      <a class="stripe-button muted" data-stripe-amount="custom" href="kapcsolat.html">Egyedi támogatás</a>
+    <div class="stripe-custom-pay">
+      <label>Választható támogatási összeg
+        <div class="stripe-custom-row">
+          <input id="customSupportAmount" type="number" min="1000" step="500" value="5000" placeholder="pl. 5000">
+          <span>Ft</span>
+        </div>
+      </label>
+      <button class="stripe-button" id="customStripeButton" type="button">Támogatás Stripe-on keresztül</button>
+      <div class="stripe-quick-grid">
+        <button type="button" data-quick-amount="2000">2 000 Ft</button>
+        <button type="button" data-quick-amount="5000">5 000 Ft</button>
+        <button type="button" data-quick-amount="10000">10 000 Ft</button>
+      </div>
     </div>
-    <p class="stripe-note">A Stripe linkeket a <code>tamogatas.js</code> fájlban lehet megadni. Addig a gombok nem indítanak fizetést.</p>
+    <p class="stripe-note">A választható összegű Stripe fizetéshez egy Stripe Payment Link szükséges, amelyben engedélyezve van, hogy a támogató maga adja meg az összeget. Ezt a linket a <code>tamogatas.js</code> fájlban kell beírni.</p>
   </section>
 
   <section class="support-options">

@@ -2067,3 +2067,567 @@ body.modal-open{overflow:hidden}
     grid-template-columns:1fr;
   }
 }
+
+
+/* === v5.0 prémium vendégkártya, beléptetés és választható Stripe támogatás === */
+.child-name-box{
+  margin:16px 0 8px;
+  padding:18px;
+  border-radius:22px;
+  background:#fff8ea;
+  border:1px solid rgba(160,106,50,.18);
+}
+
+/* QR vendégkártya */
+.guest-card-body{
+  background:
+    radial-gradient(circle at 16% 0%, rgba(214,162,75,.24), transparent 30%),
+    radial-gradient(circle at 100% 12%, rgba(94,60,38,.18), transparent 26%),
+    linear-gradient(180deg,#f8eee3,#ead6b5)!important;
+  color:#3a2110;
+}
+
+.guest-confirm-page{
+  min-height:100vh;
+  padding:28px 16px 46px;
+}
+
+.guest-confirm-hero{
+  width:min(1050px,100%);
+  margin:0 auto 26px;
+  padding:34px 24px;
+  text-align:center;
+  border-radius:34px;
+  background:linear-gradient(135deg,#fff8ea,#ead6b5);
+  border:1px solid rgba(160,106,50,.22);
+  box-shadow:0 26px 78px rgba(70,42,22,.14);
+}
+
+.guest-confirm-hero h1{
+  margin:.16em 0;
+  color:#3a2110;
+  font-size:clamp(2.1rem,5vw,4rem);
+  line-height:1.02;
+}
+
+.guest-confirm-hero p{
+  color:#6e523b;
+  font-size:1.05rem;
+}
+
+.guest-save-alert{
+  width:min(760px,100%);
+  margin:20px auto 0;
+  display:grid;
+  gap:6px;
+  padding:18px 22px;
+  border-radius:24px;
+  background:linear-gradient(135deg,#2b1509,#5e3c26);
+  color:#fff8ea;
+  border:1px solid rgba(242,203,121,.30);
+  box-shadow:0 18px 50px rgba(70,42,22,.20);
+}
+
+.guest-save-alert strong{
+  color:#f5d98e;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-size:.78rem;
+}
+
+.guest-actions{
+  margin-top:20px;
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.guest-card-wrap{
+  width:min(1120px,100%);
+  margin:0 auto;
+}
+
+.guest-card-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(335px,1fr));
+  gap:24px;
+}
+
+.premium-guest-card{
+  position:relative;
+  overflow:hidden;
+  min-height:560px;
+  padding:26px;
+  border-radius:34px;
+  color:#fff8ea;
+  background:
+    linear-gradient(135deg,rgba(36,17,7,.96),rgba(94,60,38,.92)),
+    url("assets/fokep.png") center/cover;
+  border:1px solid rgba(242,203,121,.34);
+  box-shadow:0 30px 90px rgba(70,42,22,.28);
+  isolation:isolate;
+}
+
+.premium-guest-card:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:
+    radial-gradient(circle at 82% 8%,rgba(242,203,121,.24),transparent 28%),
+    linear-gradient(90deg,rgba(36,17,7,.96),rgba(36,17,7,.78),rgba(36,17,7,.56));
+}
+
+.guest-card-shine{
+  position:absolute;
+  inset:-40% -50%;
+  background:linear-gradient(115deg,transparent 40%,rgba(255,248,234,.13),transparent 60%);
+  transform:rotate(7deg);
+  pointer-events:none;
+}
+
+.guest-card-header{
+  position:relative;
+  z-index:1;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:24px;
+}
+
+.guest-logo-mark{
+  width:58px;
+  height:58px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  background:#fff8ea;
+  color:#7a4323;
+  font-size:1.7rem;
+  box-shadow:0 14px 34px rgba(0,0,0,.22);
+}
+
+.guest-card-header strong{
+  display:block;
+  font-size:1.18rem;
+  letter-spacing:.03em;
+}
+
+.guest-card-header span{
+  display:block;
+  margin-top:3px;
+  color:#ecd8b8;
+  font-size:.88rem;
+  line-height:1.25;
+}
+
+.guest-card-main{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:20px;
+  align-items:center;
+  margin:28px 0;
+}
+
+.guest-person small{
+  color:#f2cb79;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  font-weight:900;
+}
+
+.guest-person h2{
+  margin:.12em 0 .08em;
+  color:#fff8ea;
+  font-size:clamp(2rem,5vw,3.2rem);
+  line-height:1.02;
+}
+
+.guest-person p{
+  display:inline-flex;
+  margin:0;
+  padding:9px 13px;
+  border-radius:999px;
+  background:rgba(255,248,234,.12);
+  border:1px solid rgba(242,203,121,.22);
+  color:#f5d98e;
+  font-weight:900;
+}
+
+.guest-qr{
+  background:#fff8ea;
+  padding:14px;
+  border-radius:24px;
+  box-shadow:0 18px 48px rgba(0,0,0,.32);
+}
+
+.guest-card-footer{
+  position:relative;
+  z-index:1;
+  display:grid;
+  gap:10px;
+  margin-top:20px;
+  padding-top:18px;
+  border-top:1px solid rgba(242,203,121,.24);
+}
+
+.guest-card-footer div{
+  display:grid;
+  gap:3px;
+}
+
+.guest-card-footer span{
+  color:#f2cb79;
+  font-size:.75rem;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-weight:900;
+}
+
+.guest-card-footer b{
+  color:#fff8ea;
+  font-size:.98rem;
+}
+
+.guest-card-note{
+  position:relative;
+  z-index:1;
+  margin-top:18px;
+  padding:12px 14px;
+  border-radius:18px;
+  background:rgba(255,248,234,.10);
+  border:1px solid rgba(242,203,121,.18);
+  color:#ecd8b8;
+  font-weight:800;
+}
+
+.guest-next-steps{
+  width:min(1050px,100%);
+  margin:26px auto 0;
+  padding:24px;
+  border-radius:30px;
+  background:rgba(255,248,234,.88);
+  border:1px solid rgba(160,106,50,.20);
+  box-shadow:0 20px 58px rgba(70,42,22,.10);
+}
+
+.guest-next-steps h2{
+  margin-top:0;
+  text-align:center;
+}
+
+.guest-next-steps div{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.guest-next-steps article{
+  padding:16px;
+  border-radius:20px;
+  background:#fff8ea;
+  border:1px solid rgba(160,106,50,.14);
+}
+
+.guest-next-steps b{
+  display:inline-grid;
+  place-items:center;
+  width:30px;
+  height:30px;
+  margin-right:8px;
+  border-radius:50%;
+  background:#5e3c26;
+  color:#f5d98e;
+}
+
+/* Beléptetés */
+.gate-admin-body{
+  background:
+    radial-gradient(circle at 10% 0%, rgba(214,162,75,.22), transparent 30%),
+    linear-gradient(180deg,#f8eee3,#ead6b5)!important;
+}
+
+.gate-admin-page{
+  max-width:1160px;
+  margin:0 auto;
+  padding:24px;
+}
+
+.gate-admin-hero{
+  padding:34px 24px;
+  text-align:center;
+  border-radius:34px;
+  background:linear-gradient(135deg,rgba(36,17,7,.94),rgba(94,60,38,.88)),url("assets/fokep.png") center/cover;
+  color:#fff8ea;
+  border:1px solid rgba(242,203,121,.28);
+  box-shadow:0 26px 78px rgba(70,42,22,.18);
+}
+
+.gate-admin-hero h1{
+  margin:.16em 0;
+  color:#fff8ea;
+  font-size:clamp(2.1rem,5vw,4rem);
+  line-height:1;
+}
+
+.gate-admin-card{
+  margin-top:22px;
+  padding:24px;
+  border-radius:30px;
+  background:rgba(255,248,234,.92);
+  border:1px solid rgba(160,106,50,.22);
+  box-shadow:0 22px 62px rgba(70,42,22,.12);
+}
+
+.gate-login{
+  width:min(620px,100%);
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.gate-admin-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(340px,.9fr);
+  gap:22px;
+  align-items:start;
+}
+
+.gate-card-title{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  align-items:center;
+}
+
+.premium-reader{
+  min-height:330px;
+  overflow:hidden;
+  border-radius:24px;
+  background:#2b1509;
+  border:1px solid rgba(94,60,38,.24);
+}
+
+.gate-scanner-actions{
+  display:flex;
+  gap:10px;
+  margin-top:12px;
+  flex-wrap:wrap;
+}
+
+.manual-entry-box{
+  margin-top:20px;
+  padding-top:18px;
+  border-top:1px solid rgba(94,60,38,.14);
+}
+
+.gate-result-card{
+  min-height:440px;
+  display:grid;
+  align-items:center;
+}
+
+.gate-waiting,
+.gate-result{
+  text-align:center;
+  padding:24px;
+}
+
+.gate-waiting b,
+.gate-result b{
+  width:78px;
+  height:78px;
+  margin:0 auto 16px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#fff8ea;
+  box-shadow:0 14px 38px rgba(70,42,22,.14);
+  font-size:2.2rem;
+}
+
+.gate-result.success b{background:#e4f8df}
+.gate-result.warning b{background:#fff1c7}
+.gate-result.danger b{background:#ffe0da}
+
+.gate-result h2{
+  margin:.1em 0;
+  font-size:clamp(1.8rem,4vw,3rem);
+}
+.gate-result.success h2{color:#2f7a3a}
+.gate-result.warning h2{color:#9a661f}
+.gate-result.danger h2{color:#a33a2a}
+
+.gate-name{
+  margin:10px 0 4px;
+  font-size:1.55rem;
+  color:#3a2110;
+  font-weight:900;
+}
+
+.gate-role{
+  display:inline-flex;
+  padding:8px 12px;
+  border-radius:999px;
+  background:#f3dfbd;
+  color:#5e3c26;
+  font-weight:900;
+}
+
+.gate-code{
+  display:inline-flex;
+  margin:12px auto;
+  padding:10px 14px;
+  border-radius:999px;
+  background:#f3dfbd;
+  border:1px solid rgba(160,106,50,.18);
+  color:#5e3c26;
+  font-weight:900;
+  letter-spacing:.04em;
+  font-size:.88rem;
+}
+
+.gate-status-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin:16px 0;
+}
+
+.gate-status-grid span{
+  padding:11px;
+  border-radius:16px;
+  font-weight:900;
+  font-size:.9rem;
+}
+
+.gate-status-grid .ok{background:#e5f7df;color:#2f7a3a}
+.gate-status-grid .wait{background:#fff1c7;color:#8a5a1f}
+.gate-status-grid .pay{background:#f5e2c2;color:#7a4323}
+
+.gate-action-row{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:16px;
+}
+
+.gate-action-row button:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+.gate-primary-btn,
+.button.gate-primary-btn{
+  background:linear-gradient(135deg,#d6a24b,#7a4323)!important;
+  color:#fff8ea!important;
+  border:0!important;
+  box-shadow:0 16px 38px rgba(94,60,38,.20)!important;
+}
+
+.gate-secondary-btn{
+  border:1px solid rgba(94,60,38,.30)!important;
+  background:#fff8ea!important;
+  color:#5e3c26!important;
+}
+
+/* Stripe változtatható támogatás */
+.stripe-custom-pay{
+  display:grid;
+  gap:14px;
+  padding:22px;
+  border-radius:26px;
+  background:#fff8ea;
+  border:1px solid rgba(160,106,50,.18);
+}
+
+.stripe-custom-row{
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  overflow:hidden;
+  border-radius:18px;
+  border:1px solid rgba(160,106,50,.18);
+  background:#fff;
+}
+
+.stripe-custom-row input{
+  border:0!important;
+  border-radius:0!important;
+  font-size:1.35rem!important;
+  font-weight:900;
+}
+
+.stripe-custom-row span{
+  padding:0 16px;
+  font-weight:900;
+  color:#5e3c26;
+}
+
+.stripe-quick-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+}
+
+.stripe-quick-grid button{
+  border:0;
+  border-radius:16px;
+  padding:12px;
+  background:#f3dfbd;
+  color:#5e3c26;
+  font-weight:900;
+}
+
+@media(max-width:900px){
+  .guest-card-main,
+  .gate-admin-grid{
+    grid-template-columns:1fr;
+  }
+  .guest-qr{
+    justify-self:center;
+  }
+  .guest-next-steps div{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:640px){
+  .premium-guest-card{
+    min-height:auto;
+    padding:22px;
+    border-radius:28px;
+  }
+  .gate-card-title{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .gate-status-grid,
+  .stripe-quick-grid{
+    grid-template-columns:1fr;
+  }
+  .gate-action-row .button,
+  .gate-scanner-actions .button{
+    width:100%;
+  }
+}
+
+@media print{
+  .no-print,
+  .guest-next-steps,
+  .topbar{
+    display:none!important;
+  }
+  .guest-confirm-page{
+    padding:0!important;
+    background:white!important;
+  }
+  .premium-guest-card{
+    break-inside:avoid;
+    page-break-inside:avoid;
+    box-shadow:none!important;
+  }
+}

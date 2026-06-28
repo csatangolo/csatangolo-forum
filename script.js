@@ -34,6 +34,21 @@ function showError(text) {
   message.textContent = text;
 }
 
+
+function mainParticipantType(roles) {
+  const clean = Array.isArray(roles) ? roles.filter(Boolean) : [];
+  if (!clean.length) return "Fő regisztráló";
+  const roleMap = {
+    "Előadóként is szívesen kapcsolódnék": "Előadó",
+    "Szakmai résztvevő": "Szakmai résztvevő",
+    "Lovardavezető": "Lovardavezető",
+    "Belovagló / lókiképző": "Belovagló / lókiképző",
+    "Oktató": "Oktató",
+    "Szülő / kísérő": "Szülő / kísérő"
+  };
+  return clean.map(r => roleMap[r] || r).slice(0, 3).join(" • ");
+}
+
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
@@ -85,7 +100,7 @@ form.addEventListener("submit", async (event) => {
         registration_id: registrationId,
         participant_code: makeParticipantCode(1),
         name: registration.main_name,
-        type: "Fő regisztráló",
+        type: mainParticipantType(roles),
         email_contact: registration.email,
         phone_contact: registration.phone,
         city: registration.city,
@@ -107,7 +122,7 @@ form.addEventListener("submit", async (event) => {
         registration_id: registrationId,
         participant_code: makeParticipantCode(companions.length + i + 2),
         name: name,
-        type: "Gyermek",
+        type: "Gyermek vendég",
         email_contact: registration.email,
         phone_contact: registration.phone,
         city: registration.city,
