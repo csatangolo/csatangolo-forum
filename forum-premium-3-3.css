@@ -1449,3 +1449,153 @@ main{
     padding:28px !important;
   }
 }
+
+
+/* === Premium v1.8: kép visszafordítás, új inspiráló kép, jelentkezz előadónak, footer tuning === */
+
+/* Első felső konténer: NEM tükrözve */
+.f33-atmo-card:first-child:before{
+  transform:scale(1.04) !important;
+  background-position:center !important;
+}
+
+/* Inspiráló / legelős konténer új képpel */
+.f33-lower-atmo-card:before{
+  background-image:var(--lower-img, url('assets/inspiralo-kornyezet-bg.webp')) !important;
+  background-position:center !important;
+}
+
+/* Jelentkezz előadónak kártya - meglévő hero képpel, fantom/hangulat hatással */
+.f33-speaker-apply{
+  border-style:dashed !important;
+  border-color:rgba(242,203,121,.38) !important;
+}
+
+.f33-speaker-apply .f33-speaker-photo{
+  background-image:
+    linear-gradient(180deg,rgba(20,9,4,.10),rgba(20,9,4,.64)),
+    url('assets/fokep.png') !important;
+  background-size:cover !important;
+  background-position:center !important;
+  filter:saturate(.55) contrast(1.08) brightness(.72) !important;
+}
+
+.f33-speaker-apply .f33-speaker-photo:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 50% 42%,rgba(255,248,234,.26),transparent 28%),
+    linear-gradient(135deg,rgba(242,203,121,.10),transparent 55%);
+  pointer-events:none;
+}
+
+.f33-speaker-apply .f33-speaker-photo:before{
+  content:"?";
+  position:absolute;
+  inset:0;
+  z-index:2;
+  display:grid;
+  place-items:center;
+  font-family:Georgia,serif;
+  font-size:5.2rem;
+  color:rgba(255,248,234,.72);
+  text-shadow:0 12px 34px rgba(0,0,0,.52);
+}
+
+.f33-speaker-apply .f33-speaker-body{
+  background:linear-gradient(180deg,rgba(44,22,10,.96),rgba(24,9,4,.98)) !important;
+}
+
+.f33-speaker-apply .f33-speaker-body span{
+  background:linear-gradient(135deg,rgba(242,203,121,.22),rgba(184,121,53,.14)) !important;
+  color:#f5d98e !important;
+}
+
+.f33-speaker-apply .f33-speaker-body a{
+  color:#f5d98e !important;
+}
+
+/* Hírlevél még elegánsabb */
+.f33-newsletter{
+  background:
+    linear-gradient(135deg,rgba(255,248,234,.98),rgba(238,214,174,.94) 52%,rgba(207,158,85,.78)) !important;
+  border:1px solid rgba(160,106,50,.28) !important;
+  box-shadow:0 24px 70px rgba(70,42,22,.14) !important;
+}
+
+/* Footer előtti prémium CTA */
+.f33-footer-prelude{
+  width:min(1320px,calc(100% - 44px));
+  margin:56px auto -18px;
+  position:relative;
+  z-index:2;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:24px;
+  padding:34px 38px;
+  border-radius:30px;
+  background:
+    linear-gradient(90deg,rgba(36,17,7,.92),rgba(94,60,38,.78)),
+    url('assets/fokep.png');
+  background-size:cover;
+  background-position:center;
+  border:1px solid rgba(242,203,121,.22);
+  box-shadow:0 28px 80px rgba(70,42,22,.22);
+  overflow:hidden;
+}
+
+.f33-footer-prelude:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,rgba(36,17,7,.92),rgba(36,17,7,.60),rgba(36,17,7,.36));
+  z-index:-1;
+}
+
+.f33-footer-prelude h2{
+  margin:.25em 0 .25em;
+  color:#fff8ea;
+  font-size:clamp(1.85rem,3vw,3rem);
+  line-height:1.05;
+}
+
+.f33-footer-prelude p{
+  margin:0;
+  color:#ecd8b8;
+  max-width:780px;
+  line-height:1.55;
+}
+
+.f33-footer-prelude a{
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:52px;
+  padding:0 26px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#d6a24b,#7a4323);
+  color:#fff8ea;
+  text-decoration:none;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  box-shadow:0 18px 42px rgba(122,67,35,.26);
+}
+
+.f33-footer{
+  padding-top:86px !important;
+}
+
+@media(max-width:780px){
+  .f33-footer-prelude{
+    flex-direction:column;
+    align-items:flex-start;
+    padding:26px;
+  }
+  .f33-footer-prelude a{
+    width:100%;
+  }
+}

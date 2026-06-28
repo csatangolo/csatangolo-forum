@@ -119,3 +119,22 @@ loadParticipantCounter();
   window.addEventListener('load', initInfiniteSpeakers);
   setTimeout(initInfiniteSpeakers, 1000);
 })();
+
+
+// Premium v1.8: előadói körlapozás frissítése a plusz kártya után
+(function(){
+  function refreshSpeakerCarousel(){
+    var strip = document.getElementById('speakerList');
+    if(!strip) return;
+    if(!strip.querySelector('.f33-speaker-apply')){
+      var card = document.createElement('article');
+      card.className = 'f33-speaker f33-speaker-apply';
+      card.innerHTML = '<div class="f33-speaker-photo"></div><div class="f33-speaker-body"><span>Nyitott lehetőség</span><h3>Jelentkezz te is előadónak</h3><p>Kerülj fel hamarosan az előadók közé.</p><a href="kapcsolat.html">Kapcsolatfelvétel</a></div>';
+      strip.appendChild(card);
+    }
+  }
+  window.addEventListener('load', function(){
+    setTimeout(refreshSpeakerCarousel, 1200);
+    setTimeout(refreshSpeakerCarousel, 2600);
+  });
+})();
