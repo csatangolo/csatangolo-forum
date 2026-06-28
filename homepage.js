@@ -2,26 +2,23 @@ const SUPABASE_URL = "https://ywkabsgazkzrjgjncbfc.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_DJvD1Hoou3Tn74T9BFx0ww_O6ObFlxY";
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+function setTextIfExists(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = value;
+}
+
 function updateCountdown() {
   const eventDate = new Date("2026-07-25T09:00:00+02:00");
   const now = new Date();
   const diff = eventDate - now;
-
-  if (diff <= 0) {
-    document.getElementById("days").textContent = "0";
-    document.getElementById("hours").textContent = "0";
-    document.getElementById("minutes").textContent = "0";
-    return;
-  }
-
-  const minutesTotal = Math.floor(diff / 1000 / 60);
+  const minutesTotal = Math.max(0, Math.floor(diff / 1000 / 60));
   const days = Math.floor(minutesTotal / (60 * 24));
   const hours = Math.floor((minutesTotal - days * 60 * 24) / 60);
   const minutes = minutesTotal % 60;
 
-  document.getElementById("days").textContent = days;
-  document.getElementById("hours").textContent = hours;
-  document.getElementById("minutes").textContent = minutes;
+  setTextIfExists("days", days);
+  setTextIfExists("hours", hours);
+  setTextIfExists("minutes", minutes);
 }
 
 async function loadParticipantCounter() {
@@ -29,9 +26,15 @@ async function loadParticipantCounter() {
     const { data, error } = await client.rpc("public_participant_count");
     if (error) throw error;
     const count = Number(data || 0);
+    const wrapper = document.getElementById("participantCounter");
+    const number = document.getElementById("participantCount") || document.getElementById("registeredCount") || document.getElementById("registrationCounter");
+    if (!wrapper && !number) return;
+
     if (count >= 200) {
-      document.getElementById("participantCount").textContent = count;
-      document.getElementById("participantCounter").classList.remove("hidden");
+      if (number) number.textContent = "Már több mint " + count + " fő jelentkezett";
+      if (wrapper) wrapper.classList.remove("hidden", "is-hidden-under-200");
+    } else {
+      if (wrapper) wrapper.classList.add("hidden", "is-hidden-under-200");
     }
   } catch (error) {
     console.log("Résztvevőszámláló nem elérhető:", error);
@@ -41,22 +44,3 @@ async function loadParticipantCounter() {
 updateCountdown();
 setInterval(updateCountdown, 60000);
 loadParticipantCounter();
-
-
-// Csatangoló finomítás: jelentkezők száma csak 200 főtől látszódjon
-function hideRegistrationCountUnder200(){
-  var el = document.getElementById('participantCounter') || document.getElementById('registeredCount') || document.getElementById('registrationCounter');
-  if(!el) return;
-  var n = parseInt((el.textContent || '').replace(/[^0-9]/g,''), 10) || 0;
-  var holder = el.closest('.f33-ribbon, .registration-ribbon, .participant-counter, .counter-card, section, div') || el.parentElement;
-  if(n < 200){
-    if(holder) holder.classList.add('is-hidden-under-200');
-  }else{
-    if(holder) holder.classList.remove('is-hidden-under-200');
-    el.textContent = 'Már több mint ' + n + ' fő jelentkezett';
-  }
-}
-document.addEventListener('DOMContentLoaded', hideRegistrationCountUnder200);
-window.addEventListener('load', hideRegistrationCountUnder200);
-setTimeout(hideRegistrationCountUnder200, 800);
-setTimeout(hideRegistrationCountUnder200, 1800);

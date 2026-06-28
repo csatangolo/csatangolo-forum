@@ -35,18 +35,18 @@ const LOCAL_SPEAKERS = [
     bio: `A ló és ember közötti tiszta kommunikációt, a következetes segítségadást és a bizalmon alapuló munkát képviseli.`,
     topic: "Horsemanship | Kommunikáció | Ranch szemlélet",
     sort_order: 2,
-    is_featured: true,
+    is_featured: false,
     is_published: true
   },
   {
     name: "Kevey Bella",
     subtitle: "Díjugratás • Sportló képzés",
-    image_url: "assets/C07657E9-0A27-4329-971E-57260E5DBD25.png",
+    image_url: "assets/kevey-bella.png",
     motto: "A teljesítmény mögött mindig ott van a pontos alapmunka.",
     bio: `Sportlovas szemlélettel, fegyelmezett, elegáns és lóközpontú megközelítéssel kapcsolódik a fórum szakmai programjához.`,
     topic: "Díjugratás | Sportló | Alapmunka",
     sort_order: 3,
-    is_featured: true,
+    is_featured: false,
     is_published: true
   },
   {
@@ -57,7 +57,7 @@ const LOCAL_SPEAKERS = [
     bio: `A lóval való finom, bizalmi kapcsolat és az oktatói jelenlét fontosságát képviseli.`,
     topic: "Oktatás | Kapcsolat | Bizalom",
     sort_order: 4,
-    is_featured: false,
+    is_featured: true,
     is_published: true
   },
   {
@@ -70,7 +70,7 @@ const LOCAL_SPEAKERS = [
     facebook_url: "https://www.facebook.com/share/p/18LLaey9Xi/",
     website_url: "https://nava.hu/id/4473109/",
     sort_order: 5,
-    is_featured: true,
+    is_featured: false,
     is_published: true
   },
   {
