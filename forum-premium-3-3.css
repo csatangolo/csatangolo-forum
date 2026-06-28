@@ -1227,3 +1227,225 @@ main{
     grid-column:auto !important;
   }
 }
+
+
+/* === Premium v1.7: csak kódjavítás, képek feltöltése nélkül === */
+
+/* Felső első konténer képe tükrözve, hogy szebb legyen a kompozíció */
+.f33-atmo-card:first-child:before{
+  transform:scale(1.04) scaleX(-1) !important;
+}
+
+/* Előadók cím blokk finomabb, elegánsabb */
+.f33-speaker-title,
+.f33-speaker-title-premium{
+  width:min(860px,calc(100% - 44px)) !important;
+  margin:0 auto 30px !important;
+  padding:18px 28px 20px !important;
+  border-radius:34px !important;
+  background:
+    linear-gradient(135deg,rgba(255,248,234,.98),rgba(235,214,181,.94)) !important;
+  border:1px solid rgba(160,106,50,.22) !important;
+  box-shadow:0 18px 52px rgba(70,42,22,.12) !important;
+}
+
+.f33-speaker-title h2,
+.f33-speaker-title-premium h2{
+  font-size:clamp(1.35rem,2.25vw,1.9rem) !important;
+  line-height:1.12 !important;
+}
+
+.f33-speaker-title p,
+.f33-speaker-title-premium p{
+  font-size:.96rem !important;
+}
+
+/* Előadói sor folyamatos körbeforduláshoz */
+.f33-speaker-strip{
+  scroll-behavior:auto !important;
+  scrollbar-width:thin;
+  mask-image:linear-gradient(90deg,transparent 0,#000 4%,#000 96%,transparent 100%);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 4%,#000 96%,transparent 100%);
+}
+
+.f33-speaker-clone{
+  pointer-events:none;
+}
+
+/* Jelentkezz előadónak kártya meglévő képből, új kép feltöltése nélkül */
+.f33-speaker-apply .f33-speaker-photo{
+  background-image:
+    linear-gradient(180deg,rgba(20,9,4,.08),rgba(20,9,4,.55)),
+    url('assets/fokep.png') !important;
+  background-position:center !important;
+  background-size:cover !important;
+  filter:saturate(.75) contrast(1.02) brightness(.78) !important;
+  position:relative !important;
+}
+
+.f33-speaker-apply .f33-speaker-photo:after{
+  content:"?";
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  font-family:Georgia,serif;
+  font-size:5rem;
+  color:rgba(255,248,234,.70);
+  text-shadow:0 10px 32px rgba(0,0,0,.45);
+  background:radial-gradient(circle,rgba(242,203,121,.20),transparent 46%);
+}
+
+.f33-speaker-apply .f33-speaker-body span{
+  background:rgba(242,203,121,.18) !important;
+  color:#f2cb79 !important;
+}
+
+.f33-speaker-apply h3{
+  color:#fff8ea !important;
+}
+
+/* A v1.6-ban felvett hibás alsó mozaik eltüntetése, ha még a HTML-ben maradt */
+.f33-premium-lower-gallery,
+.f33-bottom-mosaic{
+  display:none !important;
+}
+
+/* Legelős / inspiráló konténer a felső kártyákhoz hasonló stílusban, meglévő képpel */
+.f33-lower-atmo-section{
+  width:min(1320px,calc(100% - 44px)) !important;
+  margin:54px auto !important;
+}
+
+.f33-lower-atmo-card{
+  position:relative !important;
+  min-height:390px !important;
+  overflow:hidden !important;
+  border-radius:32px !important;
+  border:1px solid rgba(160,106,50,.26) !important;
+  box-shadow:0 28px 80px rgba(70,42,22,.18) !important;
+  background:#fff8ea !important;
+  isolation:isolate !important;
+}
+
+.f33-lower-atmo-card:before{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:-3 !important;
+  background-image:var(--lower-img, url('assets/pasture-golden.jpg')) !important;
+  background-size:cover !important;
+  background-position:center !important;
+  transform:scale(1.03) !important;
+  filter:saturate(1.04) contrast(1.03) !important;
+}
+
+.f33-lower-atmo-card:after{
+  content:"" !important;
+  position:absolute !important;
+  inset:0 !important;
+  z-index:-2 !important;
+  background:
+    linear-gradient(90deg,rgba(36,17,7,.92) 0%,rgba(36,17,7,.78) 42%,rgba(36,17,7,.32) 72%,rgba(36,17,7,.10) 100%),
+    linear-gradient(0deg,rgba(36,17,7,.25),rgba(255,248,234,.05)) !important;
+}
+
+.f33-lower-atmo-text{
+  width:min(610px,62%) !important;
+  min-height:390px !important;
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:center !important;
+  padding:42px !important;
+  color:#fff4df !important;
+}
+
+.f33-lower-atmo-text h2{
+  color:#fff8ea !important;
+  font-size:clamp(2.1rem,3.4vw,3.1rem) !important;
+  line-height:1.05 !important;
+  margin:.25em 0 .45em !important;
+}
+
+.f33-lower-atmo-text p{
+  color:#ecd8b8 !important;
+  line-height:1.62 !important;
+  margin:0 !important;
+}
+
+/* Hírlevél szekció prémiumabb, de kép nélkül */
+.f33-newsletter{
+  position:relative !important;
+  overflow:hidden !important;
+  margin-top:48px !important;
+  background:
+    radial-gradient(circle at 18% 20%,rgba(255,248,234,.96),transparent 28%),
+    radial-gradient(circle at 85% 40%,rgba(214,162,75,.30),transparent 34%),
+    linear-gradient(135deg,#f5e4c5,#d7ad70) !important;
+  border:1px solid rgba(160,106,50,.26) !important;
+  border-radius:28px !important;
+  box-shadow:0 24px 70px rgba(70,42,22,.13) !important;
+  padding:30px !important;
+}
+
+.f33-newsletter:before{
+  content:"";
+  position:absolute;
+  right:-80px;
+  top:-110px;
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  background:rgba(94,60,38,.08);
+}
+
+.f33-newsletter:after{
+  content:"";
+  position:absolute;
+  left:28px;
+  right:28px;
+  bottom:0;
+  height:3px;
+  background:linear-gradient(90deg,transparent,#b87935,transparent);
+  opacity:.45;
+}
+
+.f33-newsletter b{
+  color:#8d5728 !important;
+  text-shadow:0 1px 0 rgba(255,255,255,.35);
+}
+
+.f33-newsletter strong{
+  color:#3a2110 !important;
+  letter-spacing:.03em;
+}
+
+.f33-newsletter small{
+  color:#6e523b !important;
+}
+
+.f33-newsletter input{
+  background:rgba(255,248,234,.96) !important;
+  border:1px solid rgba(160,106,50,.30) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.65);
+}
+
+.f33-newsletter button{
+  background:linear-gradient(135deg,#c99039,#7a4323) !important;
+  box-shadow:0 16px 34px rgba(122,67,35,.24);
+}
+
+@media(max-width:700px){
+  .f33-lower-atmo-card{
+    min-height:420px !important;
+  }
+  .f33-lower-atmo-card:after{
+    background:
+      linear-gradient(90deg,rgba(36,17,7,.92) 0%,rgba(36,17,7,.82) 58%,rgba(36,17,7,.32) 100%) !important;
+  }
+  .f33-lower-atmo-text{
+    width:88% !important;
+    min-height:420px !important;
+    padding:28px !important;
+  }
+}

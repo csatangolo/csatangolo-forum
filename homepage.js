@@ -72,3 +72,50 @@ loadParticipantCounter();
   window.addEventListener('load', initSpeakerAutoscroll);
   setTimeout(initSpeakerAutoscroll, 1200);
 })();
+
+
+// Premium v1.7 előadói sor: folyamatos, körbeforduló lapozás
+(function(){
+  function initInfiniteSpeakers(){
+    var strip = document.getElementById('speakerList');
+    if(!strip || strip.dataset.infiniteSpeakers === '1') return;
+    strip.dataset.infiniteSpeakers = '1';
+
+    var originalCards = Array.prototype.slice.call(strip.children);
+    if(originalCards.length < 2) return;
+
+    originalCards.forEach(function(card){
+      var clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      clone.classList.add('f33-speaker-clone');
+      strip.appendChild(clone);
+    });
+
+    var paused = false;
+    var speed = 0.42;
+
+    strip.addEventListener('mouseenter', function(){ paused = true; });
+    strip.addEventListener('mouseleave', function(){ paused = false; });
+    strip.addEventListener('touchstart', function(){ paused = true; }, {passive:true});
+    strip.addEventListener('touchend', function(){ setTimeout(function(){ paused = false; }, 2200); }, {passive:true});
+
+    function halfWidth(){
+      return strip.scrollWidth / 2;
+    }
+
+    function tick(){
+      if(!paused && strip.scrollWidth > strip.clientWidth){
+        strip.scrollLeft += speed;
+        if(strip.scrollLeft >= halfWidth()){
+          strip.scrollLeft = strip.scrollLeft - halfWidth();
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  document.addEventListener('DOMContentLoaded', initInfiniteSpeakers);
+  window.addEventListener('load', initInfiniteSpeakers);
+  setTimeout(initInfiniteSpeakers, 1000);
+})();
