@@ -2127,3 +2127,96 @@ input[type="file"]{
     display:flex!important;
   }
 }
+
+
+/* === UTOLSÓ SIMÍTÁS: globális mobil szövegarányok, menühöz nem nyúl === */
+body{
+  overflow-x:hidden!important;
+}
+
+body:not(.forum33) *{
+  box-sizing:border-box!important;
+}
+
+body:not(.forum33) h1,
+body:not(.forum33) h2,
+body:not(.forum33) h3,
+body:not(.forum33) p,
+body:not(.forum33) li,
+body:not(.forum33) a,
+body:not(.forum33) label,
+body:not(.forum33) input,
+body:not(.forum33) textarea,
+body:not(.forum33) select{
+  max-width:100%!important;
+  overflow-wrap:break-word!important;
+  word-break:normal!important;
+}
+
+body:not(.forum33) main,
+body:not(.forum33) .page,
+body:not(.forum33) .support-page,
+body:not(.forum33) .about-page,
+body:not(.forum33) .final-program-page{
+  max-width:min(1180px, calc(100% - 24px))!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  overflow-x:hidden!important;
+}
+
+@media(max-width:820px){
+  body:not(.forum33) h1{
+    font-size:clamp(2rem,8vw,3.15rem)!important;
+    line-height:1.08!important;
+  }
+
+  body:not(.forum33) h2{
+    font-size:clamp(1.55rem,6vw,2.35rem)!important;
+    line-height:1.1!important;
+  }
+
+  body:not(.forum33) p,
+  body:not(.forum33) li{
+    font-size:.96rem!important;
+    line-height:1.58!important;
+  }
+
+  body:not(.forum33) .program-cards-final,
+  body:not(.forum33) .supporter-logo-grid,
+  body:not(.forum33) .about-services-grid{
+    grid-template-columns:1fr!important;
+  }
+
+  body:not(.forum33) .program-cards-final article,
+  body:not(.forum33) .support-form-shell,
+  body:not(.forum33) .bank-support-box,
+  body:not(.forum33) .supporters-section-final,
+  body:not(.forum33) .about-intro-card,
+  body:not(.forum33) .about-feature-list{
+    padding:20px!important;
+  }
+
+  body:not(.forum33) .form,
+  body:not(.forum33) form{
+    width:100%!important;
+    max-width:100%!important;
+  }
+}
+
+@media(max-width:480px){
+  body:not(.forum33) main,
+  body:not(.forum33) .page,
+  body:not(.forum33) .support-page,
+  body:not(.forum33) .about-page,
+  body:not(.forum33) .final-program-page{
+    max-width:calc(100% - 18px)!important;
+  }
+
+  body:not(.forum33) h1{
+    font-size:clamp(1.85rem,9vw,2.7rem)!important;
+  }
+
+  body:not(.forum33) h2{
+    font-size:clamp(1.4rem,7vw,2.05rem)!important;
+  }
+}
