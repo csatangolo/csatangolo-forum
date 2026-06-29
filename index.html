@@ -6,7 +6,7 @@
   <title>I. Országos Belovagló és Lókiképző Szakmai Fórum</title>
   <link rel="preload" as="image" href="assets/hero-forum.jpg">
   <link rel="stylesheet" href="styles.css?v=FINAL2">
-  <link rel="stylesheet" href="forum-premium-3-3.css?v=MENU-COMMUNITY-FIX-2">
+  <link rel="stylesheet" href="forum-premium-3-3.css?v=FINAL2">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
@@ -16,7 +16,6 @@
       <span class="f33-logo" aria-hidden="true"></span>
       <span><strong>Csatangoló</strong><small>Lovarda</small></span>
     </a>
-    <button class="f33-menu-toggle" type="button" aria-label="Menü megnyitása" aria-expanded="false"><span></span><span></span><span></span></button>
     <div class="f33-menu">
       <a href="index.html">Főoldal</a>
       <a href="program.html">Program</a>
@@ -241,7 +240,7 @@
     </div>
   </footer>
 
-  <script src="homepage.js?v=FINAL3-fixonly"></script>
+  <script src="homepage.js?v=FINAL2"></script>
   <script src="forum-premium-3-3.js?v=3.3.0"></script>
 
 <script id="f33-count-threshold-200">
@@ -273,60 +272,8 @@
 })();
 </script>
 
-
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="public-map.js?v=FINAL3-fixonly"></script>
-
-
-<script id="f33-mobile-menu-final-fixed-position">
-(function(){
-  function initF33Menu(){
-    var nav = document.querySelector('.forum33 .f33-nav');
-    var btn = document.querySelector('.forum33 .f33-menu-toggle');
-    var menu = document.querySelector('.forum33 .f33-menu');
-    if(!nav || !btn || !menu) return;
-
-    function setOpen(open){
-      nav.classList.toggle('is-menu-open', open);
-      btn.classList.toggle('is-open', open);
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      btn.setAttribute('aria-label', open ? 'Menü bezárása' : 'Menü megnyitása');
-    }
-
-    if(btn.dataset.finalFixedReady !== '1'){
-      btn.dataset.finalFixedReady = '1';
-
-      btn.addEventListener('click', function(e){
-        e.preventDefault();
-        e.stopPropagation();
-        setOpen(!nav.classList.contains('is-menu-open'));
-      });
-
-      menu.addEventListener('click', function(e){
-        var link = e.target && e.target.closest ? e.target.closest('a') : null;
-        if(link) setOpen(false);
-      });
-
-      document.addEventListener('click', function(e){
-        if(!nav.contains(e.target) && e.target !== btn) setOpen(false);
-      });
-
-      document.addEventListener('keydown', function(e){
-        if(e.key === 'Escape') setOpen(false);
-      });
-
-      window.addEventListener('resize', function(){
-        if(window.innerWidth > 900) setOpen(false);
-      });
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', initF33Menu);
-  window.addEventListener('load', initF33Menu);
-  setTimeout(initF33Menu, 250);
-  setTimeout(initF33Menu, 1000);
-})();
-</script>
-
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="public-map.js?v=FINAL2"></script>
+  <script src="site-mobile-menu.js?v=real-final"></script>
 </body>
 </html>

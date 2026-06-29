@@ -1971,19 +1971,17 @@ input[type="file"]{
 
 
 
-/* === TISZTA MOBIL MENÜ JAVÍTÁS – csak a topbar menüsorokra === */
-.topbar{
-  overflow:visible!important;
-}
 
-.topbar-menu-toggle{
+
+/* === REAL FINAL EGYSÉGES MOBIL MENÜ - FŐOLDAL + MINDEN ALMENÜ === */
+.site-menu-toggle{
   display:none;
   width:46px!important;
   height:46px!important;
   border:0!important;
   border-radius:16px!important;
   background:#5e3c26!important;
-  box-shadow:0 12px 30px rgba(43,21,9,.22)!important;
+  box-shadow:0 12px 30px rgba(43,21,9,.24)!important;
   align-items:center!important;
   justify-content:center!important;
   flex-direction:column!important;
@@ -1991,9 +1989,11 @@ input[type="file"]{
   cursor:pointer!important;
   flex:0 0 46px!important;
   -webkit-tap-highlight-color:transparent!important;
+  touch-action:manipulation!important;
+  z-index:20!important;
 }
 
-.topbar-menu-toggle span{
+.site-menu-toggle span{
   display:block!important;
   width:22px!important;
   height:2px!important;
@@ -2002,17 +2002,20 @@ input[type="file"]{
   transition:transform .18s ease, opacity .18s ease!important;
 }
 
-.topbar-menu-toggle.is-open span:nth-child(1){
+.site-menu-toggle.is-open span:nth-child(1){
   transform:translateY(7px) rotate(45deg)!important;
 }
-.topbar-menu-toggle.is-open span:nth-child(2){
+
+.site-menu-toggle.is-open span:nth-child(2){
   opacity:0!important;
 }
-.topbar-menu-toggle.is-open span:nth-child(3){
+
+.site-menu-toggle.is-open span:nth-child(3){
   transform:translateY(-7px) rotate(-45deg)!important;
 }
 
 @media(max-width:900px){
+  .f33-nav,
   .topbar{
     position:sticky!important;
     top:8px!important;
@@ -2027,20 +2030,29 @@ input[type="file"]{
     padding:8px 10px 8px 12px!important;
     min-height:64px!important;
     border-radius:24px!important;
+    overflow:visible!important;
+    box-sizing:border-box!important;
   }
 
+  .f33-brand,
   .topbar .brand{
     min-width:0!important;
-    max-width:calc(100vw - 98px)!important;
+    max-width:calc(100vw - 100px)!important;
     overflow:hidden!important;
     text-overflow:ellipsis!important;
     white-space:nowrap!important;
+    flex:1 1 auto!important;
   }
 
-  .topbar-menu-toggle{
+  .f33-brand small{
+    display:none!important;
+  }
+
+  .site-menu-toggle{
     display:flex!important;
   }
 
+  .f33-menu,
   .topbar .navlinks{
     display:none!important;
     position:absolute!important;
@@ -2050,6 +2062,8 @@ input[type="file"]{
     z-index:10001!important;
     width:min(320px, calc(100vw - 28px))!important;
     max-width:min(320px, calc(100vw - 28px))!important;
+    max-height:calc(100vh - 96px)!important;
+    overflow:auto!important;
     padding:12px!important;
     border-radius:22px!important;
     background:rgba(255,248,234,.99)!important;
@@ -2058,16 +2072,21 @@ input[type="file"]{
     backdrop-filter:blur(14px)!important;
     flex-direction:column!important;
     align-items:stretch!important;
+    justify-content:flex-start!important;
     gap:6px!important;
+    box-sizing:border-box!important;
   }
 
-  .topbar.is-menu-open .navlinks{
+  .f33-nav.site-menu-open .f33-menu,
+  .topbar.site-menu-open .navlinks{
     display:flex!important;
   }
 
+  .f33-menu a,
   .topbar .navlinks a{
     display:flex!important;
     align-items:center!important;
+    justify-content:flex-start!important;
     width:100%!important;
     min-height:44px!important;
     padding:10px 14px!important;
@@ -2080,17 +2099,31 @@ input[type="file"]{
     font-size:.9rem!important;
     font-weight:900!important;
     line-height:1.2!important;
+    letter-spacing:.03em!important;
     white-space:nowrap!important;
   }
 
+  .f33-menu a:hover,
+  .f33-menu a:focus,
   .topbar .navlinks a:hover,
   .topbar .navlinks a:focus{
     background:rgba(214,162,75,.18)!important;
   }
 
+  .f33-menu .f33-menu-cta,
   .topbar .navlinks .nav-cta{
     justify-content:center!important;
     background:#5e3c26!important;
     color:#fff8ea!important;
+  }
+}
+
+@media(min-width:901px){
+  .f33-menu{
+    display:flex!important;
+  }
+
+  .topbar .navlinks{
+    display:flex!important;
   }
 }
