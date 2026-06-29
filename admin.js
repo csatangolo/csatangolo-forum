@@ -4,7 +4,6 @@ const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const ADMIN_CODE = "csatangolo2026";
 
 let participants = [];
-let registrations = [];
 
 const loginBox = document.getElementById("loginBox");
 const adminContent = document.getElementById("adminContent");
@@ -12,6 +11,7 @@ const loginButton = document.getElementById("loginButton");
 const loginMessage = document.getElementById("loginMessage");
 const body = document.getElementById("participantsBody");
 const searchInput = document.getElementById("searchInput");
+const statusFilter = document.getElementById("statusFilter");
 
 function msg(text) {
   loginMessage.className = "form-message error";
@@ -28,61 +28,101 @@ loginButton.addEventListener("click", async () => {
   await loadData();
 });
 
+document.getElementById("adminCode").addEventListener("keydown", e => {
+  if (e.key === "Enter") loginButton.click();
+});
+
 async function loadData() {
-  const pRes = await client.from("participants").select("*").order("created_at", { ascending: false });
-  const rRes = await client.from("registrations").select("*").order("created_at", { ascending: false });
+  const pRes = await client.from("participants").select("*").order("created_at", { ascending: true });
 
   if (pRes.error) {
-    alert("Nem sikerült betölteni a résztvevőket. Futtasd le az admin SQL frissítést.");
+    alert("Nem sikerült betölteni a résztvevőket. Ellenőrizd az adatbázis jogosultságokat.");
     console.error(pRes.error);
     return;
   }
 
   participants = pRes.data || [];
-  registrations = rRes.error ? [] : (rRes.data || []);
   updateStats();
   render(getFilteredRows());
 }
 
 function updateStats() {
+  const arrived = participants.filter(p => p.checked_in);
+  const paid = participants.filter(p => p.contribution_paid);
+  const unpaidArrived = participants.filter(p => p.checked_in && !p.contribution_paid);
+  const speakers = participants.filter(p => roleText(p).includes("előadó"));
+  const children = participants.filter(p => roleText(p).includes("gyermek"));
+
   document.getElementById("statParticipants").textContent = participants.length;
-  document.getElementById("statCheckedIn").textContent = participants.filter(p => p.checked_in).length;
-  document.getElementById("statPaid").textContent = participants.filter(p => p.contribution_paid).length;
-  const registrationIds = new Set(participants.map(p => p.registration_id).filter(Boolean));
-  document.getElementById("statRegistrations").textContent = registrations.length || registrationIds.size;
+  document.getElementById("statCheckedIn").textContent = arrived.length;
+  document.getElementById("statPaid").textContent = paid.length;
+  document.getElementById("statUnpaidArrived").textContent = unpaidArrived.length;
+  document.getElementById("statSpeakers").textContent = speakers.length;
+  document.getElementById("statChildren").textContent = children.length;
 }
 
 function getFilteredRows() {
   const q = searchInput.value.toLowerCase().trim();
-  return participants.filter(p =>
-    !q ||
-    String(p.name || "").toLowerCase().includes(q) ||
-    String(p.participant_code || "").toLowerCase().includes(q) ||
-    String(p.city || "").toLowerCase().includes(q) ||
-    String(p.email_contact || "").toLowerCase().includes(q)
-  );
+  const filter = statusFilter.value;
+
+  return participants.filter(p => {
+    const role = roleText(p);
+    const searchOk =
+      !q ||
+      String(p.name || "").toLowerCase().includes(q) ||
+      String(p.participant_code || "").toLowerCase().includes(q) ||
+      String(p.city || "").toLowerCase().includes(q) ||
+      String(p.type || "").toLowerCase().includes(q);
+
+    if (!searchOk) return false;
+
+    if (filter === "arrived") return !!p.checked_in;
+    if (filter === "not-arrived") return !p.checked_in;
+    if (filter === "unpaid-arrived") return !!p.checked_in && !p.contribution_paid;
+    if (filter === "paid") return !!p.contribution_paid;
+    if (filter === "speaker") return role.includes("előadó");
+    if (filter === "trainer") return role.includes("oktató") || role.includes("edző") || role.includes("lovasedző");
+    if (filter === "guest") return role.includes("vendég") && !role.includes("gyermek");
+    if (filter === "child") return role.includes("gyermek");
+    return true;
+  });
 }
 
 function render(rows) {
   body.innerHTML = "";
   if (!rows.length) {
-    body.innerHTML = `<tr><td colspan="7" class="muted-table-cell">Nincs találat.</td></tr>`;
+    body.innerHTML = `<tr><td colspan="8" class="muted-table-cell">Nincs találat.</td></tr>`;
     return;
   }
 
   rows.forEach(p => {
     const tr = document.createElement("tr");
+    tr.className = rowClass(p);
     tr.innerHTML = `
       <td><strong>${escapeHtml(p.name || "")}</strong></td>
-      <td>${escapeHtml(p.type || "")}</td>
+      <td><span class="role-chip">${escapeHtml(p.type || "Vendég")}</span></td>
       <td><small>${escapeHtml(p.participant_code || "")}</small></td>
       <td>${escapeHtml(p.city || "")}</td>
-      <td><button class="mini-button ${p.checked_in ? "ok" : ""}" data-action="checkin" data-id="${p.id}">${p.checked_in ? "Belépett" : "Beléptetés"}</button></td>
+      <td><button class="mini-button ${p.checked_in ? "ok" : ""}" data-action="checkin" data-id="${p.id}">${p.checked_in ? "Megérkezett" : "Nem érkezett"}</button></td>
       <td><button class="mini-button ${p.contribution_paid ? "ok" : ""}" data-action="paid" data-id="${p.id}">${p.contribution_paid ? "Rendezve" : "Fizetendő"}</button></td>
+      <td>${p.checked_in_at ? escapeHtml(new Date(p.checked_in_at).toLocaleString("hu-HU")) : ""}</td>
       <td><button class="mini-button danger" data-action="delete" data-id="${p.id}">Törlés</button></td>
     `;
     body.appendChild(tr);
   });
+}
+
+function rowClass(p) {
+  const role = roleText(p);
+  if (p.checked_in && p.contribution_paid) return "row-ok";
+  if (p.checked_in && !p.contribution_paid) return "row-warn";
+  if (role.includes("előadó")) return "row-speaker";
+  if (role.includes("oktató") || role.includes("edző")) return "row-trainer";
+  return "";
+}
+
+function roleText(p) {
+  return String(p.type || "").toLowerCase();
 }
 
 body.addEventListener("click", async (e) => {
@@ -93,7 +133,7 @@ body.addEventListener("click", async (e) => {
   if (!p) return;
 
   if (btn.dataset.action === "delete") {
-    await deleteParticipantOrRegistration(p);
+    await deleteParticipant(p);
     return;
   }
 
@@ -103,39 +143,20 @@ body.addEventListener("click", async (e) => {
 
   const { error } = await client.from("participants").update(update).eq("id", id);
   if (error) {
-    alert("Nem sikerült menteni. Lehet, hogy hiányzik az UPDATE jogosultság.");
+    alert("Nem sikerült menteni. Ellenőrizd az UPDATE jogosultságot.");
     console.error(error);
     return;
   }
+
   await loadData();
 });
 
-async function deleteParticipantOrRegistration(p) {
-  const sameReg = participants.filter(x => x.registration_id && x.registration_id === p.registration_id);
-  const isMain = String(p.type || "").toLowerCase().includes("fő");
-  const canDeleteWholeRegistration = p.registration_id && (sameReg.length > 1 || isMain);
+async function deleteParticipant(p) {
+  if (!confirm(`Biztosan törlöd ezt a résztvevőt?\n\n${p.name}\n${p.participant_code}`)) return;
 
-  let message = `Biztosan törlöd ezt a résztvevőt?\n\n${p.name}\n${p.participant_code}`;
-  if (canDeleteWholeRegistration) {
-    message += `\n\nEhhez a regisztrációhoz ${sameReg.length} belépő tartozik.\nOK = teljes regisztráció törlése\nMégse = nincs törlés`;
-  }
-
-  if (!confirm(message)) return;
-
-  let error;
-  if (canDeleteWholeRegistration) {
-    const secondConfirm = confirm("Végleges törlés: törlődjön az egész regisztráció az összes hozzá tartozó belépővel együtt?");
-    if (!secondConfirm) return;
-    await client.from("participants").delete().eq("registration_id", p.registration_id);
-    const res = await client.from("registrations").delete().eq("id", p.registration_id);
-    error = res.error;
-  } else {
-    const res = await client.from("participants").delete().eq("id", p.id);
-    error = res.error;
-  }
-
+  const { error } = await client.from("participants").delete().eq("id", p.id);
   if (error) {
-    alert("Nem sikerült törölni. Ellenőrizd a Supabase DELETE jogosultságot.");
+    alert("Nem sikerült törölni. Ellenőrizd a DELETE jogosultságot.");
     console.error(error);
     return;
   }
@@ -144,44 +165,21 @@ async function deleteParticipantOrRegistration(p) {
 }
 
 searchInput.addEventListener("input", () => render(getFilteredRows()));
+statusFilter.addEventListener("change", () => render(getFilteredRows()));
 
 document.getElementById("exportCsv").addEventListener("click", () => {
-  const rows = [["Név","Típus","Kód","Település","E-mail","Telefon","Belépett","Belépés ideje","Hozzájárulás"]];
-  participants.forEach(p => rows.push([
+  const rows = [["Név","Titulus","Kód","Település","Megérkezett","Fizetett","Érkezés ideje"]];
+  getFilteredRows().forEach(p => rows.push([
     p.name,
     p.type,
     p.participant_code,
     p.city,
-    p.email_contact,
-    p.phone_contact,
     p.checked_in ? "igen" : "nem",
-    p.checked_in_at || "",
-    p.contribution_paid ? "igen" : "nem"
+    p.contribution_paid ? "igen" : "nem",
+    p.checked_in_at || ""
   ]));
-  downloadCsv(rows, "csatangolo_forum_resztvevok.csv");
+  downloadCsv(rows, "csatangolo_forum_beleptetes.csv");
 });
-
-const exportRegsBtn = document.getElementById("exportRegistrations");
-if (exportRegsBtn) {
-  exportRegsBtn.addEventListener("click", () => {
-    const rows = [["Név","E-mail","Telefon","Település","Gyermekkel érkezik","Szállás","Bemutató érdeklődés","Kérdés címzettje","Kérdés","Témák","Szerepek","Regisztráció ideje"]];
-    registrations.forEach(r => rows.push([
-      r.main_name,
-      r.email,
-      r.phone,
-      r.city,
-      r.has_children,
-      r.accommodation,
-      r.demo_interest,
-      r.question_for,
-      r.speaker_question,
-      arrText(r.topics),
-      arrText(r.roles),
-      r.created_at || ""
-    ]));
-    downloadCsv(rows, "csatangolo_forum_regisztraciok.csv");
-  });
-}
 
 function downloadCsv(rows, filename) {
   const csv = rows.map(r => r.map(cell => `"${String(cell || "").replaceAll('"','""')}"`).join(";")).join("\n");
@@ -192,18 +190,6 @@ function downloadCsv(rows, filename) {
   a.download = filename;
   a.click();
   URL.revokeObjectURL(url);
-}
-
-function arrText(v) {
-  if (Array.isArray(v)) return v.join(", ");
-  if (typeof v === "string") {
-    try {
-      const parsed = JSON.parse(v);
-      if (Array.isArray(parsed)) return parsed.join(", ");
-    } catch {}
-    return v;
-  }
-  return "";
 }
 
 function escapeHtml(str) {
