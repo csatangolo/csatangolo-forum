@@ -237,3 +237,24 @@ loadParticipantCounter();
   setTimeout(initCommunitySliderV4, 500);
   setTimeout(initCommunitySliderV4, 1500);
 })();
+
+// FINAL2 közösségi tér: háromképes automatikus slider
+(function(){
+  function initCommunitySliderFinal(){
+    var slider=document.querySelector('.f33-community-slider');
+    if(!slider) return;
+    var slides=Array.prototype.slice.call(slider.querySelectorAll('.f33-community-slide'));
+    if(!slides.length) return;
+    var caption=document.getElementById('communityCaption');
+    var captions=['Családi programok egész nap','Csatangoló Lovas Büfé és Fröccsterasz','Lovas élmények, gyerekprogramok és közösség'];
+    if(slider.dataset.finalSlider==='1') return;
+    slider.dataset.finalSlider='1';
+    var index=0;
+    function show(i){slides.forEach(function(s,n){s.classList.toggle('is-active',n===i);}); if(caption) caption.textContent=captions[i]||captions[0]; index=i;}
+    show(0);
+    setInterval(function(){show((index+1)%slides.length);},4300);
+  }
+  document.addEventListener('DOMContentLoaded',initCommunitySliderFinal);
+  window.addEventListener('load',initCommunitySliderFinal);
+  setTimeout(initCommunitySliderFinal,500);
+})();

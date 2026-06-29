@@ -551,3 +551,37 @@ async function loadPublicProgram() {
   <div><time>Egész nap</time><strong>Lovas büfé, Fröccsterasz és családi programok</strong><span>Pihenés, gyerekprogramok és közösségi találkozások.</span></div>
   <div><time>Estig</time><strong>Levezetés jó hangulatban</strong><span>A nap tapasztalatainak összegzése, közösségi beszélgetés akár késő estig.</span></div>`;
 }
+
+// FINAL2: stabil előadói oldal – a szerverről érkező hiányos adatok mellé visszatölti a helyi szövegeket
+function finalSpeakerSlug(name){return String(name||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');}
+function finalSpeakerImage(s){return s.image_url||s.main_image_url||s.photo_url||s.profile_image_url||'';}
+function finalParagraphs(text){return String(text||'').split(/\n\s*\n/).map(x=>x.trim()).filter(Boolean);}
+function finalTopics(text){return String(text||'').split(/\||,|;/).map(x=>x.trim()).filter(Boolean);}
+function finalMergeSpeakers(db){
+  const byName=new Map((LOCAL_SPEAKERS||[]).map(s=>[String(s.name||'').toLowerCase().trim(),s]));
+  const used=new Set();
+  const out=(db||[]).map(s=>{const k=String(s.name||'').toLowerCase().trim(); const l=byName.get(k)||{}; used.add(k); return {...l,...s,image_url:s.image_url||s.main_image_url||s.photo_url||l.image_url,subtitle:s.subtitle||l.subtitle,motto:s.motto||l.motto,bio:s.bio||l.bio,topic:s.topic||l.topic,sort_order:s.sort_order||l.sort_order||100};});
+  (LOCAL_SPEAKERS||[]).forEach(l=>{const k=String(l.name||'').toLowerCase().trim(); if(!used.has(k)) out.push(l);});
+  return out.filter(s=>s && s.is_published!==false).sort((a,b)=>Number(a.sort_order||100)-Number(b.sort_order||100));
+}
+function renderSpeakerCardFinal(s){
+  const img=finalSpeakerImage(s); const lead=finalParagraphs(s.bio)[0]||''; const topics=finalTopics(s.topic).slice(0,3); const slug=finalSpeakerSlug(s.name);
+  return `<article class="speaker-final-card ${s.is_featured?'is-featured':''}">
+    <button type="button" class="speaker-card-open" data-speaker-slug="${esc(slug)}">
+      <div class="speaker-final-image">${img?`<img src="${esc(img)}" alt="${esc(s.name)}" loading="lazy">`:`<span>${esc((s.name||'?').charAt(0))}</span>`}${s.is_featured?'<em>Kiemelt előadó</em>':''}</div>
+      <div class="speaker-final-body"><span>Előadó</span><h2>${esc(s.name)}</h2>${s.subtitle?`<p class="speaker-final-subtitle">${esc(s.subtitle)}</p>`:''}${s.motto?`<blockquote>„${esc(s.motto)}”</blockquote>`:''}${lead?`<p>${esc(lead)}</p>`:''}${topics.length?`<div class="speaker-topic-list">${topics.map(t=>`<i>${esc(t)}</i>`).join('')}</div>`:''}<strong>Bővebben</strong></div>
+    </button>
+  </article>`;
+}
+function renderSpeakerDetailFinal(s){
+  const img=finalSpeakerImage(s); const ps=finalParagraphs(s.bio); const topics=finalTopics(s.topic);
+  return `<article class="speaker-detail-panel"><div class="speaker-detail-hero">${img?`<img src="${esc(img)}" alt="${esc(s.name)}">`:''}<div><span class="eyebrow">Előadó</span><h2>${esc(s.name)}</h2>${s.subtitle?`<p>${esc(s.subtitle)}</p>`:''}${s.motto?`<blockquote>„${esc(s.motto)}”</blockquote>`:''}</div></div><div class="speaker-detail-content"><h3>Bemutatkozás</h3>${ps.length?ps.map(p=>`<p>${esc(p)}</p>`).join(''):'<p>A részletes bemutatkozás hamarosan bővül.</p>'}${topics.length?`<div class="speaker-topic-list detail-topics">${topics.map(t=>`<i>${esc(t)}</i>`).join('')}</div>`:''}</div></article>`;
+}
+async function loadPublicSpeakers(){
+  const el=document.getElementById('speakerList'); if(!el) return;
+  let db=[]; try{const {data,error}=await client.from('speakers').select('*').eq('is_published',true).order('sort_order',{ascending:true}); if(!error&&data) db=data;}catch(e){console.log(e)}
+  const speakers=finalMergeSpeakers(db); window.CSATANGOLO_SPEAKERS=speakers;
+  el.innerHTML=speakers.map(renderSpeakerCardFinal).join('')+`<article class="speaker-final-card apply"><a href="kapcsolat.html"><div class="speaker-final-image phantom"><span>♞</span></div><div class="speaker-final-body"><span>Nyitott lehetőség</span><h2>Jelentkezz te is előadónak</h2><p>Kerülj fel hamarosan az előadók közé.</p><strong>Kapcsolatfelvétel</strong></div></a></article>`;
+  if(!document.getElementById('speakerModal')){document.body.insertAdjacentHTML('beforeend',`<div id="speakerModal" class="speaker-modal hidden" role="dialog" aria-modal="true"><div class="speaker-modal-backdrop" data-close-speaker></div><div class="speaker-modal-window"><button class="speaker-modal-close" type="button" data-close-speaker>×</button><div id="speakerModalContent"></div></div></div>`);document.querySelectorAll('[data-close-speaker]').forEach(x=>x.addEventListener('click',()=>{document.getElementById('speakerModal').classList.add('hidden');document.body.classList.remove('modal-open');}));}
+  el.querySelectorAll('[data-speaker-slug]').forEach(btn=>btn.addEventListener('click',()=>{const s=speakers.find(x=>finalSpeakerSlug(x.name)===btn.dataset.speakerSlug); if(!s)return; document.getElementById('speakerModalContent').innerHTML=renderSpeakerDetailFinal(s);document.getElementById('speakerModal').classList.remove('hidden');document.body.classList.add('modal-open');}));
+}

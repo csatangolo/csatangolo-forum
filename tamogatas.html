@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Támogatás – Csatangoló Fórum</title>
-  <link rel="stylesheet" href="styles.css?v=FINAL-2">
+  <link rel="stylesheet" href="styles.css?v=FINAL2">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-<nav class="topbar unified-nav">
+<nav class="topbar site-nav-final">
   <a href="index.html" class="brand">Csatangoló Lovarda</a>
   <div class="navlinks">
     <a href="index.html">Főoldal</a>
@@ -21,35 +21,11 @@
     <a class="nav-cta" href="regisztracio.html">Regisztráció</a>
   </div>
 </nav>
-
 <main class="support-page final-support-page">
-  <section class="support-hero-clean">
-    <span class="badge">Támogatás</span>
-    <h1>Támogasd a Csatangoló közösséget</h1>
-    <p>A támogatás a Csatangoló Lovas Egyesület szakmai, lovas, gyerek és közösségi programjait segíti.</p>
-  </section>
-
-  <section class="bank-support-box">
-    <div class="bank-support-text">
-      <span class="eyebrow">Banki átutalás</span>
-      <h2>Támogatás egyszerű átutalással</h2>
-      <p>Az alábbi bankszámlaszámra bármilyen szabadon választott összeget utalhatsz. A másolás gombokkal könnyen kimásolhatod az adatokat.</p>
-    </div>
-
-    <div class="bank-details-card">
-      <div class="bank-detail-row"><span>Kedvezményezett</span><strong>Csatangoló Lovas Egyesület</strong><button type="button" class="copy-bank-btn" data-copy="Csatangoló Lovas Egyesület">Másolás</button></div>
-      <div class="bank-detail-row"><span>Bankszámlaszám</span><strong>10101164-54293700-01005004</strong><button type="button" class="copy-bank-btn" data-copy="10101164-54293700-01005004">Másolás</button></div>
-      <div class="bank-detail-row"><span>Bank</span><strong>Budapest Bank</strong></div>
-      <div class="bank-detail-row"><span>Javasolt közlemény</span><strong>Támogatás</strong><button type="button" class="copy-bank-btn" data-copy="Támogatás">Másolás</button></div>
-    </div>
-
-    <div class="bank-thankyou"><b>💛 Köszönjük a támogatást!</b><span>Minden támogatás segít abban, hogy még több lovas, gyerek és családi programot tudjunk megvalósítani.</span></div>
-  </section>
-
-  <section class="supporters-section-final">
+  <section class="supporters-section-final top-supporters">
     <div class="section-head">
       <span class="eyebrow">Köszönjük</span>
-      <h2>Támogatóink</h2>
+      <h1>Támogatóink</h1>
       <p>Köszönjük partnereinknek és támogatóinknak, hogy hozzájárulnak a Csatangoló programok megvalósításához.</p>
     </div>
     <div class="supporter-logo-grid">
@@ -84,13 +60,12 @@
     </div>
   </section>
 
-  <section class="google-review-box">
-    <div><span class="eyebrow">Véleményed sokat számít</span><h2>Értékelj minket a Google Térképen</h2><p>Ha jártál már nálunk, egy rövid értékeléssel sokat segítesz nekünk.</p></div>
-    <a class="button" href="https://maps.app.goo.gl/1N2QbDjBaoTYU3Np9?g_st=ic" target="_blank" rel="noopener">Google értékelés írása</a>
-  </section>
-
-  <section class="support-form-shell">
-    <div class="support-form-intro"><span class="eyebrow">Támogatói szándék</span><h2>Jelezd, ha támogattál vagy támogatnál</h2><p>Ha szeretnél megjelenni a támogatói listán, vagy céges logót küldenél, itt tudod jelezni.</p></div>
+  <section class="support-form-shell final-support-form">
+    <div class="support-form-intro">
+      <span class="eyebrow">Támogatási lehetőség</span>
+      <h2>Jelezd, ha támogattál vagy támogatnál</h2>
+      <p>Ha szeretnél megjelenni a támogatói listán, vagy céges logót küldenél, itt tudod jelezni.</p>
+    </div>
     <form id="supportForm" class="form support-form">
       <label>Támogató neve / cégnév<input name="supporter_name" required></label>
       <label>E-mail<input name="email" type="email" required></label>
@@ -105,7 +80,26 @@
       <div id="supportMessage" class="form-message"></div>
     </form>
   </section>
+
+  <section class="bank-support-box final-bank-box">
+    <div class="bank-support-text">
+      <span class="eyebrow">Banki átutalás</span>
+      <h2>Számlaszám utaláshoz</h2>
+      <p>Az alábbi bankszámlaszámra bármilyen szabadon választott összeget utalhatsz.</p>
+    </div>
+    <div class="bank-details-card">
+      <div class="bank-detail-row"><span>Kedvezményezett</span><strong>Csatangoló Lovas Egyesület</strong><button type="button" class="copy-bank-btn" data-copy="Csatangoló Lovas Egyesület">Másolás</button></div>
+      <div class="bank-detail-row"><span>Bankszámlaszám</span><strong>10101164-54293700-01005004</strong><button type="button" class="copy-bank-btn" data-copy="10101164-54293700-01005004">Másolás</button></div>
+      <div class="bank-detail-row"><span>Bank</span><strong>Budapest Bank</strong></div>
+      <div class="bank-detail-row"><span>Javasolt közlemény</span><strong>Támogatás</strong><button type="button" class="copy-bank-btn" data-copy="Támogatás">Másolás</button></div>
+    </div>
+  </section>
+
+  <section class="google-review-box final-google-review">
+    <div><span class="eyebrow">Véleményed sokat számít</span><h2>Értékelj minket a Google Térképen</h2><p>Ha jártál már nálunk, egy rövid értékeléssel sokat segítesz nekünk.</p></div>
+    <a class="button" href="https://maps.app.goo.gl/1N2QbDjBaoTYU3Np9?g_st=ic" target="_blank" rel="noopener">Google értékelés írása</a>
+  </section>
 </main>
-<script src="tamogatas.js?v=FINAL-2"></script>
+<script src="tamogatas.js?v=FINAL2"></script>
 </body>
 </html>
