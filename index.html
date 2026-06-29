@@ -6,7 +6,7 @@
   <title>I. Országos Belovagló és Lókiképző Szakmai Fórum</title>
   <link rel="preload" as="image" href="assets/hero-forum.jpg">
   <link rel="stylesheet" href="styles.css?v=FINAL2">
-  <link rel="stylesheet" href="forum-premium-3-3.css?v=FINAL3-fixonly">
+  <link rel="stylesheet" href="forum-premium-3-3.css?v=LAST-CHANCE-1">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
@@ -274,56 +274,7 @@
 </script>
 
 
-<script id="f33-final-menu-community-fix">
-(function(){
-  function initMobileMenu(){
-    var nav = document.querySelector('.forum33 .f33-nav');
-    var btn = document.querySelector('.forum33 .f33-menu-toggle');
-    var menu = document.querySelector('.forum33 .f33-menu');
-    if(!nav || !btn || !menu || btn.dataset.ready === '1') return;
-    btn.dataset.ready = '1';
-    btn.addEventListener('click', function(){
-      var isOpen = nav.classList.toggle('is-menu-open');
-      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-    menu.querySelectorAll('a').forEach(function(a){
-      a.addEventListener('click', function(){
-        nav.classList.remove('is-menu-open');
-        btn.setAttribute('aria-expanded','false');
-      });
-    });
-    document.addEventListener('click', function(e){
-      if(!nav.contains(e.target)){
-        nav.classList.remove('is-menu-open');
-        btn.setAttribute('aria-expanded','false');
-      }
-    });
-  }
-
-  function initCommunitySlider(){
-    var slider = document.querySelector('.f33-community-slider');
-    if(!slider || slider.dataset.finalReady === '1') return;
-    slider.dataset.finalReady = '1';
-    var slides = Array.prototype.slice.call(slider.querySelectorAll('.f33-community-slide'));
-    if(!slides.length) return;
-    var caption = document.getElementById('communityCaption');
-    var captions = ['Családi programok egész nap','Csatangoló Lovas Büfé és Fröccsterasz','Lovas élmények és közösségi hangulat'];
-    var i = Math.max(0, slides.findIndex(function(x){ return x.classList.contains('is-active'); }));
-    function show(n){
-      slides.forEach(function(slide, idx){ slide.classList.toggle('is-active', idx === n); });
-      if(caption) caption.textContent = captions[n] || captions[0];
-      i = n;
-    }
-    show(i);
-    setInterval(function(){ show((i + 1) % slides.length); }, 4800);
-  }
-
-  document.addEventListener('DOMContentLoaded', function(){ initMobileMenu(); initCommunitySlider(); });
-  window.addEventListener('load', function(){ initMobileMenu(); initCommunitySlider(); });
-})();
-</script>
-
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="public-map.js?v=FINAL3-fixonly"></script>
 </body>
 </html>
