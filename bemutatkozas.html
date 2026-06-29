@@ -4,11 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Lovarda bemutatása – Csatangoló Lovarda</title>
-  <link rel="stylesheet" href="styles.css?v=FINAL-2">
+  <link rel="stylesheet" href="styles.css?v=FINAL-1">
 </head>
 <body>
-<nav class="topbar unified-nav">
+<nav class="topbar">
   <a href="index.html" class="brand">Csatangoló Lovarda</a>
+  <button class="topbar-menu-toggle" type="button" aria-label="Menü megnyitása" aria-expanded="false"><span></span><span></span><span></span></button>
   <div class="navlinks">
     <a href="index.html">Főoldal</a>
     <a href="program.html">Program</a>
@@ -73,5 +74,53 @@
     <p>Lovardánk széleskörű szolgáltatásokat kínál: lovasoktatás, tereplovaglás, lovastáborok, mozgás- és készségfejlesztés lóháton, bértartás, szálláshely és büfé szolgáltatás.</p>
   </section>
 </main>
+
+<script id="topbar-mobile-menu-fixed">
+(function(){
+  function initTopbarMobileMenu(){
+    document.querySelectorAll('.topbar.site-nav-final, .topbar').forEach(function(nav){
+      if(nav.closest('.forum33')) return;
+      var btn = nav.querySelector('.topbar-menu-toggle');
+      var menu = nav.querySelector('.navlinks');
+      if(!btn || !menu || btn.dataset.ready === '1') return;
+      btn.dataset.ready = '1';
+
+      function setOpen(open){
+        nav.classList.toggle('is-menu-open', open);
+        btn.classList.toggle('is-open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.setAttribute('aria-label', open ? 'Menü bezárása' : 'Menü megnyitása');
+      }
+
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        setOpen(!nav.classList.contains('is-menu-open'));
+      });
+
+      menu.addEventListener('click', function(e){
+        if(e.target && e.target.closest && e.target.closest('a')) setOpen(false);
+      });
+
+      document.addEventListener('click', function(e){
+        if(!nav.contains(e.target) && e.target !== btn) setOpen(false);
+      });
+
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape') setOpen(false);
+      });
+
+      window.addEventListener('resize', function(){
+        if(window.innerWidth > 900) setOpen(false);
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initTopbarMobileMenu);
+  window.addEventListener('load', initTopbarMobileMenu);
+  setTimeout(initTopbarMobileMenu, 300);
+})();
+</script>
+
 </body>
 </html>
