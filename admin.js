@@ -50,13 +50,14 @@ function updateStats() {
   const arrived = participants.filter(p => p.checked_in);
   const paid = participants.filter(p => p.contribution_paid);
   const unpaidArrived = participants.filter(p => p.checked_in && !p.contribution_paid);
+  const speakers = participants.filter(p => roleText(p).includes("előadó"));
   const children = participants.filter(p => roleText(p).includes("gyermek"));
 
   document.getElementById("statParticipants").textContent = participants.length;
   document.getElementById("statCheckedIn").textContent = arrived.length;
-  document.getElementById("statNotArrived").textContent = participants.length - arrived.length;
   document.getElementById("statPaid").textContent = paid.length;
   document.getElementById("statUnpaidArrived").textContent = unpaidArrived.length;
+  document.getElementById("statSpeakers").textContent = speakers.length;
   document.getElementById("statChildren").textContent = children.length;
 }
 
@@ -102,8 +103,8 @@ function render(rows) {
       <td><span class="role-chip">${escapeHtml(p.type || "Vendég")}</span></td>
       <td><small>${escapeHtml(p.participant_code || "")}</small></td>
       <td>${escapeHtml(p.city || "")}</td>
-      <td><button class="admin-toggle ${p.checked_in ? "on" : ""}" data-action="checkin" data-id="${p.id}"><b>${p.checked_in ? "✓" : ""}</b><span>${p.checked_in ? "Itt van" : "Nincs itt"}</span></button></td>
-      <td><button class="admin-toggle ${p.contribution_paid ? "on" : ""}" data-action="paid" data-id="${p.id}"><b>${p.contribution_paid ? "✓" : ""}</b><span>${p.contribution_paid ? "Fizetett" : "Nem fizetett"}</span></button></td>
+      <td><button class="mini-button ${p.checked_in ? "ok" : ""}" data-action="checkin" data-id="${p.id}">${p.checked_in ? "Megérkezett" : "Nem érkezett"}</button></td>
+      <td><button class="mini-button ${p.contribution_paid ? "ok" : ""}" data-action="paid" data-id="${p.id}">${p.contribution_paid ? "Rendezve" : "Fizetendő"}</button></td>
       <td>${p.checked_in_at ? escapeHtml(new Date(p.checked_in_at).toLocaleString("hu-HU")) : ""}</td>
       <td><button class="mini-button danger" data-action="delete" data-id="${p.id}">Törlés</button></td>
     `;
@@ -112,9 +113,9 @@ function render(rows) {
 }
 
 function rowClass(p) {
+  const role = roleText(p);
   if (p.checked_in && p.contribution_paid) return "row-ok";
   if (p.checked_in && !p.contribution_paid) return "row-warn";
-  const role = roleText(p);
   if (role.includes("előadó")) return "row-speaker";
   if (role.includes("oktató") || role.includes("edző")) return "row-trainer";
   return "";
@@ -127,7 +128,6 @@ function roleText(p) {
 body.addEventListener("click", async (e) => {
   const btn = e.target.closest("button[data-action]");
   if (!btn) return;
-
   const id = btn.dataset.id;
   const p = participants.find(x => x.id === id);
   if (!p) return;
@@ -152,12 +152,11 @@ body.addEventListener("click", async (e) => {
 });
 
 async function deleteParticipant(p) {
-  const ok = confirm(`Biztosan törlöd ezt a résztvevőt?\n\n${p.name}\n${p.participant_code}\n\nEz csak ezt az egy belépőkártyát törli.`);
-  if (!ok) return;
+  if (!confirm(`Biztosan törlöd ezt a résztvevőt?\n\n${p.name}\n${p.participant_code}`)) return;
 
   const { error } = await client.from("participants").delete().eq("id", p.id);
   if (error) {
-    alert("Nem sikerült törölni. Ellenőrizd a Supabase DELETE jogosultságot.");
+    alert("Nem sikerült törölni. Ellenőrizd a DELETE jogosultságot.");
     console.error(error);
     return;
   }
@@ -195,4 +194,170 @@ function downloadCsv(rows, filename) {
 
 function escapeHtml(str) {
   return String(str || "").replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+}
+
+
+// === Helyszíni gyors regisztráció ===
+const onsiteForm = document.getElementById("onsiteForm");
+const onsiteMessage = document.getElementById("onsiteMessage");
+const onsiteTicketBox = document.getElementById("onsiteTicketBox");
+
+function makeOnsiteCode() {
+  const random = Math.random().toString(36).substring(2, 8).toUpperCase();
+  return `HELYSZIN-2026-${random}`;
+}
+
+function splitContact(contact) {
+  const text = String(contact || "").trim();
+  if (!text) return { email: "", phone: "" };
+  if (text.includes("@")) return { email: text, phone: "" };
+  return { email: "", phone: text };
+}
+
+if (onsiteForm) {
+  onsiteForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    onsiteMessage.className = "form-message";
+    onsiteMessage.textContent = "Rögzítés folyamatban...";
+
+    const name = document.getElementById("onsiteName").value.trim();
+    const type = document.getElementById("onsiteType").value;
+    const city = document.getElementById("onsiteCity").value.trim();
+    const contact = splitContact(document.getElementById("onsiteContact").value);
+    const arrived = document.getElementById("onsiteArrived").checked;
+    const paid = document.getElementById("onsitePaid").checked;
+
+    if (!name) {
+      onsiteMessage.className = "form-message error";
+      onsiteMessage.textContent = "A név megadása kötelező.";
+      return;
+    }
+
+    const duplicate = participants.find(p => {
+      const sameName = String(p.name || "").toLowerCase().trim() === name.toLowerCase();
+      const sameContact = contact.email && String(p.email_contact || "").toLowerCase() === contact.email.toLowerCase()
+        || contact.phone && String(p.phone_contact || "").replace(/\s+/g,"") === contact.phone.replace(/\s+/g,"");
+      return sameName || sameContact;
+    });
+
+    if (duplicate) {
+      const ok = confirm(`Úgy tűnik, ez a résztvevő már szerepelhet a listában:\n\n${duplicate.name}\n${duplicate.participant_code}\n\nBiztosan létrehozol egy új helyszíni belépőt?`);
+      if (!ok) {
+        onsiteMessage.className = "form-message";
+        onsiteMessage.textContent = "Rögzítés megszakítva.";
+        return;
+      }
+    }
+
+    const row = {
+      participant_code: makeOnsiteCode(),
+      name,
+      type,
+      city,
+      email_contact: contact.email,
+      phone_contact: contact.phone,
+      checked_in: arrived,
+      checked_in_at: arrived ? new Date().toISOString() : null,
+      contribution_paid: paid
+    };
+
+    const { data, error } = await client.from("participants").insert(row).select("*").single();
+
+    if (error) {
+      console.error(error);
+      onsiteMessage.className = "form-message error";
+      onsiteMessage.textContent = "Nem sikerült rögzíteni. Ellenőrizd a Supabase INSERT jogosultságot.";
+      return;
+    }
+
+    onsiteMessage.className = "form-message success";
+    onsiteMessage.textContent = "Helyszíni résztvevő rögzítve.";
+    onsiteForm.reset();
+    document.getElementById("onsiteArrived").checked = true;
+    document.getElementById("onsitePaid").checked = false;
+
+    await loadData();
+    showOnsiteTicket(data);
+  });
+}
+
+function showOnsiteTicket(p) {
+  if (!onsiteTicketBox) return;
+  onsiteTicketBox.classList.remove("hidden");
+  onsiteTicketBox.innerHTML = `
+    <div class="onsite-ticket-actions">
+      <button class="button" type="button" id="saveOnsiteTicket">Kártya mentése képként</button>
+      <button class="button ghost dark" type="button" onclick="window.print()">Nyomtatás</button>
+    </div>
+
+    <article id="onsiteTicketCard" class="premium-guest-card onsite-ticket-card">
+      <div class="guest-card-header">
+        <div class="guest-logo-mark"><img src="assets/Photoroom_20250216_213349.png" alt="Csatangoló Lovarda logó"></div>
+        <div>
+          <strong>Csatangoló Lovarda</strong>
+          <span>Helyszíni vendégkártya</span>
+        </div>
+      </div>
+
+      <div class="guest-role-ribbon"><span>🎟️</span><b>${escapeHtml(p.type || "Vendég")}</b></div>
+
+      <div class="guest-card-main">
+        <div class="guest-person">
+          <small>Helyszíni regisztráció</small>
+          <h2>${escapeHtml(p.name || "")}</h2>
+          <p>${p.contribution_paid ? "Fizetés rendezve" : "Fizetésre vár"}</p>
+        </div>
+        <div class="guest-qr-shell">
+          <div id="onsiteQr" class="guest-qr"></div>
+          <span>QR belépőkód</span>
+        </div>
+      </div>
+
+      <div class="guest-card-footer">
+        <div><span>Időpont</span><b>2026. július 25. • 9:00-tól</b></div>
+        <div><span>Helyszín</span><b>Csatangoló Lovarda, Öregcsertő</b></div>
+        <div><span>Belépőkód</span><b>${escapeHtml(p.participant_code || "")}</b></div>
+      </div>
+    </article>
+  `;
+
+  if (window.QRCode) {
+    new QRCode(document.getElementById("onsiteQr"), {
+      text: p.participant_code,
+      width: 150,
+      height: 150,
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  }
+
+  const saveBtn = document.getElementById("saveOnsiteTicket");
+  if (saveBtn) {
+    saveBtn.addEventListener("click", () => downloadOnsiteTicket(p));
+  }
+}
+
+async function downloadOnsiteTicket(p) {
+  const card = document.getElementById("onsiteTicketCard");
+  if (!card || !window.html2canvas) {
+    alert("A képként mentés nem elérhető ezen az eszközön.");
+    return;
+  }
+
+  const canvas = await html2canvas(card, {
+    backgroundColor: null,
+    scale: Math.min(3, window.devicePixelRatio || 2),
+    useCORS: true,
+    allowTaint: true
+  });
+
+  const cleanName = String(p.name || "helyszini-vendeg")
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-zA-Z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .toLowerCase();
+
+  const link = document.createElement("a");
+  link.download = `csatangolo-helyszini-vendegkartya-${cleanName}.png`;
+  link.href = canvas.toDataURL("image/png");
+  link.click();
 }
