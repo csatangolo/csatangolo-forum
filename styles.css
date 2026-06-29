@@ -1960,3 +1960,368 @@ input[type="file"]{
     width:100%;
   }
 }
+
+
+/* === FINAL-2: egységes betűméret, menü, támogatás, mobil/fekvő stabilizálás === */
+:root{
+  --csg-brown:#3a2110;
+  --csg-brown2:#5e3c26;
+  --csg-gold:#d6a24b;
+  --csg-cream:#fff8ea;
+  --csg-sand:#ead6b5;
+}
+
+/* Egységes menü minden oldalon */
+.topbar.unified-nav,
+body .topbar{
+  position:sticky;
+  top:18px;
+  z-index:1000;
+  width:min(1180px, calc(100% - 42px))!important;
+  margin:18px auto 34px!important;
+  min-height:74px!important;
+  padding:10px 18px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:18px!important;
+  border-radius:999px!important;
+  background:rgba(255,248,234,.94)!important;
+  border:1px solid rgba(160,106,50,.16)!important;
+  box-shadow:0 18px 58px rgba(70,42,22,.12)!important;
+  backdrop-filter:blur(14px)!important;
+}
+
+.topbar .brand{
+  display:flex!important;
+  align-items:center!important;
+  gap:12px!important;
+  color:var(--csg-brown)!important;
+  text-decoration:none!important;
+  font-weight:900!important;
+  font-size:1.08rem!important;
+  letter-spacing:.02em!important;
+  white-space:nowrap!important;
+}
+
+.topbar .brand::before{
+  content:"";
+  display:block!important;
+  width:76px!important;
+  height:48px!important;
+  flex:0 0 76px!important;
+  margin:0!important;
+  background:url("assets/Photoroom_20250216_213349.png") center/contain no-repeat!important;
+  border:0!important;
+  border-radius:0!important;
+}
+
+.navlinks{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:18px!important;
+  flex-wrap:nowrap!important;
+}
+
+.navlinks a{
+  color:var(--csg-brown)!important;
+  text-decoration:none!important;
+  font-family:inherit!important;
+  font-size:.92rem!important;
+  font-weight:900!important;
+  letter-spacing:.04em!important;
+  white-space:nowrap!important;
+}
+
+.navlinks .nav-cta{
+  background:var(--csg-brown2)!important;
+  color:var(--csg-cream)!important;
+  padding:13px 20px!important;
+  border-radius:999px!important;
+  box-shadow:0 12px 30px rgba(94,60,38,.18)!important;
+}
+
+/* Globális címméret: ne nőjön túl sehol */
+body h1{
+  font-size:clamp(2.05rem, 4.2vw, 4.25rem)!important;
+  line-height:1.08!important;
+  letter-spacing:.015em;
+  max-width:1100px;
+}
+body h2{
+  font-size:clamp(1.65rem, 3vw, 3rem)!important;
+  line-height:1.1!important;
+}
+body h3{
+  font-size:clamp(1.2rem, 2vw, 1.8rem)!important;
+  line-height:1.15!important;
+}
+
+/* Támogatás oldal tiszta, nem brutális cím */
+.final-support-page{
+  max-width:1180px!important;
+  margin:0 auto!important;
+  padding:24px!important;
+}
+.support-hero-clean{
+  min-height:300px!important;
+  padding:34px!important;
+  display:grid!important;
+  align-items:end!important;
+  border-radius:34px!important;
+  color:var(--csg-cream)!important;
+  background:
+    linear-gradient(90deg,rgba(36,17,7,.94),rgba(94,60,38,.74),rgba(36,17,7,.35)),
+    url("assets/fokep.png") center/cover!important;
+  border:1px solid rgba(242,203,121,.26)!important;
+  box-shadow:0 28px 80px rgba(70,42,22,.18)!important;
+}
+.support-hero-clean h1{
+  color:var(--csg-cream)!important;
+  margin:.16em 0!important;
+  font-size:clamp(2rem, 4vw, 3.9rem)!important;
+  line-height:1.08!important;
+  text-transform:none!important;
+  letter-spacing:.01em!important;
+}
+.support-hero-clean p{
+  color:#ecd8b8!important;
+  max-width:760px!important;
+  font-size:1.06rem!important;
+  line-height:1.6!important;
+}
+
+.bank-support-box{
+  margin:24px 0!important;
+  padding:28px!important;
+  border-radius:34px!important;
+  background:radial-gradient(circle at 88% 12%,rgba(242,203,121,.28),transparent 30%),linear-gradient(135deg,#fff8ea,#ead6b5)!important;
+  border:1px solid rgba(160,106,50,.22)!important;
+  box-shadow:0 26px 76px rgba(70,42,22,.12)!important;
+  display:grid!important;
+  grid-template-columns:.88fr 1.12fr!important;
+  gap:24px!important;
+  align-items:center!important;
+}
+.bank-support-text h2{
+  color:var(--csg-brown)!important;
+  font-size:clamp(1.75rem,3.2vw,3rem)!important;
+  line-height:1.08!important;
+  margin:.2em 0!important;
+}
+.bank-support-text p{color:#6e523b!important;line-height:1.65!important}
+.bank-details-card{display:grid!important;gap:12px!important}
+.bank-detail-row{
+  display:grid!important;
+  grid-template-columns:1fr auto!important;
+  gap:8px 12px!important;
+  align-items:center!important;
+  padding:15px 16px!important;
+  border-radius:22px!important;
+  background:#fff8ea!important;
+  border:1px solid rgba(160,106,50,.16)!important;
+}
+.bank-detail-row span{
+  grid-column:1/-1!important;
+  color:#a66a2f!important;
+  text-transform:uppercase!important;
+  letter-spacing:.12em!important;
+  font-size:.72rem!important;
+  font-weight:900!important;
+}
+.bank-detail-row strong{
+  color:var(--csg-brown)!important;
+  font-size:1.02rem!important;
+  word-break:break-word!important;
+}
+.copy-bank-btn{
+  border:0!important;
+  border-radius:999px!important;
+  padding:9px 13px!important;
+  background:linear-gradient(135deg,#d6a24b,#7a4323)!important;
+  color:#fff8ea!important;
+  font-weight:900!important;
+  cursor:pointer!important;
+}
+.copy-bank-btn.copied{background:linear-gradient(135deg,#6a8f45,#2f6f37)!important}
+.bank-thankyou{
+  grid-column:1/-1!important;
+  padding:16px 20px!important;
+  border-radius:24px!important;
+  background:linear-gradient(135deg,#2b1509,#5e3c26)!important;
+  color:#fff8ea!important;
+  display:grid!important;
+  gap:5px!important;
+}
+
+/* Támogatók logók működő, szép rács */
+.supporters-section-final,
+.google-review-box,
+.support-form-shell{
+  margin:28px 0!important;
+  padding:28px!important;
+  border-radius:34px!important;
+  background:rgba(255,248,234,.92)!important;
+  border:1px solid rgba(160,106,50,.18)!important;
+  box-shadow:0 24px 70px rgba(70,42,22,.10)!important;
+}
+.section-head h2{
+  font-size:clamp(1.9rem,3.5vw,3.2rem)!important;
+  line-height:1.06!important;
+  margin:.16em 0!important;
+}
+.supporter-logo-grid{
+  display:grid!important;
+  grid-template-columns:repeat(auto-fit,minmax(170px,1fr))!important;
+  gap:16px!important;
+  margin-top:22px!important;
+}
+.supporter-logo-card{
+  min-height:168px!important;
+  padding:18px!important;
+  border-radius:24px!important;
+  background:#fff!important;
+  border:1px solid rgba(160,106,50,.16)!important;
+  display:grid!important;
+  place-items:center!important;
+  text-align:center!important;
+  text-decoration:none!important;
+  color:var(--csg-brown)!important;
+  box-shadow:0 18px 44px rgba(70,42,22,.08)!important;
+}
+.supporter-logo-card img{
+  display:block!important;
+  width:100%!important;
+  max-width:145px!important;
+  height:92px!important;
+  object-fit:contain!important;
+  margin:0 auto 12px!important;
+}
+.supporter-logo-card span{font-weight:900!important}
+
+.google-review-box{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:22px!important;
+  color:var(--csg-cream)!important;
+  background:linear-gradient(135deg,rgba(36,17,7,.94),rgba(94,60,38,.86)),url("assets/fokep.png") center/cover!important;
+}
+.google-review-box h2{color:var(--csg-cream)!important}
+.google-review-box p{color:#ecd8b8!important}
+
+/* Űrlap legyen kártyás, ne sima böngészőlista */
+.support-form-shell{
+  display:grid!important;
+  grid-template-columns:.78fr 1.22fr!important;
+  gap:24px!important;
+  align-items:start!important;
+}
+.support-form{
+  padding:22px!important;
+  border-radius:26px!important;
+  background:#fff8ea!important;
+  border:1px solid rgba(160,106,50,.16)!important;
+}
+.form label,
+.support-form label{
+  display:grid!important;
+  gap:7px!important;
+  margin-bottom:13px!important;
+  font-weight:900!important;
+  color:var(--csg-brown)!important;
+}
+.form input,.form textarea,.form select,
+.support-form input,.support-form textarea,.support-form select{
+  width:100%!important;
+  border-radius:16px!important;
+  border:1px solid rgba(160,106,50,.18)!important;
+  padding:13px 14px!important;
+  background:#fff!important;
+  color:var(--csg-brown)!important;
+  font:inherit!important;
+}
+.button{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:8px!important;
+  border:0!important;
+  border-radius:999px!important;
+  padding:13px 22px!important;
+  background:linear-gradient(135deg,#d6a24b,#7a4323)!important;
+  color:#fff8ea!important;
+  text-decoration:none!important;
+  font-weight:900!important;
+}
+
+/* Program / Lovarda oldalak ne essenek vissza natív stílusra */
+.final-program-page,.final-about-page{max-width:1180px!important;margin:0 auto!important;padding:24px!important}
+.program-hero-final,.final-about-hero{
+  border-radius:34px!important;
+  overflow:hidden!important;
+}
+.program-cards-final,.about-services-grid{
+  display:grid!important;
+  gap:16px!important;
+}
+.program-cards-final{grid-template-columns:repeat(5,1fr)!important}
+.about-services-grid{grid-template-columns:repeat(4,1fr)!important}
+.program-cards-final article,.about-services-grid article{
+  padding:22px!important;
+  border-radius:24px!important;
+  background:#fff8ea!important;
+  border:1px solid rgba(160,106,50,.16)!important;
+  box-shadow:0 16px 44px rgba(70,42,22,.08)!important;
+}
+
+/* Sötét mód ne tegye szürkévé */
+@media (prefers-color-scheme: dark){
+  body{
+    background:linear-gradient(180deg,#f8eee3,#ead6b5)!important;
+    color:#3a2110!important;
+  }
+  .topbar,.supporters-section-final,.support-form-shell,.support-form,.program-cards-final article,.about-services-grid article{
+    background-color:#fff8ea!important;
+    color:#3a2110!important;
+  }
+}
+
+/* iPad fekvő és mobil */
+@media(max-width:980px){
+  .topbar.unified-nav, body .topbar{
+    width:calc(100% - 24px)!important;
+    align-items:flex-start!important;
+    border-radius:30px!important;
+    flex-direction:column!important;
+    top:10px!important;
+  }
+  .navlinks{
+    width:100%!important;
+    overflow-x:auto!important;
+    justify-content:flex-start!important;
+    gap:14px!important;
+    padding-bottom:4px!important;
+  }
+  .bank-support-box,.support-form-shell,.program-timeline-final,.about-intro-card,.about-feature-list{
+    grid-template-columns:1fr!important;
+  }
+  .program-cards-final,.about-services-grid{grid-template-columns:1fr 1fr!important}
+}
+@media(max-width:620px){
+  .final-support-page,.final-program-page,.final-about-page{padding:14px!important}
+  body h1{font-size:clamp(1.9rem,8vw,2.75rem)!important}
+  body h2{font-size:clamp(1.45rem,6vw,2.15rem)!important}
+  .support-hero-clean,.bank-support-box,.supporters-section-final,.google-review-box,.support-form-shell{
+    padding:20px!important;
+    border-radius:26px!important;
+  }
+  .bank-detail-row{grid-template-columns:1fr!important}
+  .copy-bank-btn{width:100%!important}
+  .program-cards-final,.about-services-grid{grid-template-columns:1fr!important}
+  .google-review-box{flex-direction:column!important;align-items:flex-start!important}
+  .brand::before,.topbar .brand::before{
+    width:58px!important;height:40px!important;flex-basis:58px!important
+  }
+}

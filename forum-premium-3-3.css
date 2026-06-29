@@ -3042,3 +3042,85 @@ main{
     min-height:78px!important;
   }
 }
+
+
+/* === FINAL-2 főoldali cím és visszaszámláló stabilizálás === */
+.f33-hero h1{
+  font-size:clamp(2.35rem,4.55vw,4.95rem)!important;
+  line-height:1.12!important;
+  letter-spacing:.025em!important;
+  max-width:1050px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+.f33-countdown{
+  display:flex!important;
+  justify-content:center!important;
+  align-items:stretch!important;
+  gap:14px!important;
+  flex-wrap:wrap!important;
+  margin:22px auto 28px!important;
+}
+.f33-countdown div{
+  flex:0 0 auto!important;
+  width:112px!important;
+  min-width:112px!important;
+  height:96px!important;
+  min-height:96px!important;
+  padding:16px 12px!important;
+  border-radius:24px!important;
+  display:grid!important;
+  place-items:center!important;
+  background:rgba(255,248,234,.16)!important;
+  border:1px solid rgba(242,203,121,.34)!important;
+  box-shadow:0 18px 44px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.14)!important;
+  backdrop-filter:blur(10px)!important;
+}
+.f33-countdown strong,
+.f33-countdown .num{
+  display:block!important;
+  font-size:clamp(2.05rem,3.7vw,2.9rem)!important;
+  line-height:.88!important;
+  color:#fff8ea!important;
+  font-weight:900!important;
+}
+.f33-countdown small{
+  display:block!important;
+  margin-top:7px!important;
+  font-size:.72rem!important;
+  text-transform:uppercase!important;
+  letter-spacing:.12em!important;
+  color:#f2cb79!important;
+  font-weight:900!important;
+}
+.f33-meta-line{
+  display:flex!important;
+  justify-content:center!important;
+  flex-wrap:wrap!important;
+  gap:10px!important;
+}
+.f33-meta-line span{
+  flex:0 0 auto!important;
+  width:auto!important;
+  max-width:max-content!important;
+  white-space:nowrap!important;
+  padding:10px 15px!important;
+  border-radius:999px!important;
+}
+@media(max-width:700px){
+  .f33-hero h1{
+    font-size:clamp(2.05rem,9vw,3.05rem)!important;
+    line-height:1.14!important;
+  }
+  .f33-countdown{gap:9px!important}
+  .f33-countdown div{
+    width:86px!important;
+    min-width:86px!important;
+    height:78px!important;
+    min-height:78px!important;
+    border-radius:18px!important;
+  }
+  .f33-countdown strong,.f33-countdown .num{
+    font-size:clamp(1.7rem,7vw,2.25rem)!important;
+  }
+}
