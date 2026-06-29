@@ -568,7 +568,7 @@ function renderSpeakerCardFinal(s){
   const img=finalSpeakerImage(s); const lead=finalParagraphs(s.bio)[0]||''; const topics=finalTopics(s.topic).slice(0,3); const slug=finalSpeakerSlug(s.name);
   return `<article class="speaker-final-card ${s.is_featured?'is-featured':''}">
     <button type="button" class="speaker-card-open" data-speaker-slug="${esc(slug)}">
-      <div class="speaker-final-image">${img?`<img src="${esc(img)}" alt="${esc(s.name)}" loading="lazy">`:`<span>${esc((s.name||'?').charAt(0))}</span>`}${s.is_featured?'<em>Kiemelt előadó</em>':''}</div>
+      <div class="speaker-final-image">${img?`<img src="${esc(img)}" alt="${esc(s.name)}" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('phantom');">`:`<span>${esc((s.name||'?').charAt(0))}</span>`}${s.is_featured?'<em>Kiemelt előadó</em>':''}</div>
       <div class="speaker-final-body"><span>Előadó</span><h2>${esc(s.name)}</h2>${s.subtitle?`<p class="speaker-final-subtitle">${esc(s.subtitle)}</p>`:''}${s.motto?`<blockquote>„${esc(s.motto)}”</blockquote>`:''}${lead?`<p>${esc(lead)}</p>`:''}${topics.length?`<div class="speaker-topic-list">${topics.map(t=>`<i>${esc(t)}</i>`).join('')}</div>`:''}<strong>Bővebben</strong></div>
     </button>
   </article>`;
