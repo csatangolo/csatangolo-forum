@@ -1,16 +1,11 @@
-Utolsó stabil mobil menü javítás
+Tiszta mobil menü javítás
 
-Ez a csomag NEM módosítja a főoldal tartalmát, közösségi teret, programot vagy támogatói oldalt.
-Csak egy külön mobil menü javítást ad hozzá.
+A korábbi elromlott, lebegő JavaScript gombot kivettem.
+Most a gomb a felső menüsor saját jobb oldali gombja.
 
-Feltöltendő/cserélendő:
-- cs-final-mobile-menu.js
+Cserélendő:
 - styles.css
-- forum-premium-3-3.css, ha benne van a ZIP-ben
+- mobile-menu-simple.js
 - a ZIP-ben lévő HTML fájlok
 
-Miért stabilabb:
-- a menügombot JavaScript hozza létre fixen a jobb felső sarokba
-- nem függ attól, hogy a régi menüsor épp hova csúszik
-- mobilon a menü fix panelként nyílik le
-- almenüre kattintva bezáródik
+A főoldal tartalmához nem nyúltam.

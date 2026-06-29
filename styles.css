@@ -1969,31 +1969,31 @@ input[type="file"]{
 @media(max-width:980px){.program-cards-final{grid-template-columns:1fr 1fr!important}.program-timeline-final,.support-form-shell,.bank-support-box,.speaker-detail-hero{grid-template-columns:1fr!important}.navlinks{overflow-x:auto;max-width:72vw;padding-bottom:3px}.topbar{border-radius:28px!important}.two-col{grid-template-columns:1fr!important}}@media(max-width:680px){.page,.final-support-page,.final-speakers-page,.final-program-page{padding:16px!important}.program-cards-final{grid-template-columns:1fr!important}.supporter-logo-grid{grid-template-columns:1fr 1fr!important}.google-review-box{flex-direction:column!important;align-items:flex-start!important}.bank-detail-row{grid-template-columns:1fr!important}.copy-bank-btn{width:100%}.speaker-grid-final{grid-template-columns:1fr!important}.navlinks a{font-size:.8rem!important}.brand{font-size:.95rem!important}.brand:before{width:54px!important;height:40px!important}}
 
 
-/* === CSAK MOBIL MENÜGOMB JAVÍTÁS - NEM ÉRINTI A FŐOLDALT === */
-body:not(.forum33) .topbar{
+
+
+/* === TISZTA MOBIL MENÜ JAVÍTÁS – csak a topbar menüsorokra === */
+.topbar{
   overflow:visible!important;
-  isolation:isolate!important;
 }
 
-body:not(.forum33) .topbar-menu-toggle{
+.topbar-menu-toggle{
   display:none;
-  width:48px!important;
-  height:48px!important;
+  width:46px!important;
+  height:46px!important;
   border:0!important;
   border-radius:16px!important;
   background:#5e3c26!important;
-  box-shadow:0 14px 34px rgba(43,21,9,.24)!important;
+  box-shadow:0 12px 30px rgba(43,21,9,.22)!important;
   align-items:center!important;
   justify-content:center!important;
   flex-direction:column!important;
   gap:5px!important;
   cursor:pointer!important;
-  pointer-events:auto!important;
-  touch-action:manipulation!important;
+  flex:0 0 46px!important;
   -webkit-tap-highlight-color:transparent!important;
 }
 
-body:not(.forum33) .topbar-menu-toggle span{
+.topbar-menu-toggle span{
   display:block!important;
   width:22px!important;
   height:2px!important;
@@ -2002,76 +2002,70 @@ body:not(.forum33) .topbar-menu-toggle span{
   transition:transform .18s ease, opacity .18s ease!important;
 }
 
-body:not(.forum33) .topbar-menu-toggle.is-open span:nth-child(1){
+.topbar-menu-toggle.is-open span:nth-child(1){
   transform:translateY(7px) rotate(45deg)!important;
 }
-
-body:not(.forum33) .topbar-menu-toggle.is-open span:nth-child(2){
+.topbar-menu-toggle.is-open span:nth-child(2){
   opacity:0!important;
 }
-
-body:not(.forum33) .topbar-menu-toggle.is-open span:nth-child(3){
+.topbar-menu-toggle.is-open span:nth-child(3){
   transform:translateY(-7px) rotate(-45deg)!important;
 }
 
-@media (max-width:900px){
-  body:not(.forum33) .topbar{
+@media(max-width:900px){
+  .topbar{
     position:sticky!important;
     top:8px!important;
-    z-index:9998!important;
+    z-index:10000!important;
     display:flex!important;
     align-items:center!important;
     justify-content:space-between!important;
+    gap:10px!important;
     width:calc(100% - 20px)!important;
     max-width:calc(100% - 20px)!important;
     margin:10px auto!important;
-    padding:8px 64px 8px 12px!important;
+    padding:8px 10px 8px 12px!important;
     min-height:64px!important;
     border-radius:24px!important;
   }
 
-  body:not(.forum33) .topbar .brand{
+  .topbar .brand{
     min-width:0!important;
-    max-width:calc(100vw - 116px)!important;
+    max-width:calc(100vw - 98px)!important;
     overflow:hidden!important;
     text-overflow:ellipsis!important;
     white-space:nowrap!important;
   }
 
-  body:not(.forum33) .topbar-menu-toggle{
+  .topbar-menu-toggle{
     display:flex!important;
-    position:fixed!important;
-    top:18px!important;
-    right:18px!important;
-    z-index:10050!important;
   }
 
-  body:not(.forum33) .topbar .navlinks{
+  .topbar .navlinks{
     display:none!important;
-    position:fixed!important;
-    top:74px!important;
-    right:14px!important;
+    position:absolute!important;
+    top:calc(100% + 10px)!important;
+    right:0!important;
     left:auto!important;
-    z-index:10040!important;
+    z-index:10001!important;
     width:min(320px, calc(100vw - 28px))!important;
     max-width:min(320px, calc(100vw - 28px))!important;
     padding:12px!important;
     border-radius:22px!important;
     background:rgba(255,248,234,.99)!important;
     border:1px solid rgba(160,106,50,.24)!important;
-    box-shadow:0 28px 80px rgba(40,20,10,.30)!important;
+    box-shadow:0 26px 76px rgba(40,20,10,.28)!important;
     backdrop-filter:blur(14px)!important;
     flex-direction:column!important;
     align-items:stretch!important;
     gap:6px!important;
-    overflow:visible!important;
   }
 
-  body:not(.forum33) .topbar.is-menu-open .navlinks{
+  .topbar.is-menu-open .navlinks{
     display:flex!important;
   }
 
-  body:not(.forum33) .topbar .navlinks a{
+  .topbar .navlinks a{
     display:flex!important;
     align-items:center!important;
     width:100%!important;
@@ -2082,129 +2076,21 @@ body:not(.forum33) .topbar-menu-toggle.is-open span:nth-child(3){
     color:#3a2110!important;
     background:transparent!important;
     text-decoration:none!important;
-    font-size:.9rem!important;
-    line-height:1.2!important;
-    white-space:nowrap!important;
-  }
-
-  body:not(.forum33) .topbar .navlinks .nav-cta{
-    justify-content:center!important;
-    background:#5e3c26!important;
-    color:#fff8ea!important;
-  }
-}
-
-
-/* === FINAL STABIL MOBIL MENÜ – CSAK A JOBB FELSŐ GOMBOT JAVÍTJA === */
-#cs-final-mobile-menu-btn{
-  display:none;
-}
-
-@media (max-width:900px){
-  #cs-final-mobile-menu-btn{
-    display:flex!important;
-    position:fixed!important;
-    top:14px!important;
-    right:14px!important;
-    z-index:2147483647!important;
-    width:52px!important;
-    height:52px!important;
-    border:0!important;
-    border-radius:18px!important;
-    background:#5e3c26!important;
-    box-shadow:0 16px 40px rgba(43,21,9,.32)!important;
-    align-items:center!important;
-    justify-content:center!important;
-    flex-direction:column!important;
-    gap:6px!important;
-    cursor:pointer!important;
-    pointer-events:auto!important;
-    touch-action:manipulation!important;
-    -webkit-tap-highlight-color:transparent!important;
-  }
-
-  #cs-final-mobile-menu-btn span{
-    display:block!important;
-    width:23px!important;
-    height:2px!important;
-    border-radius:999px!important;
-    background:#fff8ea!important;
-    transition:transform .18s ease, opacity .18s ease!important;
-  }
-
-  #cs-final-mobile-menu-btn.is-open span:nth-child(1){
-    transform:translateY(8px) rotate(45deg)!important;
-  }
-
-  #cs-final-mobile-menu-btn.is-open span:nth-child(2){
-    opacity:0!important;
-  }
-
-  #cs-final-mobile-menu-btn.is-open span:nth-child(3){
-    transform:translateY(-8px) rotate(-45deg)!important;
-  }
-
-  body .cs-final-mobile-menu-panel{
-    display:none!important;
-    position:fixed!important;
-    top:76px!important;
-    right:14px!important;
-    left:auto!important;
-    z-index:2147483646!important;
-    width:min(330px, calc(100vw - 28px))!important;
-    max-width:min(330px, calc(100vw - 28px))!important;
-    max-height:calc(100vh - 96px)!important;
-    overflow:auto!important;
-    padding:12px!important;
-    border-radius:24px!important;
-    background:rgba(255,248,234,.99)!important;
-    border:1px solid rgba(160,106,50,.26)!important;
-    box-shadow:0 28px 90px rgba(40,20,10,.34)!important;
-    backdrop-filter:blur(14px)!important;
-    flex-direction:column!important;
-    align-items:stretch!important;
-    justify-content:flex-start!important;
-    gap:7px!important;
-  }
-
-  body.cs-mobile-menu-open .cs-final-mobile-menu-panel{
-    display:flex!important;
-  }
-
-  body .cs-final-mobile-menu-panel a{
-    display:flex!important;
-    align-items:center!important;
-    justify-content:flex-start!important;
-    width:100%!important;
-    min-height:46px!important;
-    padding:11px 15px!important;
-    box-sizing:border-box!important;
-    border-radius:16px!important;
-    color:#3a2110!important;
-    background:transparent!important;
-    text-decoration:none!important;
     font-family:Arial, sans-serif!important;
-    font-size:.92rem!important;
+    font-size:.9rem!important;
     font-weight:900!important;
     line-height:1.2!important;
-    letter-spacing:.03em!important;
     white-space:nowrap!important;
   }
 
-  body .cs-final-mobile-menu-panel a:hover,
-  body .cs-final-mobile-menu-panel a:focus{
+  .topbar .navlinks a:hover,
+  .topbar .navlinks a:focus{
     background:rgba(214,162,75,.18)!important;
   }
 
-  body .cs-final-mobile-menu-panel .nav-cta,
-  body .cs-final-mobile-menu-panel .f33-menu-cta{
+  .topbar .navlinks .nav-cta{
     justify-content:center!important;
     background:#5e3c26!important;
     color:#fff8ea!important;
-  }
-
-  /* A régi mobilos menüszabályok ne tudják eltolni a panelt */
-  body.cs-mobile-menu-open{
-    overflow-x:hidden!important;
   }
 }
