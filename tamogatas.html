@@ -1,1 +1,140 @@
-<!doctype html><html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Az Egyesület támogatása – Csatangoló Fórum</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="premium-3.css"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script></head><body><main class="p3-section"><div class="p3-panel"><span class="p3-eyebrow">Csatangoló Lovas Egyesület</span><h1>Az Egyesület támogatása</h1><p><strong>Fontos:</strong> a rendezvényen fizetendő 2 000 Ft/fő részvételi hozzájárulás a fórum lebonyolítását szolgálja. Az itt található lehetőségek kizárólag azoknak szólnak, akik ezen felül szeretnék támogatni a Csatangoló Lovas Egyesület munkáját és jövőbeli programjait.</p><form id="supportForm" class="form"><label>Támogató neve / cégnév<input name="supporter_name" required></label><label>E-mail<input name="email" type="email" required></label><label>Telefon<input name="phone"></label><label>Támogatás típusa<select name="support_type"><option>Pénzbeli támogatás</option><option>Tombolatárgy</option><option>Takarmány / eszköz</option><option>Önkéntes segítség</option><option>Partneri együttműködés</option><option>Egyéb</option></select></label><label>Összeg, ha pénzbeli támogatás<input name="amount" placeholder="pl. 10000 Ft"></label><label>Mivel és hogyan szeretnél támogatni?<textarea name="support_details" rows="4" required></textarea></label><label>Logó feltöltése cégeknek<input name="logo" type="file" accept="image/*"></label><label class="check"><input name="anonymous" type="checkbox"> Névtelenül szeretnék szerepelni</label><label class="check"><input name="public_display" type="checkbox" checked> Jóváhagyás után megjelenhet a támogatói listán</label><button class="p3-button" type="submit">Támogatási szándék elküldése</button><div id="supportMessage" class="form-message"></div></form><p><a href="index.html">Vissza a főoldalra</a></p></div></main><script src="tamogatas.js"></script></body></html>
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Támogatás – Csatangoló Fórum</title>
+  <link rel="stylesheet" href="styles.css?v=FINAL-1">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<nav class="topbar">
+  <a href="index.html" class="brand">Csatangoló Lovarda</a>
+  <div class="navlinks">
+    <a href="index.html">Főoldal</a>
+    <a href="program.html">Program</a>
+    <a href="eloadok.html">Előadók</a>
+    <a href="bemutatkozas.html">Lovarda</a>
+    <a href="tudastar.html">Tudástár</a>
+    <a href="galeria.html">Galéria</a>
+    <a href="tamogatas.html">Támogatás</a>
+    <a class="nav-cta" href="regisztracio.html">Regisztráció</a>
+  </div>
+</nav>
+
+<main class="support-page final-support-page">
+  <section class="support-hero-premium final-support-hero">
+    <div>
+      <span class="badge">Támogatás</span>
+      <h1>Legyél részese a Csatangoló közösség építésének</h1>
+      <p>A támogatás a Csatangoló Lovas Egyesület szakmai, lovas, gyerek és közösségi programjait segíti.</p>
+    </div>
+  </section>
+
+  <section class="bank-support-box">
+    <div class="bank-support-text">
+      <span class="eyebrow">Banki átutalás</span>
+      <h2>Támogatás egyszerű átutalással</h2>
+      <p>Az alábbi bankszámlaszámra bármilyen szabadon választott összeget utalhatsz. A másolás gombokkal könnyen kimásolhatod az adatokat.</p>
+    </div>
+
+    <div class="bank-details-card">
+      <div class="bank-detail-row">
+        <span>Kedvezményezett</span>
+        <strong>Csatangoló Lovas Egyesület</strong>
+        <button type="button" class="copy-bank-btn" data-copy="Csatangoló Lovas Egyesület">Másolás</button>
+      </div>
+      <div class="bank-detail-row">
+        <span>Bankszámlaszám</span>
+        <strong>10101164-54293700-01005004</strong>
+        <button type="button" class="copy-bank-btn" data-copy="10101164-54293700-01005004">Másolás</button>
+      </div>
+      <div class="bank-detail-row">
+        <span>Bank</span>
+        <strong>Budapest Bank</strong>
+      </div>
+      <div class="bank-detail-row">
+        <span>Javasolt közlemény</span>
+        <strong>Támogatás</strong>
+        <button type="button" class="copy-bank-btn" data-copy="Támogatás">Másolás</button>
+      </div>
+    </div>
+
+    <div class="bank-thankyou">
+      <b>💛 Köszönjük a támogatást!</b>
+      <span>Minden támogatás segít abban, hogy még több lovas, gyerek és családi programot tudjunk megvalósítani.</span>
+    </div>
+  </section>
+
+  <section class="supporters-section-final">
+    <div class="section-head">
+      <span class="eyebrow">Köszönjük</span>
+      <h2>Támogatóink</h2>
+      <p>Köszönjük partnereinknek és támogatóinknak, hogy hozzájárulnak a Csatangoló programok megvalósításához.</p>
+    </div>
+    <div class="supporter-logo-grid">
+      <a class="supporter-logo-card" href="https://maps.app.goo.gl/hfNsGfhbuQPEudeGA?g_st=ic" target="_blank" rel="noopener">
+        <img src="assets/tamogatok/jolly-rogers.jpg" alt="Jolly Roger's">
+        <span>Jolly Roger's</span>
+      </a>
+      <a class="supporter-logo-card" href="https://letak.hu/" target="_blank" rel="noopener">
+        <img src="assets/tamogatok/letak.jpg" alt="Leták Mezőgazdasági Gépgyár">
+        <span>Leták Mezőgazdasági Gépgyár</span>
+      </a>
+      <a class="supporter-logo-card" href="https://www.simoncser.hu/" target="_blank" rel="noopener">
+        <img src="assets/tamogatok/simoncser.jpg" alt="Simoncsér Kft.">
+        <span>Simoncsér Kft.</span>
+      </a>
+      <a class="supporter-logo-card" href="https://www.facebook.com/ATIABLAK" target="_blank" rel="noopener">
+        <img src="assets/tamogatok/atiablak.jpg" alt="ATI Ablak">
+        <span>ATI Ablak</span>
+      </a>
+      <a class="supporter-logo-card" href="http://meseautojatszohaz.hu/" target="_blank" rel="noopener">
+        <img src="assets/tamogatok/meseauto.jpg" alt="Meseautó Játszóház">
+        <span>Meseautó Játszóház</span>
+      </a>
+      <a class="supporter-logo-card" href="https://www.kalo-rent.hu/" target="_blank" rel="noopener">
+        <img src="assets/tamogatok/kalo-rent.jpg" alt="Kalo-Rent">
+        <span>Kalo-Rent</span>
+      </a>
+      <a class="supporter-logo-card" href="https://elsodunakavics.hu/" target="_blank" rel="noopener">
+        <img src="assets/tamogatok/elso-duna-kavics.jpg" alt="Első Duna-Kavics Kft.">
+        <span>Első Duna-Kavics Kft.</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="google-review-box">
+    <div>
+      <span class="eyebrow">Véleményed sokat számít</span>
+      <h2>Értékelj minket a Google Térképen</h2>
+      <p>Ha jártál már nálunk, egy rövid értékeléssel sokat segítesz nekünk.</p>
+    </div>
+    <a class="button" href="https://maps.app.goo.gl/1N2QbDjBaoTYU3Np9?g_st=ic" target="_blank" rel="noopener">Google értékelés írása</a>
+  </section>
+
+  <section class="support-form-shell">
+    <div class="support-form-intro">
+      <span class="eyebrow">Támogatói szándék</span>
+      <h2>Jelezd, ha támogattál vagy támogatnál</h2>
+      <p>Ha szeretnél megjelenni a támogatói listán, vagy céges logót küldenél, itt tudod jelezni.</p>
+    </div>
+    <form id="supportForm" class="form support-form">
+      <label>Támogató neve / cégnév<input name="supporter_name" required></label>
+      <label>E-mail<input name="email" type="email" required></label>
+      <label>Telefon<input name="phone"></label>
+      <label>Támogatás típusa<select name="support_type"><option>Pénzbeli támogatás</option><option>Tombolatárgy</option><option>Takarmány / eszköz</option><option>Önkéntes segítség</option><option>Partneri együttműködés</option><option>Egyéb</option></select></label>
+      <label>Összeg, ha pénzbeli támogatás<input name="amount" placeholder="pl. 10000 Ft"></label>
+      <label>Mivel és hogyan szeretnél támogatni?<textarea name="support_details" rows="4" required></textarea></label>
+      <label>Logó feltöltése cégeknek<input name="logo" type="file" accept="image/*"></label>
+      <label class="check"><input name="anonymous" type="checkbox"> Névtelenül szeretnék szerepelni</label>
+      <label class="check"><input name="public_display" type="checkbox" checked> Jóváhagyás után megjelenhet a támogatói listán</label>
+      <button class="button" type="submit">Támogatási szándék elküldése</button>
+      <div id="supportMessage" class="form-message"></div>
+    </form>
+  </section>
+</main>
+
+<script src="tamogatas.js?v=FINAL-1"></script>
+</body>
+</html>
