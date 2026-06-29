@@ -4,19 +4,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Köszönjük a regisztrációt – QR-vendégkártya</title>
-  <link rel="stylesheet" href="styles.css?v=guest-card-5">
+  <link rel="stylesheet" href="styles.css?v=guest-card-final-1">
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 </head>
 <body class="guest-card-body">
   <main class="guest-confirm-page">
     <section class="guest-confirm-hero">
       <div class="badge">Sikeres regisztráció</div>
-      <h1>Köszönjük a regisztrációdat!</h1>
-      <p>Az alábbi névre szóló vendégkártyákat kérjük mentsd le képernyőfotóként.</p>
+      <h1>Elkészült a QR-vendégkártyád</h1>
+      <p>Mentsd le képernyőfotóként, és hozd magaddal a fórum napján.</p>
+
       <div class="guest-save-alert">
         <strong>Fontos</strong>
         <span>Belépéskor ezt a QR-kódos vendégkártyát kell bemutatni. Ha több főt regisztráltál, minden résztvevő külön kártyát kap.</span>
       </div>
+
       <div class="guest-actions no-print">
         <button class="button" onclick="window.print()">Mentés / nyomtatás</button>
         <a class="button ghost dark" href="index.html">Vissza a fórum oldalára</a>
@@ -53,14 +55,32 @@
       }[c]));
     }
 
+    function roleClass(role) {
+      const r = String(role || "").toLowerCase();
+      if (r.includes("előadó")) return "role-speaker";
+      if (r.includes("oktató") || r.includes("lovasedző")) return "role-trainer";
+      if (r.includes("gyermek")) return "role-child";
+      return "role-guest";
+    }
+
+    function roleIcon(role) {
+      const r = String(role || "").toLowerCase();
+      if (r.includes("előadó")) return "🎤";
+      if (r.includes("oktató") || r.includes("lovasedző")) return "🐴";
+      if (r.includes("gyermek")) return "🌟";
+      return "🎟️";
+    }
+
     if (!tickets.length) {
       empty.hidden = false;
     } else {
       tickets.forEach((ticket, index) => {
+        const role = ticket.type || "Vendég";
         const card = document.createElement("article");
-        card.className = "premium-guest-card";
+        card.className = "premium-guest-card " + roleClass(role);
         card.innerHTML = `
           <div class="guest-card-shine"></div>
+
           <div class="guest-card-header">
             <div class="guest-logo-mark">♞</div>
             <div>
@@ -69,13 +89,21 @@
             </div>
           </div>
 
+          <div class="guest-role-ribbon">
+            <span>${roleIcon(role)}</span>
+            <b>${safe(role)}</b>
+          </div>
+
           <div class="guest-card-main">
             <div class="guest-person">
-              <small>Vendégkártya</small>
+              <small>Névre szóló vendégkártya</small>
               <h2>${safe(ticket.name)}</h2>
-              <p>${safe(ticket.type || "Résztvevő")}</p>
+              <p>Belépésre jogosító QR-kód</p>
             </div>
-            <div id="qr-${index}" class="guest-qr"></div>
+            <div class="guest-qr-shell">
+              <div id="qr-${index}" class="guest-qr"></div>
+              <span>QR belépőkód</span>
+            </div>
           </div>
 
           <div class="guest-card-footer">

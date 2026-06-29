@@ -37,16 +37,31 @@ function showError(text) {
 
 function mainParticipantType(roles) {
   const clean = Array.isArray(roles) ? roles.filter(Boolean) : [];
-  if (!clean.length) return "Fő regisztráló";
-  const roleMap = {
-    "Előadóként is szívesen kapcsolódnék": "Előadó",
-    "Szakmai résztvevő": "Szakmai résztvevő",
-    "Lovardavezető": "Lovardavezető",
-    "Belovagló / lókiképző": "Belovagló / lókiképző",
-    "Oktató": "Oktató",
-    "Szülő / kísérő": "Szülő / kísérő"
-  };
-  return clean.map(r => roleMap[r] || r).slice(0, 3).join(" • ");
+  if (!clean.length) return "Vendég";
+
+  const priority = [
+    ["Előadóként is szívesen kapcsolódnék", "Előadó"],
+    ["Oktató", "Oktató"],
+    ["Lovasedző", "Oktató / lovasedző"],
+    ["Belovagló", "Belovagló"],
+    ["Lókiképző", "Lókiképző"],
+    ["Lovarda tulajdonos", "Lovardavezető"],
+    ["Lovas egyesület képviselője", "Egyesületi képviselő"],
+    ["Versenyző", "Versenyző"],
+    ["Tenyésztő", "Tenyésztő"],
+    ["Patkolókovács", "Patkolókovács"],
+    ["Állatorvos", "Állatorvos"],
+    ["Nyeregkészítő / nyeregillesztő", "Nyeregillesztő"],
+    ["Lótartó", "Lótartó"],
+    ["Hobby lovas", "Hobby lovas"],
+    ["Érdeklődő", "Vendég"]
+  ];
+
+  const found = priority
+    .filter(([value]) => clean.includes(value))
+    .map(([, label]) => label);
+
+  return found.length ? found.slice(0, 2).join(" • ") : "Vendég";
 }
 
 form.addEventListener("submit", async (event) => {
@@ -111,7 +126,7 @@ form.addEventListener("submit", async (event) => {
         registration_id: registrationId,
         participant_code: makeParticipantCode(i + 2),
         name: name,
-        type: "Kísérő",
+        type: "Vendég",
         email_contact: registration.email,
         phone_contact: registration.phone,
         city: registration.city,
