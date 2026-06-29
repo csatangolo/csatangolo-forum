@@ -3789,3 +3789,300 @@ main{
     max-height:none!important;
   }
 }
+
+
+/* === VÉGLEGES CSAK 2 JAVÍTÁS: közösségi tér szöveg + mobil menügomb === */
+
+/* 1) Közösségi tér: a szöveg nem keskeny sáv, hanem szépen ráfut a képes blokkra */
+.forum33 .f33-lower-atmo-section{
+  overflow:visible!important;
+}
+
+.forum33 .f33-lower-atmo-card{
+  position:relative!important;
+  display:block!important;
+  min-height:clamp(540px, 58vw, 720px)!important;
+  width:100%!important;
+  max-width:100%!important;
+  padding:0!important;
+  overflow:hidden!important;
+  border-radius:34px!important;
+  isolation:isolate!important;
+  background:#2b1509!important;
+}
+
+.forum33 .f33-lower-atmo-card::before{
+  display:none!important;
+}
+
+.forum33 .f33-lower-atmo-card::after{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:1!important;
+  pointer-events:none!important;
+  background:
+    linear-gradient(90deg,
+      rgba(36,17,7,.94) 0%,
+      rgba(36,17,7,.88) 36%,
+      rgba(36,17,7,.62) 63%,
+      rgba(36,17,7,.18) 100%),
+    linear-gradient(0deg,rgba(36,17,7,.28),rgba(255,248,234,.05))!important;
+}
+
+.forum33 .f33-lower-atmo-text{
+  position:relative!important;
+  z-index:2!important;
+  width:min(880px, 82%)!important;
+  max-width:min(880px, 82%)!important;
+  min-height:clamp(540px, 58vw, 720px)!important;
+  padding:clamp(32px, 5vw, 64px)!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+  color:#fff8ea!important;
+}
+
+.forum33 .f33-lower-atmo-text h2{
+  max-width:13.8em!important;
+  margin:.22em 0 .42em!important;
+  color:#fff8ea!important;
+  font-size:clamp(2.25rem, 4.45vw, 4.65rem)!important;
+  line-height:1.04!important;
+  letter-spacing:.005em!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  hyphens:none!important;
+}
+
+.forum33 .f33-lower-atmo-text p{
+  display:block!important;
+  max-width:72ch!important;
+  color:#ecd8b8!important;
+  font-size:clamp(1rem, 1.35vw, 1.17rem)!important;
+  line-height:1.68!important;
+}
+
+.forum33 .f33-experience-list{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:10px!important;
+  width:min(720px,100%)!important;
+  margin-top:20px!important;
+}
+
+.forum33 .f33-experience-list li{
+  min-width:0!important;
+  padding:11px 13px!important;
+  font-size:clamp(.88rem,1.05vw,.98rem)!important;
+  line-height:1.25!important;
+}
+
+.forum33 .f33-community-slider{
+  position:absolute!important;
+  inset:0!important;
+  z-index:0!important;
+  width:100%!important;
+  max-width:100%!important;
+  height:100%!important;
+  min-height:100%!important;
+  aspect-ratio:auto!important;
+  border-radius:0!important;
+  overflow:hidden!important;
+  align-self:auto!important;
+  justify-self:auto!important;
+  box-shadow:none!important;
+  background:#2b1509!important;
+}
+
+.forum33 .f33-community-slide{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+}
+
+.forum33 .f33-community-caption{
+  z-index:3!important;
+  right:24px!important;
+  left:auto!important;
+  bottom:24px!important;
+}
+
+/* Fekvő telefon/tablet: szöveg széles marad, nem vékony sáv */
+@media (max-width:980px) and (orientation:landscape){
+  .forum33 .f33-lower-atmo-card{
+    min-height:520px!important;
+  }
+
+  .forum33 .f33-lower-atmo-text{
+    width:76%!important;
+    max-width:76%!important;
+    min-height:520px!important;
+    padding:30px!important;
+  }
+
+  .forum33 .f33-lower-atmo-text h2{
+    max-width:15em!important;
+    font-size:clamp(2rem,4vw,3.25rem)!important;
+  }
+
+  .forum33 .f33-lower-atmo-text p{
+    display:block!important;
+    max-width:68ch!important;
+    font-size:.95rem!important;
+    line-height:1.52!important;
+  }
+
+  .forum33 .f33-experience-list{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:8px!important;
+  }
+
+  .forum33 .f33-experience-list li{
+    padding:8px 10px!important;
+    font-size:.82rem!important;
+  }
+}
+
+/* Álló mobil: marad olvasható, nem csúszik szét */
+@media (max-width:760px) and (orientation:portrait){
+  .forum33 .f33-lower-atmo-card{
+    min-height:auto!important;
+  }
+
+  .forum33 .f33-lower-atmo-text{
+    width:100%!important;
+    max-width:100%!important;
+    min-height:auto!important;
+    padding:30px 22px 120px!important;
+  }
+
+  .forum33 .f33-lower-atmo-text h2{
+    max-width:100%!important;
+    font-size:clamp(2rem,8vw,3rem)!important;
+    line-height:1.07!important;
+  }
+
+  .forum33 .f33-lower-atmo-text p{
+    font-size:.95rem!important;
+    line-height:1.58!important;
+  }
+
+  .forum33 .f33-experience-list{
+    grid-template-columns:1fr!important;
+    width:100%!important;
+  }
+
+  .forum33 .f33-community-caption{
+    left:18px!important;
+    right:18px!important;
+    bottom:18px!important;
+    text-align:center!important;
+  }
+}
+
+/* 2) Mobil menügomb: fix jobb felső pozíció, ne tűnjön el, mindig kattintható */
+@media (max-width:900px), (orientation:portrait){
+  .forum33 .f33-nav{
+    position:sticky!important;
+    top:8px!important;
+    z-index:9998!important;
+    overflow:visible!important;
+    isolation:isolate!important;
+    padding-right:64px!important;
+  }
+
+  .forum33 .f33-menu-toggle{
+    display:flex!important;
+    position:fixed!important;
+    top:18px!important;
+    right:18px!important;
+    z-index:10050!important;
+    width:48px!important;
+    height:48px!important;
+    border:0!important;
+    border-radius:16px!important;
+    background:#5e3c26!important;
+    box-shadow:0 14px 34px rgba(43,21,9,.24)!important;
+    align-items:center!important;
+    justify-content:center!important;
+    flex-direction:column!important;
+    gap:5px!important;
+    cursor:pointer!important;
+    pointer-events:auto!important;
+    touch-action:manipulation!important;
+    -webkit-tap-highlight-color:transparent!important;
+  }
+
+  .forum33 .f33-menu-toggle span{
+    display:block!important;
+    width:22px!important;
+    height:2px!important;
+    border-radius:999px!important;
+    background:#fff8ea!important;
+    transition:transform .18s ease, opacity .18s ease!important;
+  }
+
+  .forum33 .f33-menu-toggle.is-open span:nth-child(1){
+    transform:translateY(7px) rotate(45deg)!important;
+  }
+
+  .forum33 .f33-menu-toggle.is-open span:nth-child(2){
+    opacity:0!important;
+  }
+
+  .forum33 .f33-menu-toggle.is-open span:nth-child(3){
+    transform:translateY(-7px) rotate(-45deg)!important;
+  }
+
+  .forum33 .f33-menu{
+    display:none!important;
+    position:fixed!important;
+    top:74px!important;
+    right:14px!important;
+    left:auto!important;
+    z-index:10040!important;
+    width:min(320px, calc(100vw - 28px))!important;
+    max-width:min(320px, calc(100vw - 28px))!important;
+    padding:12px!important;
+    border-radius:22px!important;
+    background:rgba(255,248,234,.99)!important;
+    border:1px solid rgba(160,106,50,.24)!important;
+    box-shadow:0 28px 80px rgba(40,20,10,.30)!important;
+    backdrop-filter:blur(14px)!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    gap:6px!important;
+    overflow:visible!important;
+  }
+
+  .forum33 .f33-nav.is-menu-open .f33-menu{
+    display:flex!important;
+  }
+
+  .forum33 .f33-menu a{
+    display:flex!important;
+    align-items:center!important;
+    width:100%!important;
+    min-height:44px!important;
+    padding:10px 14px!important;
+    box-sizing:border-box!important;
+    border-radius:14px!important;
+    color:#3a2110!important;
+    background:transparent!important;
+    text-decoration:none!important;
+    font-size:.9rem!important;
+    line-height:1.2!important;
+    white-space:nowrap!important;
+  }
+
+  .forum33 .f33-menu .f33-menu-cta{
+    justify-content:center!important;
+    background:#5e3c26!important;
+    color:#fff8ea!important;
+  }
+}
