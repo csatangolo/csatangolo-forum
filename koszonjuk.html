@@ -6,6 +6,7 @@
   <title>Köszönjük a regisztrációt – QR-vendégkártya</title>
   <link rel="stylesheet" href="styles.css?v=guest-card-final-1">
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 <body class="guest-card-body">
   <main class="guest-confirm-page">
@@ -82,7 +83,7 @@
           <div class="guest-card-shine"></div>
 
           <div class="guest-card-header">
-            <div class="guest-logo-mark">♞</div>
+            <div class="guest-logo-mark"><img src="assets/Photoroom_20250216_213349.png" alt="Csatangoló Lovarda logó"></div>
             <div>
               <strong>Csatangoló Lovarda</strong>
               <span>I. Országos Belovagló és Lókiképző Szakmai Fórum</span>
@@ -113,6 +114,10 @@
           </div>
 
           <div class="guest-card-note">Hozzájárulás: 2 000 Ft / fő, helyszínen fizethető</div>
+
+          <div class="guest-card-download no-print">
+            <button type="button" class="button save-card-btn" data-card-index="${index}">Mentés képként (PNG)</button>
+          </div>
         `;
         holder.appendChild(card);
 
@@ -124,6 +129,53 @@
         });
       });
     }
+
+    async function downloadGuestCard(index) {
+      const card = document.querySelectorAll(".premium-guest-card")[index];
+      if (!card || !window.html2canvas) return alert("A képként mentés nem elérhető. Próbáld meg frissítés után.");
+
+      const button = document.querySelector(`[data-card-index="${index}"]`);
+      const oldText = button ? button.textContent : "";
+      if (button) {
+        button.textContent = "Kép készítése...";
+        button.disabled = true;
+      }
+
+      try {
+        const canvas = await html2canvas(card, {
+          backgroundColor: null,
+          scale: Math.min(3, window.devicePixelRatio || 2),
+          useCORS: true,
+          allowTaint: true
+        });
+
+        const link = document.createElement("a");
+        const cleanName = (tickets[index]?.name || "vendegkartya").toString()
+          .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+          .replace(/[^a-zA-Z0-9]+/g, "-")
+          .replace(/^-|-$/g, "")
+          .toLowerCase();
+
+        link.download = `csatangolo-vendegkartya-${cleanName || index + 1}.png`;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      } catch (error) {
+        console.error(error);
+        alert("Nem sikerült képként menteni. Kérlek készíts képernyőfotót, vagy próbáld újra.");
+      } finally {
+        if (button) {
+          button.textContent = oldText;
+          button.disabled = false;
+        }
+      }
+    }
+
+    document.addEventListener("click", function(event) {
+      const btn = event.target.closest(".save-card-btn");
+      if (!btn) return;
+      downloadGuestCard(Number(btn.dataset.cardIndex));
+    });
+
   </script>
 </body>
 </html>

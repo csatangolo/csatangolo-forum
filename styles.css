@@ -2645,3 +2645,101 @@ body:not(.forum33) .final-program-page{
     margin-bottom:14px!important;
   }
 }
+
+
+/* === v1.0 FINAL: vendégkártya PNG mentés + titulus mezők + desktop menü stabilitás === */
+
+/* Regisztráció: személyenkénti titulus */
+.person-list-grid{
+  display:grid;
+  gap:14px;
+}
+
+.person-title-row{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:12px;
+  align-items:end;
+}
+
+.person-title-row label{
+  min-width:0;
+}
+
+/* Vendégkártya logó */
+.guest-logo-mark{
+  overflow:hidden;
+}
+
+.guest-logo-mark img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  padding:5px;
+}
+
+/* Kártya mentés gomb */
+.guest-card-download{
+  position:relative;
+  z-index:2;
+  margin-top:16px;
+}
+
+.guest-card-download .button{
+  width:100%;
+  justify-content:center;
+  border:1px solid rgba(242,203,121,.28);
+  background:linear-gradient(135deg,#d6a24b,#7a4323);
+  color:#fff8ea;
+}
+
+/* Desktop menü: ne ugráljon oldalak között; mobil szabályokat nem érinti */
+@media(min-width:901px){
+  .topbar,
+  .f33-nav{
+    min-height:72px!important;
+  }
+
+  .topbar .navlinks,
+  .f33-menu{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+    gap:16px!important;
+    flex-wrap:nowrap!important;
+  }
+
+  .topbar .navlinks a,
+  .f33-menu a{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    min-height:42px!important;
+    padding:10px 12px!important;
+    border-radius:999px!important;
+    font-family:Arial,sans-serif!important;
+    font-size:.82rem!important;
+    line-height:1!important;
+    font-weight:900!important;
+    letter-spacing:.055em!important;
+    white-space:nowrap!important;
+    box-sizing:border-box!important;
+    text-decoration:none!important;
+  }
+
+  .topbar .navlinks .nav-cta,
+  .f33-menu .f33-menu-cta{
+    min-width:132px!important;
+  }
+}
+
+@media(max-width:720px){
+  .person-title-row{
+    grid-template-columns:1fr;
+  }
+
+  .guest-card-download .button{
+    min-height:46px;
+  }
+}

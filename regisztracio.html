@@ -40,19 +40,127 @@
 
     <form id="registrationForm" class="form card">
       <h2>1. Résztvevő adatai</h2>
-      <label>Teljes név *<input required name="mainName" type="text"></label>
+      <div class="person-title-row">
+        <label>Teljes név *<input required name="mainName" type="text"></label>
+        <label>Titulus
+        <select name="mainTitle">
+          <option value="Vendég" selected>Vendég</option>
+          <option value="Előadó">Előadó</option>
+          <option value="Oktató">Oktató</option>
+          <option value="Lovasedző">Lovasedző</option>
+          <option value="Lókiképző">Lókiképző</option>
+          <option value="Belovagló">Belovagló</option>
+          <option value="Tenyésztő">Tenyésztő</option>
+          <option value="Lovarda tulajdonos">Lovarda tulajdonos</option>
+          <option value="Állatorvos">Állatorvos</option>
+          <option value="Patkolókovács">Patkolókovács</option>
+          <option value="Egyesületi képviselő">Egyesületi képviselő</option>
+          <option value="Hobby lovas">Hobby lovas</option>
+        </select>
+      </label>
+      </div>
       <label>E-mail cím *<input required name="email" type="email"></label>
       <label>Telefonszám *<input required name="phone" type="tel"></label>
       <label>Melyik településről érkezel?<input name="city" type="text"></label>
 
       <h2>2. Kísérők</h2>
       <p class="hint">Kérjük, sorold fel azok nevét, akikkel együtt érkezel. Ha egyedül érkezel, üresen hagyhatod.</p>
-      <div class="two-col">
-        <label>1. kísérő neve<input name="companion1" type="text"></label>
-        <label>2. kísérő neve<input name="companion2" type="text"></label>
-        <label>3. kísérő neve<input name="companion3" type="text"></label>
-        <label>4. kísérő neve<input name="companion4" type="text"></label>
-        <label>5. kísérő neve<input name="companion5" type="text"></label>
+      <div class="person-list-grid">
+        <div class="person-title-row">
+          <label>1. kísérő neve<input name="companion1" type="text"></label>
+          <label>Titulus
+        <select name="companion1Title">
+          <option value="Vendég" selected>Vendég</option>
+          <option value="Előadó">Előadó</option>
+          <option value="Oktató">Oktató</option>
+          <option value="Lovasedző">Lovasedző</option>
+          <option value="Lókiképző">Lókiképző</option>
+          <option value="Belovagló">Belovagló</option>
+          <option value="Tenyésztő">Tenyésztő</option>
+          <option value="Lovarda tulajdonos">Lovarda tulajdonos</option>
+          <option value="Állatorvos">Állatorvos</option>
+          <option value="Patkolókovács">Patkolókovács</option>
+          <option value="Egyesületi képviselő">Egyesületi képviselő</option>
+          <option value="Hobby lovas">Hobby lovas</option>
+        </select>
+      </label>
+        </div>
+        <div class="person-title-row">
+          <label>2. kísérő neve<input name="companion2" type="text"></label>
+          <label>Titulus
+        <select name="companion2Title">
+          <option value="Vendég" selected>Vendég</option>
+          <option value="Előadó">Előadó</option>
+          <option value="Oktató">Oktató</option>
+          <option value="Lovasedző">Lovasedző</option>
+          <option value="Lókiképző">Lókiképző</option>
+          <option value="Belovagló">Belovagló</option>
+          <option value="Tenyésztő">Tenyésztő</option>
+          <option value="Lovarda tulajdonos">Lovarda tulajdonos</option>
+          <option value="Állatorvos">Állatorvos</option>
+          <option value="Patkolókovács">Patkolókovács</option>
+          <option value="Egyesületi képviselő">Egyesületi képviselő</option>
+          <option value="Hobby lovas">Hobby lovas</option>
+        </select>
+      </label>
+        </div>
+        <div class="person-title-row">
+          <label>3. kísérő neve<input name="companion3" type="text"></label>
+          <label>Titulus
+        <select name="companion3Title">
+          <option value="Vendég" selected>Vendég</option>
+          <option value="Előadó">Előadó</option>
+          <option value="Oktató">Oktató</option>
+          <option value="Lovasedző">Lovasedző</option>
+          <option value="Lókiképző">Lókiképző</option>
+          <option value="Belovagló">Belovagló</option>
+          <option value="Tenyésztő">Tenyésztő</option>
+          <option value="Lovarda tulajdonos">Lovarda tulajdonos</option>
+          <option value="Állatorvos">Állatorvos</option>
+          <option value="Patkolókovács">Patkolókovács</option>
+          <option value="Egyesületi képviselő">Egyesületi képviselő</option>
+          <option value="Hobby lovas">Hobby lovas</option>
+        </select>
+      </label>
+        </div>
+        <div class="person-title-row">
+          <label>4. kísérő neve<input name="companion4" type="text"></label>
+          <label>Titulus
+        <select name="companion4Title">
+          <option value="Vendég" selected>Vendég</option>
+          <option value="Előadó">Előadó</option>
+          <option value="Oktató">Oktató</option>
+          <option value="Lovasedző">Lovasedző</option>
+          <option value="Lókiképző">Lókiképző</option>
+          <option value="Belovagló">Belovagló</option>
+          <option value="Tenyésztő">Tenyésztő</option>
+          <option value="Lovarda tulajdonos">Lovarda tulajdonos</option>
+          <option value="Állatorvos">Állatorvos</option>
+          <option value="Patkolókovács">Patkolókovács</option>
+          <option value="Egyesületi képviselő">Egyesületi képviselő</option>
+          <option value="Hobby lovas">Hobby lovas</option>
+        </select>
+      </label>
+        </div>
+        <div class="person-title-row">
+          <label>5. kísérő neve<input name="companion5" type="text"></label>
+          <label>Titulus
+        <select name="companion5Title">
+          <option value="Vendég" selected>Vendég</option>
+          <option value="Előadó">Előadó</option>
+          <option value="Oktató">Oktató</option>
+          <option value="Lovasedző">Lovasedző</option>
+          <option value="Lókiképző">Lókiképző</option>
+          <option value="Belovagló">Belovagló</option>
+          <option value="Tenyésztő">Tenyésztő</option>
+          <option value="Lovarda tulajdonos">Lovarda tulajdonos</option>
+          <option value="Állatorvos">Állatorvos</option>
+          <option value="Patkolókovács">Patkolókovács</option>
+          <option value="Egyesületi képviselő">Egyesületi képviselő</option>
+          <option value="Hobby lovas">Hobby lovas</option>
+        </select>
+      </label>
+        </div>
       </div>
 
       <h2>3. Gyermekek</h2>
