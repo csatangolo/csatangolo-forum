@@ -6,7 +6,7 @@
   <title>I. Országos Belovagló és Lókiképző Szakmai Fórum</title>
   <link rel="preload" as="image" href="assets/hero-forum.jpg">
   <link rel="stylesheet" href="styles.css?v=FINAL2">
-  <link rel="stylesheet" href="forum-premium-3-3.css?v=LAST-CHANCE-1">
+  <link rel="stylesheet" href="forum-premium-3-3.css?v=MENU-COMMUNITY-FIX-2">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
@@ -276,5 +276,46 @@
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="public-map.js?v=FINAL3-fixonly"></script>
+
+<script id="f33-mobile-menu-final-fix">
+(function(){
+  function initF33Menu(){
+    var nav = document.querySelector('.forum33 .f33-nav');
+    var btn = document.querySelector('.forum33 .f33-menu-toggle');
+    var menu = document.querySelector('.forum33 .f33-menu');
+    if(!nav || !btn || !menu || btn.dataset.ready === '1') return;
+    btn.dataset.ready = '1';
+
+    function setOpen(open){
+      nav.classList.toggle('is-menu-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Menü bezárása' : 'Menü megnyitása');
+    }
+
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      setOpen(!nav.classList.contains('is-menu-open'));
+    }, true);
+
+    menu.addEventListener('click', function(e){
+      if(e.target && e.target.closest('a')) setOpen(false);
+    });
+
+    document.addEventListener('click', function(e){
+      if(!nav.contains(e.target)) setOpen(false);
+    });
+
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape') setOpen(false);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initF33Menu);
+  window.addEventListener('load', initF33Menu);
+  setTimeout(initF33Menu, 300);
+  setTimeout(initF33Menu, 1200);
+})();
+</script>
 </body>
 </html>

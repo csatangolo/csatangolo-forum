@@ -3573,3 +3573,219 @@ main{
   .forum33 .f33-flow strong{font-size:.86rem!important;}
   .forum33 .f33-flow small{font-size:.9rem!important;}
 }
+
+
+/* === MENU + KÖZÖSSÉGI TÉR VÉGLEGES FINOMHANGOLÁS === */
+/* 1) Mobil menü: a gomb ténylegesen kattintható és a lenyíló menü felül jelenik meg */
+.forum33 .f33-nav{
+  overflow:visible!important;
+  isolation:isolate!important;
+}
+.forum33 .f33-menu-toggle{
+  position:relative!important;
+  z-index:10004!important;
+  pointer-events:auto!important;
+  touch-action:manipulation!important;
+  -webkit-tap-highlight-color:transparent!important;
+}
+@media (max-width:900px), (orientation:portrait){
+  .forum33 .f33-nav{
+    position:sticky!important;
+    top:8px!important;
+    z-index:10000!important;
+  }
+  .forum33 .f33-menu-toggle{
+    display:flex!important;
+    flex:0 0 46px!important;
+  }
+  .forum33 .f33-menu{
+    display:none!important;
+    position:absolute!important;
+    top:calc(100% + 10px)!important;
+    right:8px!important;
+    left:auto!important;
+    width:min(320px, calc(100vw - 30px))!important;
+    max-width:min(320px, calc(100vw - 30px))!important;
+    z-index:10003!important;
+    padding:12px!important;
+    border-radius:22px!important;
+    background:rgba(255,248,234,.99)!important;
+    border:1px solid rgba(160,106,50,.24)!important;
+    box-shadow:0 28px 80px rgba(40,20,10,.30)!important;
+    backdrop-filter:blur(14px)!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    gap:6px!important;
+    overflow:visible!important;
+  }
+  .forum33 .f33-nav.is-menu-open .f33-menu{
+    display:flex!important;
+  }
+  .forum33 .f33-menu a{
+    display:flex!important;
+    align-items:center!important;
+    width:100%!important;
+    min-height:43px!important;
+    padding:10px 14px!important;
+    box-sizing:border-box!important;
+    border-radius:14px!important;
+    color:#3a2110!important;
+    background:transparent!important;
+    text-decoration:none!important;
+    font-size:.9rem!important;
+    line-height:1.2!important;
+    white-space:nowrap!important;
+  }
+  .forum33 .f33-menu a:hover{
+    background:rgba(214,162,75,.16)!important;
+  }
+  .forum33 .f33-menu .f33-menu-cta{
+    justify-content:center!important;
+    background:#5e3c26!important;
+    color:#fff8ea!important;
+  }
+}
+@media (min-width:901px) and (orientation:landscape){
+  .forum33 .f33-menu-toggle{display:none!important;}
+  .forum33 .f33-menu{display:flex!important;}
+}
+
+/* 2) Közösségi tér: ne szoruljon össze a szöveg, a kép soha ne kerüljön alá fekvő nézetben */
+.forum33 .f33-lower-atmo-section{
+  overflow:hidden!important;
+}
+.forum33 .f33-lower-atmo-card{
+  display:grid!important;
+  grid-template-columns:minmax(360px,44%) minmax(0,56%)!important;
+  gap:clamp(18px,2.4vw,30px)!important;
+  align-items:stretch!important;
+  width:100%!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+.forum33 .f33-lower-atmo-text{
+  min-width:0!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+  padding:clamp(22px,3vw,34px)!important;
+}
+.forum33 .f33-lower-atmo-text h2{
+  font-size:clamp(2rem,3.25vw,3.35rem)!important;
+  line-height:1.06!important;
+  letter-spacing:.005em!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  hyphens:none!important;
+  max-width:11.5em!important;
+}
+.forum33 .f33-lower-atmo-text p{
+  font-size:clamp(.94rem,1.25vw,1.08rem)!important;
+  line-height:1.62!important;
+  max-width:58ch!important;
+}
+.forum33 .f33-experience-list{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:10px!important;
+  margin-top:18px!important;
+}
+.forum33 .f33-experience-list li{
+  font-size:clamp(.86rem,1.08vw,.96rem)!important;
+  line-height:1.25!important;
+  padding:10px 12px!important;
+  min-width:0!important;
+}
+.forum33 .f33-community-slider{
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  height:auto!important;
+  min-height:0!important;
+  aspect-ratio:16/10!important;
+  align-self:center!important;
+  justify-self:stretch!important;
+  box-sizing:border-box!important;
+  border-radius:28px!important;
+  overflow:hidden!important;
+}
+.forum33 .f33-community-slide{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+}
+
+@media (orientation:landscape) and (max-width:1180px){
+  .forum33 .f33-lower-atmo-card{
+    grid-template-columns:minmax(330px,46%) minmax(0,54%)!important;
+    gap:16px!important;
+    padding:20px!important;
+  }
+  .forum33 .f33-lower-atmo-text{
+    padding:22px!important;
+  }
+  .forum33 .f33-lower-atmo-text h2{
+    font-size:clamp(1.85rem,3vw,2.65rem)!important;
+    line-height:1.07!important;
+    max-width:12em!important;
+  }
+  .forum33 .f33-lower-atmo-text p{
+    font-size:.92rem!important;
+    line-height:1.52!important;
+  }
+  .forum33 .f33-experience-list{
+    grid-template-columns:1fr!important;
+    gap:8px!important;
+    margin-top:12px!important;
+  }
+  .forum33 .f33-experience-list li{
+    font-size:.84rem!important;
+    padding:8px 11px!important;
+  }
+  .forum33 .f33-community-slider{
+    aspect-ratio:16/9!important;
+    max-height:min(360px, calc(100vh - 190px))!important;
+  }
+}
+
+@media (orientation:landscape) and (max-width:860px){
+  .forum33 .f33-lower-atmo-card{
+    grid-template-columns:1fr 1fr!important;
+    padding:16px!important;
+  }
+  .forum33 .f33-lower-atmo-text h2{
+    font-size:clamp(1.55rem,4vw,2.15rem)!important;
+  }
+  .forum33 .f33-lower-atmo-text p{
+    display:none!important;
+  }
+  .forum33 .f33-community-slider{
+    aspect-ratio:4/3!important;
+    max-height:320px!important;
+  }
+}
+
+@media (max-width:760px) and (orientation:portrait){
+  .forum33 .f33-lower-atmo-card{
+    grid-template-columns:1fr!important;
+    padding:22px!important;
+  }
+  .forum33 .f33-lower-atmo-text h2{
+    font-size:clamp(2rem,8vw,3rem)!important;
+    max-width:100%!important;
+  }
+  .forum33 .f33-lower-atmo-text p{
+    display:block!important;
+    font-size:.95rem!important;
+  }
+  .forum33 .f33-experience-list{
+    grid-template-columns:1fr!important;
+  }
+  .forum33 .f33-community-slider{
+    aspect-ratio:4/3!important;
+    max-height:none!important;
+  }
+}
