@@ -1,42 +1,16 @@
-Végleges egységes javítócsomag
+Utolsó stabil mobil menü javítás
 
-A most feltöltött teljes projektből készült, nem korábbi darabokból.
+Ez a csomag NEM módosítja a főoldal tartalmát, közösségi teret, programot vagy támogatói oldalt.
+Csak egy külön mobil menü javítást ad hozzá.
 
-GitHubon cserélendő:
-- index.html
-- tamogatas.html
-- program.html
-- bemutatkozas.html
-- eloadok.html
-- tudastar.html
-- galeria.html
-- hirek.html
-- kapcsolat.html
-- regisztracio.html
-- adatkezeles.html
-- impresszum.html
+Feltöltendő/cserélendő:
+- cs-final-mobile-menu.js
 - styles.css
-- forum-premium-3-3.css
-- tamogatas.js
-- homepage.js
-- public-content.js
+- forum-premium-3-3.css, ha benne van a ZIP-ben
+- a ZIP-ben lévő HTML fájlok
 
-Assets mappába feltöltendő / cserélendő:
-- assets/jolly-rogers.jpg
-- assets/letak.jpg
-- assets/simoncser.jpeg
-- assets/atiablak.jpg
-- assets/meseauto.jpeg
-- assets/kalo-rent.jpeg
-- assets/elso-duna-kavics.jpeg
-- assets/Photoroom_20250216_213349.png
-
-Javítások:
-- egységes menüsor minden oldalon
-- a menü tartalma és betűtípusa nem változik oldalváltáskor
-- globális címméret korlátozás, nem lesz több óriási főcím
-- támogatás oldal újra rendezve, kisebb és szebb címmel
-- támogatói logók a projektben lévő valós fájlnevekre kötve
-- űrlap kártyás, rendezett megjelenést kapott
-- főoldali fórum cím és visszaszámláló stabilizálva
-- mobilon és fekvő iPaden is kisebb, arányosabb méretezés
+Miért stabilabb:
+- a menügombot JavaScript hozza létre fixen a jobb felső sarokba
+- nem függ attól, hogy a régi menüsor épp hova csúszik
+- mobilon a menü fix panelként nyílik le
+- almenüre kattintva bezáródik
