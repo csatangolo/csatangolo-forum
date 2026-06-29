@@ -50,14 +50,13 @@ function updateStats() {
   const arrived = participants.filter(p => p.checked_in);
   const paid = participants.filter(p => p.contribution_paid);
   const unpaidArrived = participants.filter(p => p.checked_in && !p.contribution_paid);
-  const speakers = participants.filter(p => roleText(p).includes("előadó"));
   const children = participants.filter(p => roleText(p).includes("gyermek"));
 
   document.getElementById("statParticipants").textContent = participants.length;
   document.getElementById("statCheckedIn").textContent = arrived.length;
+  document.getElementById("statNotArrived").textContent = participants.length - arrived.length;
   document.getElementById("statPaid").textContent = paid.length;
   document.getElementById("statUnpaidArrived").textContent = unpaidArrived.length;
-  document.getElementById("statSpeakers").textContent = speakers.length;
   document.getElementById("statChildren").textContent = children.length;
 }
 
@@ -103,8 +102,8 @@ function render(rows) {
       <td><span class="role-chip">${escapeHtml(p.type || "Vendég")}</span></td>
       <td><small>${escapeHtml(p.participant_code || "")}</small></td>
       <td>${escapeHtml(p.city || "")}</td>
-      <td><button class="mini-button ${p.checked_in ? "ok" : ""}" data-action="checkin" data-id="${p.id}">${p.checked_in ? "Megérkezett" : "Nem érkezett"}</button></td>
-      <td><button class="mini-button ${p.contribution_paid ? "ok" : ""}" data-action="paid" data-id="${p.id}">${p.contribution_paid ? "Rendezve" : "Fizetendő"}</button></td>
+      <td><button class="admin-toggle ${p.checked_in ? "on" : ""}" data-action="checkin" data-id="${p.id}"><b>${p.checked_in ? "✓" : ""}</b><span>${p.checked_in ? "Itt van" : "Nincs itt"}</span></button></td>
+      <td><button class="admin-toggle ${p.contribution_paid ? "on" : ""}" data-action="paid" data-id="${p.id}"><b>${p.contribution_paid ? "✓" : ""}</b><span>${p.contribution_paid ? "Fizetett" : "Nem fizetett"}</span></button></td>
       <td>${p.checked_in_at ? escapeHtml(new Date(p.checked_in_at).toLocaleString("hu-HU")) : ""}</td>
       <td><button class="mini-button danger" data-action="delete" data-id="${p.id}">Törlés</button></td>
     `;
@@ -113,9 +112,9 @@ function render(rows) {
 }
 
 function rowClass(p) {
-  const role = roleText(p);
   if (p.checked_in && p.contribution_paid) return "row-ok";
   if (p.checked_in && !p.contribution_paid) return "row-warn";
+  const role = roleText(p);
   if (role.includes("előadó")) return "row-speaker";
   if (role.includes("oktató") || role.includes("edző")) return "row-trainer";
   return "";
@@ -128,6 +127,7 @@ function roleText(p) {
 body.addEventListener("click", async (e) => {
   const btn = e.target.closest("button[data-action]");
   if (!btn) return;
+
   const id = btn.dataset.id;
   const p = participants.find(x => x.id === id);
   if (!p) return;
@@ -152,11 +152,12 @@ body.addEventListener("click", async (e) => {
 });
 
 async function deleteParticipant(p) {
-  if (!confirm(`Biztosan törlöd ezt a résztvevőt?\n\n${p.name}\n${p.participant_code}`)) return;
+  const ok = confirm(`Biztosan törlöd ezt a résztvevőt?\n\n${p.name}\n${p.participant_code}\n\nEz csak ezt az egy belépőkártyát törli.`);
+  if (!ok) return;
 
   const { error } = await client.from("participants").delete().eq("id", p.id);
   if (error) {
-    alert("Nem sikerült törölni. Ellenőrizd a DELETE jogosultságot.");
+    alert("Nem sikerült törölni. Ellenőrizd a Supabase DELETE jogosultságot.");
     console.error(error);
     return;
   }

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin – Csatangoló Fórum</title>
-  <link rel="stylesheet" href="styles.css?v=admin-checkin-pro-1">
+  <link rel="stylesheet" href="styles.css?v=checkin-master-1">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
@@ -19,13 +19,13 @@
   <main class="page admin-pro-page">
     <section class="hero small">
       <div class="badge">Szervezői felület</div>
-      <h1>Admin áttekintő</h1>
-      <p class="motto">Teljes résztvevőlista • érkezés • fizetés • export</p>
+      <h1>Beléptetési statisztika</h1>
+      <p class="motto">Teljes áttekintés • megérkezett • fizetett • érkezési idő • törlés</p>
     </section>
 
     <section class="admin-login card" id="loginBox">
       <h2>Admin belépés</h2>
-      <p class="hint">A teljes lista és export csak szervezőknek látható.</p>
+      <p class="hint">A teljes lista és statisztika csak szervezőknek látható.</p>
       <label>Admin kód
         <input id="adminCode" type="password" placeholder="Írd be az admin kódot">
       </label>
@@ -37,27 +37,27 @@
       <section class="admin-stats checkin-admin-stats">
         <div class="stat-card"><span id="statParticipants">0</span><small>résztvevő</small></div>
         <div class="stat-card"><span id="statCheckedIn">0</span><small>megérkezett</small></div>
+        <div class="stat-card"><span id="statNotArrived">0</span><small>még nem érkezett</small></div>
         <div class="stat-card"><span id="statPaid">0</span><small>fizetett</small></div>
-        <div class="stat-card"><span id="statUnpaidArrived">0</span><small>fizetésre vár</small></div>
-        <div class="stat-card"><span id="statSpeakers">0</span><small>előadó</small></div>
+        <div class="stat-card"><span id="statUnpaidArrived">0</span><small>érkezett, fizetésre vár</small></div>
         <div class="stat-card"><span id="statChildren">0</span><small>gyermek</small></div>
       </section>
 
       <section class="card admin-filter-card">
         <div class="admin-header">
-          <h2>Beléptetési állapot</h2>
+          <h2>Résztvevők állapota</h2>
           <button class="button" id="exportCsv">Excel / CSV export</button>
         </div>
 
         <div class="admin-filter-grid">
-          <label>Keresés név, kód, település szerint
+          <label>Keresés név, kód, település vagy titulus szerint
             <input id="searchInput" type="search" placeholder="Kezdj el gépelni...">
           </label>
           <label>Szűrő
             <select id="statusFilter">
               <option value="all">Összes résztvevő</option>
-              <option value="arrived">Csak megérkezettek</option>
-              <option value="not-arrived">Csak meg nem érkezettek</option>
+              <option value="arrived">Megérkezettek</option>
+              <option value="not-arrived">Még nem érkezettek</option>
               <option value="unpaid-arrived">Megérkezett, de fizetésre vár</option>
               <option value="paid">Fizetettek</option>
               <option value="speaker">Előadók</option>
@@ -76,7 +76,7 @@
                 <th>Titulus</th>
                 <th>Kód</th>
                 <th>Település</th>
-                <th>Megérkezett</th>
+                <th>Itt van</th>
                 <th>Fizetett</th>
                 <th>Érkezés ideje</th>
                 <th>Törlés</th>
@@ -89,7 +89,7 @@
     </section>
   </main>
 
-<script src="admin.js?v=admin-checkin-pro-1"></script>
+<script src="admin.js?v=checkin-master-1"></script>
 <script src="site-mobile-menu.js?v=real-final"></script>
 </body>
 </html>

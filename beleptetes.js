@@ -2,7 +2,7 @@ const SUPABASE_URL = "https://ywkabsgazkzrjgjncbfc.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_DJvD1Hoou3Tn74T9BFx0ww_O6ObFlxY";
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// Beléptető kollégáknak. Az admin teljes listája továbbra is az admin.html oldalon van.
+// Beléptető kolléga PIN. Ezt később átírhatod, ha szeretnéd.
 const GATE_PIN = "2026";
 
 const gateMessage = document.getElementById("gateMessage");
@@ -19,7 +19,7 @@ let currentParticipant = null;
 document.getElementById("unlockGate").addEventListener("click", () => {
   if (document.getElementById("gateCode").value !== GATE_PIN) {
     gateMessage.className = "form-message error";
-    gateMessage.textContent = "Hibás PIN-kód.";
+    gateMessage.textContent = "Hibás beléptető PIN.";
     return;
   }
   document.getElementById("gateLogin").classList.add("hidden");
@@ -121,41 +121,55 @@ async function findParticipant(code) {
 }
 
 function showParticipant(p) {
-  const already = !!p.checked_in;
+  const arrived = !!p.checked_in;
   const paid = !!p.contribution_paid;
-  const arrivalTime = p.checked_in_at ? new Date(p.checked_in_at).toLocaleTimeString("hu-HU", { hour: "2-digit", minute: "2-digit" }) : "";
+  const arrivalText = p.checked_in_at ? new Date(p.checked_in_at).toLocaleString("hu-HU", {
+    month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit"
+  }) : "Még nincs érkezési idő";
 
   resultBox.innerHTML = `
-    <div class="checkin-confirm-card ${already ? "already" : ""}">
-      <div class="checkin-status-pill">${already ? "⚠️ Már bejelentkezett" : "✅ Beolvasva"}</div>
+    <div class="checkin-confirm-card ${arrived ? "already" : ""}">
+      <div class="checkin-status-pill">${arrived ? "⚠️ Már megérkezett" : "🎟️ Beolvasva"}</div>
+
       <h2>${escapeHtml(p.name || "")}</h2>
       <p class="gate-role">${escapeHtml(p.type || "Vendég")}</p>
       <p class="gate-code">${escapeHtml(p.participant_code || "")}</p>
       ${p.city ? `<p class="gate-city">📍 ${escapeHtml(p.city)}</p>` : ""}
-      ${already ? `<p class="gate-arrival">Érkezés ideje: <strong>${escapeHtml(arrivalTime)}</strong></p>` : ""}
 
-      <div class="checkin-checkboxes">
-        <label class="checkin-check">
-          <input id="confirmArrived" type="checkbox" ${already ? "checked" : ""}>
-          <span>Megérkezett</span>
-        </label>
-        <label class="checkin-check">
-          <input id="confirmPaid" type="checkbox" ${paid ? "checked" : ""}>
-          <span>Részvételi hozzájárulás rendezve</span>
-        </label>
+      <div class="arrival-time-box">
+        <span>Érkezési idő</span>
+        <strong>${escapeHtml(arrivalText)}</strong>
       </div>
 
-      <div class="gate-status-grid">
-        <span class="${already ? "ok" : "wait"}">${already ? "Megérkezett" : "Érkezés nincs mentve"}</span>
-        <span class="${paid ? "ok" : "pay"}">${paid ? "Fizetés rendezve" : "Fizetésre vár"}</span>
+      <div class="checkin-toggle-grid">
+        <button type="button" class="checkin-toggle ${arrived ? "on" : ""}" id="toggleArrived" aria-pressed="${arrived}">
+          <b>${arrived ? "✓" : ""}</b>
+          <span>Megérkezett</span>
+        </button>
+
+        <button type="button" class="checkin-toggle ${paid ? "on" : ""}" id="togglePaid" aria-pressed="${paid}">
+          <b>${paid ? "✓" : ""}</b>
+          <span>Fizetés rendezve</span>
+        </button>
       </div>
 
       <div class="gate-action-row">
         <button class="button gate-secondary-btn" type="button" onclick="cancelCurrent()">Mégse</button>
-        <button class="button gate-primary-btn" type="button" onclick="saveCurrent()">Mentés</button>
+        <button class="button gate-primary-btn" type="button" onclick="saveCurrent()">OK, mentés</button>
       </div>
     </div>
   `;
+
+  document.getElementById("toggleArrived").addEventListener("click", toggleButton);
+  document.getElementById("togglePaid").addEventListener("click", toggleButton);
+}
+
+function toggleButton(e) {
+  const btn = e.currentTarget;
+  const next = !btn.classList.contains("on");
+  btn.classList.toggle("on", next);
+  btn.setAttribute("aria-pressed", next ? "true" : "false");
+  btn.querySelector("b").textContent = next ? "✓" : "";
 }
 
 function cancelCurrent() {
@@ -166,8 +180,9 @@ function cancelCurrent() {
 async function saveCurrent() {
   if (!currentParticipant) return;
 
-  const arrived = document.getElementById("confirmArrived").checked;
-  const paid = document.getElementById("confirmPaid").checked;
+  const arrived = document.getElementById("toggleArrived").classList.contains("on");
+  const paid = document.getElementById("togglePaid").classList.contains("on");
+
   const update = {
     checked_in: arrived,
     checked_in_at: arrived
@@ -195,14 +210,20 @@ async function saveCurrent() {
 
 function showSaved(p) {
   const paid = !!p.contribution_paid;
+  const arrived = !!p.checked_in;
+  const arrivalText = p.checked_in_at ? new Date(p.checked_in_at).toLocaleString("hu-HU", {
+    month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit"
+  }) : "";
+
   resultBox.innerHTML = `
     <div class="gate-result success">
       <b>✅</b>
       <h2>Mentve</h2>
       <p class="gate-name">${escapeHtml(p.name || "")}</p>
       <p class="gate-role">${escapeHtml(p.type || "Vendég")}</p>
+      ${arrived ? `<p class="gate-arrival">Érkezés: <strong>${escapeHtml(arrivalText)}</strong></p>` : ""}
       <div class="gate-status-grid">
-        <span class="ok">Megérkezett</span>
+        <span class="${arrived ? "ok" : "wait"}">${arrived ? "Megérkezett" : "Nincs érkezésre állítva"}</span>
         <span class="${paid ? "ok" : "pay"}">${paid ? "Fizetés rendezve" : "Fizetésre vár"}</span>
       </div>
       <button class="button gate-primary-btn" type="button" onclick="cancelCurrent()">Következő vendég</button>
