@@ -27,5 +27,5 @@
 
 ## Supabase projekt
 
-- Project URL: https://ywkabsgazkzrjgjncbfc.supabase.co
+- Project URL: [ELES_SUPABASE_URL_ELTAVOLITVA]
 - Publishable key: sb_publishable_DJvD1Hoou3Tn74T9BFx0ww_O6ObFlxY
