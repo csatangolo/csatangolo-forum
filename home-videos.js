@@ -1,6 +1,6 @@
 // Főoldali YouTube videó váltó a CMS videos táblából
-const HV_SUPABASE_URL = "https://ywkabsgazkzrjgjncbfc.supabase.co";
-const HV_SUPABASE_KEY = "sb_publishable_DJvD1Hoou3Tn74T9BFx0ww_O6ObFlxY";
+const HV_SUPABASE_URL = window.CSATANGOLO_SUPABASE_URL;
+const HV_SUPABASE_KEY = window.CSATANGOLO_SUPABASE_ANON_KEY;
 const hvClient = supabase.createClient(HV_SUPABASE_URL, HV_SUPABASE_KEY);
 
 function hvEsc(str) {
