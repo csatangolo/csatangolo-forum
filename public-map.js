@@ -1,5 +1,5 @@
-const PUBLIC_MAP_SUPABASE_URL = "https://ywkabsgazkzrjgjncbfc.supabase.co";
-const PUBLIC_MAP_SUPABASE_ANON_KEY = "sb_publishable_DJvD1Hoou3Tn74T9BFx0ww_O6ObFlxY";
+const PUBLIC_MAP_SUPABASE_URL = window.CSATANGOLO_SUPABASE_URL;
+const PUBLIC_MAP_SUPABASE_ANON_KEY = window.CSATANGOLO_SUPABASE_ANON_KEY;
 
 const PUBLIC_CITY_COORDS = {
   "budapest":[47.4979,19.0402],"kecskemet":[46.9062,19.6913],"kalocsa":[46.5290,18.9728],"oregcserto":[46.5007,19.1116],"homokmegy":[46.4881,19.0740],"baja":[46.1829,18.9536],"szeged":[46.2530,20.1414],"debrecen":[47.5316,21.6273],"pecs":[46.0727,18.2323],"gyor":[47.6875,17.6504],"miskolc":[48.1035,20.7784],"nyiregyhaza":[47.9495,21.7244],"szekesfehervar":[47.1860,18.4221],"szolnok":[47.1621,20.1825],"kaposvar":[46.3594,17.7968],"paks":[46.6229,18.8557],"dunapataj":[46.6425,18.9966],"harta":[46.6971,19.0306],"dusnok":[46.3907,18.9643],"fajsz":[46.4205,18.9222],"batya":[46.4881,18.9548],"solt":[46.8010,19.0003],"kiskoros":[46.6214,19.2853],"kiskunhalas":[46.4319,19.4875],"kiskunfelegyhaza":[46.7118,19.8446],"szekszard":[46.3474,18.7062]
