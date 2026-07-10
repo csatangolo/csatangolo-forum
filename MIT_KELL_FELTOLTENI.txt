@@ -1,14 +1,19 @@
-REAL FINAL mobil menü javítás
+ÉLES OLDAL – CSAK AZ ELŐADÓI RENDSZER
 
-Cserélendő/feltöltendő:
-- site-mobile-menu.js
+Feltöltendő:
+- index.html
+- homepage.js
+- eloadok.html
+- public-content.js
+- speakers-manager.html
+- speakers-manager.js
+- speakers-manager.css
+
+Nem kell feltölteni:
 - styles.css
-- forum-premium-3-3.css
-- a ZIP-ben lévő HTML fájlok
+- a projekt többi fájlja
 
-Mit csinál:
-- eltávolítja a korábbi elromlott menügomb megoldásokat
-- minden oldalon ugyanazt az egységes mobil menüt használja
-- a főoldalon és az aloldalakon is működik
-- mobilon a gomb a menüsor jobb oldalán marad
-- kattintásra lenyílik, menüpontra kattintva bezáródik
+Fontos:
+1. Előbb futtasd le a chatben kapott SQL-kódot az ÉLES Supabase projektben.
+2. Utána töltsd fel ezeket a fájlokat az éles GitHub repository gyökerébe.
+3. A meglévő menü, logó és a többi oldal nem változik.
