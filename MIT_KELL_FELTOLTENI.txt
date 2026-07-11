@@ -1,19 +1,18 @@
 ÉLES OLDAL – CSAK AZ ELŐADÓI RENDSZER
 
-Feltöltendő:
-- index.html
-- homepage.js
-- eloadok.html
-- public-content.js
-- speakers-manager.html
-- speakers-manager.js
-- speakers-manager.css
+1. Futtasd le a chatben kapott SQL-kódot az ÉLES Supabase-ban.
+2. Ezután töltsd fel:
+   - index.html
+   - homepage.js
+   - eloadok.html
+   - public-content.js
+   - speakers-manager.html
+   - speakers-manager.js
+   - speakers-manager.css
 
-Nem kell feltölteni:
+NE töltsd fel:
 - styles.css
 - a projekt többi fájlja
 
-Fontos:
-1. Előbb futtasd le a chatben kapott SQL-kódot az ÉLES Supabase projektben.
-2. Utána töltsd fel ezeket a fájlokat az éles GitHub repository gyökerébe.
-3. A meglévő menü, logó és a többi oldal nem változik.
+Éles admin:
+https://csatangolo.online/speakers-manager.html
